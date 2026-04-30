@@ -242,16 +242,76 @@ Selon les tissus rencontrés, les ondes sont plus ou moins réfléchies. Ces éc
 },
 
   {
-    id: "impedance",
-    title: {
-      de: "03 Impedanz & Gewebe",
-      fr: "03 Impédance & tissus"
-    },
-    content: {
-      de: "Interaktion mit Gewebe und akustische Impedanz...",
-      fr: "Interaction avec les tissus et impédance acoustique..."
-    }
+  id: "impedance",
+  title: {
+    de: "03 Impedanz & Gewebe",
+    fr: "03 Impédance & tissus"
   },
+  content: {
+    de: `
+<b>Akustische Impedanz & Gewebe</b><br><br>
+
+Die <b>akustische Impedanz</b> beschreibt, wie stark ein Gewebe den Ultraschallwellen „Widerstand“ entgegensetzt. Unterschiedliche Gewebe haben unterschiedliche Impedanzen.<br><br>
+
+<b>Interaktion der Wellen mit Gewebe:</b><br><br>
+
+<b>1. Reflexion</b><br>
+Ein Teil der Ultraschallwelle wird an Grenzflächen zurückgeworfen. Dies ist die wichtigste Grundlage der Bildentstehung.<br><br>
+
+<b>2. Brechung (Refraction)</b><br>
+Die Welle ändert ihre Richtung, wenn sie von einem Medium in ein anderes übergeht.<br><br>
+
+<b>3. Streuung (Scattering)</b><br>
+Die Welle wird in viele kleine Richtungen verteilt, besonders bei unregelmäßigen Strukturen.<br><br>
+
+<b>4. Absorption</b><br>
+Ein Teil der Energie wird vom Gewebe aufgenommen und in Wärme umgewandelt.<br><br>
+
+<b>Helligkeit im Bild:</b><br><br>
+
+• <b>Hyperechogen (weiß)</b> → starke Reflexion (z. B. Knochen, Luft)<br>
+• <b>Hypoechogen (grau)</b> → mittlere Reflexion (z. B. Muskeln)<br>
+• <b>Anechogen (schwarz)</b> → keine Reflexion (z. B. Flüssigkeiten)<br><br>
+
+<b>Warum Luft ein Problem ist:</b><br>
+Luft hat eine sehr hohe Impedanzunterschiede zum Gewebe → fast komplette Reflexion → schlechte Bildübertragung.<br><br>
+
+<b>Warum Gel benutzt wird:</b><br>
+Das Gel entfernt die Luft zwischen Sonde und Haut. Dadurch können die Ultraschallwellen besser in den Körper eindringen und ein klares Bild erzeugen.
+`,
+    fr: `
+<b>Impédance acoustique & tissus</b><br><br>
+
+L’<b>impédance acoustique</b> décrit la résistance d’un tissu au passage des ultrasons. Chaque tissu possède une impédance différente.<br><br>
+
+<b>Interactions des ondes :</b><br><br>
+
+<b>1. Réflexion</b><br>
+Une partie de l’onde est renvoyée lorsqu’elle rencontre une interface entre deux tissus.<br><br>
+
+<b>2. Réfraction</b><br>
+L’onde change de direction lorsqu’elle passe d’un milieu à un autre.<br><br>
+
+<b>3. Diffusion (scattering)</b><br>
+L’onde est dispersée dans plusieurs directions à cause des structures irrégulières.<br><br>
+
+<b>4. Absorption</b><br>
+Une partie de l’énergie est absorbée par les tissus et transformée en chaleur.<br><br>
+
+<b>Aspect de l’image :</b><br><br>
+
+• <b>Hyperéchogène (blanc)</b> → forte réflexion (os, air)<br>
+• <b>Hypoéchogène (gris)</b> → réflexion moyenne (muscles)<br>
+• <b>Anéchogène (noir)</b> → pas de réflexion (liquides)<br><br>
+
+<b>Problème de l’air :</b><br>
+L’air provoque une forte différence d’impédance → réflexion presque totale → image de mauvaise qualité.<br><br>
+
+<b>Utilisation du gel :</b><br>
+Le gel élimine l’air entre la sonde et la peau. Cela permet une meilleure transmission des ultrasons et une image plus claire.
+`
+  }
+},
 
   {
     id: "mesure",
