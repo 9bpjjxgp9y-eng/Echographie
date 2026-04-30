@@ -2,7 +2,6 @@ body {
   font-family: Arial;
   text-align: center;
   background: #f4f6f8;
-  margin: 0;
   padding: 20px;
 }
 
@@ -22,9 +21,4 @@ button {
 
 button:hover {
   background: #1b6fd1;
-}
-
-#output {
-  margin-top: 20px;
-  font-size: 18px;
 }
