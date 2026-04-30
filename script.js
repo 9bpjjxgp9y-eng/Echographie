@@ -6,7 +6,7 @@ let index = 0;
 const texts = {
   de: {
     theory: "Theorie",
-    quiz: "Quiz starten",
+    quiz: "Quiz",
     home: "🏠",
     restart: "🔄",
     theoryTitle: "Theorie",
@@ -14,7 +14,7 @@ const texts = {
   },
   fr: {
     theory: "Théorie",
-    quiz: "Commencer le quiz",
+    quiz: "Quiz",
     home: "🏠",
     restart: "🔄",
     theoryTitle: "Théorie",
