@@ -22,11 +22,6 @@ const texts = {
   }
 };
 
-const theory = {
-  de: "Echographie nutzt Ultraschallwellen, um Bilder im Körper zu erzeugen.",
-  fr: "L’échographie utilise des ultrasons pour créer des images du corps."
-};
-
 const questions = [
   {
     de: { q: "Was nutzt Echographie?", options: ["Ultraschall", "Licht"] },
