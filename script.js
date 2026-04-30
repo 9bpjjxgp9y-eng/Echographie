@@ -56,16 +56,33 @@ function updateUI() {
 }
 
 function resetScreens() {
-  document.getElementById("startScreen").style.display = "none";
-  document.getElementById("theoryScreen").style.display = "none";
-  document.getElementById("theoryDetailScreen").style.display = "none";
-  document.getElementById("quizScreen").style.display = "none";
-  document.getElementById("resultScreen").style.display = "none";
+  const screens = [
+    "startScreen",
+    "theoryScreen",
+    "theoryDetailScreen",
+    "quizScreen",
+    "resultScreen"
+  ];
+
+  screens.forEach(id => {
+    let el = document.getElementById(id);
+    if (el) {
+      el.style.display = "none";
+    }
+  });
+
+  // WICHTIG: Inhalte löschen, damit nichts „hängen bleibt“
+  let detail = document.getElementById("theoryDetailScreen");
+  if (detail) {
+    detail.innerHTML = "";
+  }
 }
 
 function goHome() {
   resetScreens();
-  document.getElementById("startScreen").style.display = "block";
+
+  let start = document.getElementById("startScreen");
+  start.style.display = "block";
 }
 
 function showTheory() {
@@ -570,15 +587,17 @@ function showTheory() {
 
 function openDetail(id) {
   resetScreens();
-  document.getElementById("theoryDetailScreen").style.display = "block";
+
+  let screen = document.getElementById("theoryDetailScreen");
+  screen.style.display = "block";
 
   let item = theoryContent.find(x => x.id === id);
 
-  document.getElementById("detailTitle").innerText =
-    item.title[lang];
-
-document.getElementById("detailContent").innerHTML =
-  item.content[lang];
+  screen.innerHTML = `
+    <button onclick="showTheory()">⬅ Zurück</button>
+    <h2>${item.title[lang]}</h2>
+    <div>${item.content[lang]}</div>
+  `;
 }
 
 function backToTheory() {
