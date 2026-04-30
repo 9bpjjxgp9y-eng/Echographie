@@ -379,17 +379,144 @@ C’est essentiel pour diagnostiquer les maladies cardiaques.
   }
 },
 
-  {
-    id: "types",
-    title: {
-      de: "05 Arten der Echographie",
-      fr: "05 Types d’échographie"
-    },
-    content: {
-      de: "Echokardiographie, Schwangerschaft, Abdomen, 2D/3D/4D/Doppler...",
-      fr: "Échocardiographie, grossesse, abdomen, 2D/3D/4D/Doppler..."
-    }
+{
+  id: "types",
+  title: {
+    de: "05 Arten der Echographie",
+    fr: "05 Types d’échographie"
   },
+  content: {
+    de: `
+<b>Arten der Echographie</b><br><br>
+
+Die Echographie wird in verschiedenen medizinischen Bereichen eingesetzt. Je nach Anwendung werden unterschiedliche Sonden und Frequenzen verwendet, um optimale Bilder zu erhalten.<br><br>
+
+<b>1. Echokardiographie (Herzuntersuchung)</b><br><br>
+
+Die Echokardiographie dient zur Untersuchung des Herzens in Echtzeit.<br><br>
+
+<b>Sonden:</b><br>
+• Phased-Array-Sonde (meist zwischen 1–5 MHz)<br>
+Diese Sonde ist klein und ermöglicht es, zwischen den Rippen zu arbeiten und das Herz gut zu erreichen.<br><br>
+
+<b>Warum diese Sonde?</b><br>
+Das Herz liegt tief im Brustkorb und bewegt sich schnell. Deshalb braucht man eine Sonde mit guter Eindringtiefe und schneller Bildaufnahme.<br><br>
+
+<b>Was wird untersucht?</b><br>
+• Herzklappen<br>
+• Herzkontraktion<br>
+• Blutfluss (auch mit Doppler möglich)<br><br>
+
+<b>2. Schwangerschafts-Echographie</b><br><br>
+
+Diese Untersuchung dient der Beobachtung des Fötus im Mutterleib.<br><br>
+
+<b>Sonden:</b><br>
+• Konvexsonde (ca. 2–6 MHz)<br>
+Diese Sonde hat eine große Tiefe und eignet sich für den Bauchraum.<br><br>
+
+<b>Warum diese Sonde?</b><br>
+Der Fötus liegt tief im Körper und man braucht gute Eindringtiefe, aber trotzdem ausreichende Bildqualität.<br><br>
+
+<b>Was wird untersucht?</b><br>
+• Entwicklung des Fötus<br>
+• Herzschlag des Babys<br>
+• Organentwicklung<br><br>
+
+<b>3. Abdominale Echographie (Bauchraum)</b><br><br>
+
+Diese Untersuchung betrifft Organe wie Leber, Nieren, Milz oder Gallenblase.<br><br>
+
+<b>Sonden:</b><br>
+• Konvexsonde (2–5 MHz)<br>
+oder bei oberflächlichen Strukturen<br>
+• Linearsonde (7–12 MHz)<br><br>
+
+<b>Warum diese Sonden?</b><br>
+Tiefe Organe brauchen niedrige Frequenzen für bessere Eindringtiefe, oberflächliche Strukturen hohe Frequenzen für bessere Auflösung.<br><br>
+
+<b>Was wird untersucht?</b><br>
+• Leber<br>
+• Nieren<br>
+• Gallensteine<br>
+• Flüssigkeitsansammlungen<br><br>
+
+<b>Weitere Arten der Echographie</b><br><br>
+
+Es gibt noch viele andere Anwendungen, zum Beispiel:<br>
+• Gefäßsonographie (Doppler)<br>
+• Schilddrüsen-Echographie<br>
+• Muskel- und Gelenksonographie<br>
+• Notfallsonographie (FAST-Scan)<br><br>
+
+Diese werden hier nicht im Detail erklärt, da sie sehr spezialisiert sind.
+`,
+    fr: `
+<b>Types d’échographie</b><br><br>
+
+L’échographie est utilisée dans de nombreux domaines médicaux. Selon l’application, différentes sondes et fréquences sont utilisées pour obtenir la meilleure image possible.<br><br>
+
+<b>1. Échocardiographie (cœur)</b><br><br>
+
+L’échocardiographie permet d’observer le cœur en temps réel.<br><br>
+
+<b>Sonde utilisée :</b><br>
+• Sonde phased-array (1–5 MHz)<br>
+Elle est petite et permet de passer entre les côtes pour atteindre le cœur.<br><br>
+
+<b>Pourquoi cette sonde ?</b><br>
+Le cœur est profond et en mouvement rapide, il faut donc une bonne pénétration et une acquisition rapide des images.<br><br>
+
+<b>Examens :</b><br>
+• valves cardiaques<br>
+• contraction du cœur<br>
+• flux sanguin (Doppler)<br><br>
+
+<b>2. Échographie de grossesse</b><br><br>
+
+Elle permet de suivre le développement du fœtus.<br><br>
+
+<b>Sonde utilisée :</b><br>
+• Sonde convexe (2–6 MHz)<br>
+Elle permet d’explorer en profondeur la cavité abdominale.<br><br>
+
+<b>Pourquoi cette sonde ?</b><br>
+Le fœtus est situé profondément dans le corps, il faut donc une bonne pénétration des ultrasons.<br><br>
+
+<b>Examens :</b><br>
+• développement du fœtus<br>
+• battements du cœur<br>
+• organes du bébé<br><br>
+
+<b>3. Échographie abdominale</b><br><br>
+
+Elle sert à examiner les organes abdominaux comme le foie, les reins ou la vésicule biliaire.<br><br>
+
+<b>Sondes utilisées :</b><br>
+• sonde convexe (2–5 MHz)<br>
+• sonde linéaire (7–12 MHz pour structures superficielles)<br><br>
+
+<b>Pourquoi ces sondes ?</b><br>
+Les organes profonds nécessitent des basses fréquences, tandis que les structures superficielles nécessitent une meilleure résolution.<br><br>
+
+<b>Examens :</b><br>
+• foie<br>
+• reins<br>
+• calculs biliaires<br>
+• liquides anormaux<br><br>
+
+<b>Autres types d’échographie</b><br><br>
+
+Il existe aussi d’autres examens comme :<br>
+• échographie Doppler vasculaire<br>
+• échographie de la thyroïde<br>
+• échographie musculo-squelettique<br>
+• échographie d’urgence (FAST)<br><br>
+
+Ces types ne sont pas détaillés ici car ils sont plus spécialisés.
+`
+  }
+},
 
   {
     id: "conclusion",
