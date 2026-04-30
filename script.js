@@ -3,6 +3,25 @@ let lang = localStorage.getItem("lang") || "de";
 let score = 0;
 let index = 0;
 
+const texts = {
+  de: {
+    start: "Quiz starten",
+    theory: "Theorie",
+    home: "Zur Startseite",
+    back: "Zurück",
+    result: "Score: ",
+    quizDone: "Quiz fertig! Punkte: "
+  },
+  fr: {
+    start: "Commencer le quiz",
+    theory: "Théorie",
+    home: "Accueil",
+    back: "Retour",
+    result: "Score : ",
+    quizDone: "Quiz terminé ! Points : "
+  }
+};
+
 const questions = [
   {
     de: { q: "Was nutzt Echographie?", options: ["Ultraschall", "Licht"] },
@@ -24,11 +43,10 @@ const theory = {
 function setLanguage(l) {
   lang = l;
   localStorage.setItem("lang", l);
-  updateTheory();
 }
 
 function startQuiz() {
-  resetScreens();
+  reset();
   document.getElementById("quizScreen").style.display = "block";
   showQuestion();
 }
@@ -59,35 +77,25 @@ function answer(val) {
 }
 
 function showResult() {
-  resetScreens();
+  reset();
   document.getElementById("resultScreen").style.display = "block";
 
   document.getElementById("resultText").innerText =
-    "Score: " + score + "/" + questions.length;
-}
-
-function restart() {
-  score = 0;
-  index = 0;
-  startQuiz();
+    texts[lang].result + score + "/" + questions.length;
 }
 
 function goHome() {
-  resetScreens();
+  reset();
   document.getElementById("startScreen").style.display = "block";
 }
 
 function showTheory() {
-  resetScreens();
+  reset();
   document.getElementById("theoryScreen").style.display = "block";
-  updateTheory();
-}
-
-function updateTheory() {
   document.getElementById("theoryText").innerText = theory[lang];
 }
 
-function resetScreens() {
+function reset() {
   document.getElementById("startScreen").style.display = "none";
   document.getElementById("quizScreen").style.display = "none";
   document.getElementById("resultScreen").style.display = "none";
