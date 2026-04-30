@@ -22,14 +22,26 @@ const texts = {
 
 const questions = [
   {
-    de: "Was nutzt Echographie?",
-    fr: "Que utilise l’échographie ?",
-    a: "ultraschall"
+    de: {
+      q: "Was nutzt Echographie?",
+      options: ["Ultraschall", "Licht"]
+    },
+    fr: {
+      q: "Que utilise l’échographie ?",
+      options: ["Ultrasons", "Lumière"]
+    },
+    a: 0
   },
   {
-    de: "Was wird erzeugt?",
-    fr: "Qu’est-ce qui est créé ?",
-    a: "bilder"
+    de: {
+      q: "Was wird erzeugt?",
+      options: ["Bilder", "Geräusche"]
+    },
+    fr: {
+      q: "Qu’est-ce qui est créé ?",
+      options: ["Images", "Sons"]
+    },
+    a: 0
   }
 ];
 
@@ -59,13 +71,12 @@ function quiz() {
     return;
   }
 
-  let q = questions[questionIndex];
-  let questionText = lang === "de" ? q.de : q.fr;
+  let q = questions[questionIndex][lang];
 
   document.getElementById("output").innerHTML = `
-    <h3>${questionText}</h3>
-    <button onclick="answer('ultraschall')">Ultraschall</button>
-    <button onclick="answer('licht')">Licht</button>
+    <h3>${q.q}</h3>
+    <button onclick="answer(0)">${q.options[0]}</button>
+    <button onclick="answer(1)">${q.options[1]}</button>
   `;
 }
 
