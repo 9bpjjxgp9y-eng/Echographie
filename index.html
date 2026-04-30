@@ -11,32 +11,29 @@
 <div id="startScreen">
   <h1>📱 Echographie App</h1>
 
-  <button onclick="startQuiz()">🧠 Quiz starten</button>
-  <button onclick="showTheory()">📘 Theorie</button>
+  <button onclick="startQuiz()" id="btnStart">Quiz starten</button>
+  <button onclick="showTheory()" id="btnTheory">Theorie</button>
 
-  <br><br>
-
-  <button onclick="setLanguage('de')">🇩🇪 Deutsch</button>
-  <button onclick="setLanguage('fr')">🇫🇷 Français</button>
+  <div id="langBox">
+    <button onclick="setLanguage('de')">🇩🇪</button>
+    <button onclick="setLanguage('fr')">🇫🇷</button>
+  </div>
 </div>
 
 <div id="quizScreen" style="display:none;">
   <h2 id="question"></h2>
   <div id="answers"></div>
-
-  <br>
-  <button onclick="goHome()">⬅ Zurück</button>
 </div>
 
 <div id="resultScreen" style="display:none;">
   <h2 id="resultText"></h2>
-  <button onclick="restart()">🔁 Neustart</button>
+  <button onclick="goHome()" id="btnHome">Zur Startseite</button>
 </div>
 
 <div id="theoryScreen" style="display:none;">
   <h2>📘 Theorie</h2>
   <p id="theoryText"></p>
-  <button onclick="goHome()">⬅ Zurück</button>
+  <button onclick="goHome()" id="btnBack">Zurück</button>
 </div>
 
 <script src="script.js"></script>
