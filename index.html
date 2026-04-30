@@ -8,17 +8,22 @@
 
 <body>
 
-<h1 id="title"></h1>
+<h1>Echographie App</h1>
 
-<button id="btnInfo" onclick="showInfo()"></button>
-<button id="btnQuiz" onclick="quiz()"></button>
+<div id="startScreen">
+  <button onclick="startQuiz()">Quiz starten</button>
+  <button onclick="setLanguage('de')">DE</button>
+  <button onclick="setLanguage('fr')">FR</button>
+</div>
 
-<p id="output"></p>
+<div id="quizScreen" style="display:none;">
+  <h2 id="question"></h2>
+  <div id="answers"></div>
+</div>
 
-<br>
-
-<button onclick="setLanguage('de')">Deutsch</button>
-<button onclick="setLanguage('fr')">Français</button>
+<div id="resultScreen" style="display:none;">
+  <h2 id="resultText"></h2>
+</div>
 
 <script src="script.js"></script>
 
