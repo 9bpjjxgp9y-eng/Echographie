@@ -55,6 +55,7 @@ function quiz() {
     alert(texts[lang].quizDone + score + "/" + questions.length);
     score = 0;
     questionIndex = 0;
+    renderUI();
     return;
   }
 
@@ -77,4 +78,5 @@ function answer(val) {
   quiz();
 }
 
+// Start
 renderUI();
