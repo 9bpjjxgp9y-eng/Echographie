@@ -129,7 +129,16 @@ const theoryContent = [
     },
     content: {
       de: "Hier schreibst du deine Einführung auf Deutsch.",
-      fr: "Ici tu écris ton introduction en français."
+      fr: "<b>Méthode d’imagerie non invasive</b><br><br>
+
+L’échographie est une méthode d’imagerie médicale non invasive, ce qui signifie qu’elle ne nécessite ni intervention chirurgicale ni pénétration dans le corps. Elle est donc totalement indolore et ne présente aucun risque pour le patient.<br><br>
+
+Cette technique repose sur l’utilisation d’ondes ultrasonores, c’est-à-dire des ondes sonores à haute fréquence, inaudibles pour l’oreille humaine. Ces ondes sont émises par une sonde et traversent les tissus du corps. Lorsqu’elles rencontrent différentes structures, elles sont réfléchies et renvoyées vers l’appareil, ce qui permet de créer une image.<br><br>
+
+L’un des grands avantages de l’échographie est la possibilité d’évaluer les tissus en temps réel. Le médecin peut ainsi observer directement les organes en mouvement, comme le cœur ou le fœtus pendant une grossesse.<br><br>
+
+Grâce à sa sécurité et à sa rapidité, l’échographie est utilisée dans de nombreuses spécialités médicales, comme la cardiologie, la gynécologie, ou encore la médecine abdominale.
+"
     }
   },
   {
