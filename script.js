@@ -16,13 +16,19 @@ const questions = [
   }
 ];
 
+const theory = {
+  de: "Echographie nutzt Ultraschallwellen, um Bilder im Körper zu erzeugen.",
+  fr: "L’échographie utilise des ultrasons pour créer des images du corps."
+};
+
 function setLanguage(l) {
   lang = l;
   localStorage.setItem("lang", l);
+  updateTheory();
 }
 
 function startQuiz() {
-  document.getElementById("startScreen").style.display = "none";
+  resetScreens();
   document.getElementById("quizScreen").style.display = "block";
   showQuestion();
 }
@@ -53,9 +59,37 @@ function answer(val) {
 }
 
 function showResult() {
-  document.getElementById("quizScreen").style.display = "none";
+  resetScreens();
   document.getElementById("resultScreen").style.display = "block";
 
   document.getElementById("resultText").innerText =
     "Score: " + score + "/" + questions.length;
+}
+
+function restart() {
+  score = 0;
+  index = 0;
+  startQuiz();
+}
+
+function goHome() {
+  resetScreens();
+  document.getElementById("startScreen").style.display = "block";
+}
+
+function showTheory() {
+  resetScreens();
+  document.getElementById("theoryScreen").style.display = "block";
+  updateTheory();
+}
+
+function updateTheory() {
+  document.getElementById("theoryText").innerText = theory[lang];
+}
+
+function resetScreens() {
+  document.getElementById("startScreen").style.display = "none";
+  document.getElementById("quizScreen").style.display = "none";
+  document.getElementById("resultScreen").style.display = "none";
+  document.getElementById("theoryScreen").style.display = "none";
 }
