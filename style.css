@@ -5,29 +5,20 @@ body {
   padding: 20px;
 }
 
-h1 {
-  color: #1f2d3d;
-}
-
 button {
-  padding: 12px 18px;
-  margin: 8px;
+  margin: 6px;
+  padding: 10px 15px;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   background: #2d89ef;
   color: white;
-  font-size: 16px;
 }
 
 button:hover {
   background: #1b6fd1;
 }
-#langBox {
-  margin-top: 10px;
-}
 
 #langBox button {
-  padding: 6px 10px;
   font-size: 12px;
-  border-radius: 6px;
+  padding: 5px 8px;
 }
