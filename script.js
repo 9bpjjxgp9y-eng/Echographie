@@ -197,17 +197,49 @@ Grâce à ces propriétés, les ultrasons sont particulièrement adaptés à l�
   }
 },
 
-  {
-    id: "ondes",
-    title: {
-      de: "02 Kompression / Rarefaktion",
-      fr: "02 Compression / Rarefaction"
-    },
-    content: {
-      de: "Erklärung der Wellenphasen und Bildentstehung...",
-      fr: "Explication des phases des ondes et formation de l’image..."
-    }
+{
+  id: "ondes",
+  title: {
+    de: "02 Kompression / Rarefaktion",
+    fr: "02 Compression / Rarefaction"
   },
+  content: {
+    de: `
+<b>Variationen des Drucks</b><br><br>
+
+Schall- und Ultraschallwellen bestehen aus <b>Variationen des Drucks</b> in einem Medium. Diese Druckänderungen breiten sich im Material aus, ohne dass sich das Material selbst fortbewegt.<br><br>
+
+<b>Kompression</b><br>
+Bei der Kompression werden die Teilchen eines Mediums <b>zusammengedrückt</b>. Dadurch steigt der Druck in diesem Bereich.<br><br>
+
+<b>Rarefaktion</b><br>
+Bei der Rarefaktion werden die Teilchen <b>auseinandergezogen</b>. Der Druck in diesem Bereich sinkt.<br><br>
+
+<b>Zusammenhang mit der Echographie</b><br>
+Die Echographie nutzt die Abfolge von Kompression und Rarefaktion, um Ultraschallwellen im Körper zu erzeugen und deren Reflexion zu messen.<br><br>
+
+<b>Bildentstehung</b><br>
+Wenn die Wellen auf unterschiedliche Gewebe treffen, werden sie unterschiedlich stark reflektiert. Aus diesen Echos entsteht das medizinische Bild.
+`,
+    fr: `
+<b>Variations de pression</b><br><br>
+
+Les ondes sonores et ultrasonores sont des <b>variations de pression</b> qui se propagent dans un milieu. Le matériau ne se déplace pas, seules les perturbations se déplacent.<br><br>
+
+<b>Compression</b><br>
+Lors d’une compression, les particules du milieu sont <b>rapprochées</b>, ce qui augmente la pression dans cette zone.<br><br>
+
+<b>Raréfaction</b><br>
+Lors d’une raréfaction, les particules sont <b>éloignées</b>, ce qui diminue la pression.<br><br>
+
+<b>Lien avec l’échographie</b><br>
+L’échographie utilise l’alternance entre compression et raréfaction pour générer les ultrasons et analyser leurs réflexions dans le corps.<br><br>
+
+<b>Formation de l’image</b><br>
+Selon les tissus rencontrés, les ondes sont plus ou moins réfléchies. Ces échos permettent de créer une image médicale.
+`
+  }
+},
 
   {
     id: "impedance",
