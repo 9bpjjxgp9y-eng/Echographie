@@ -313,17 +313,71 @@ Le gel élimine l’air entre la sonde et la peau. Cela permet une meilleure tra
   }
 },
 
-  {
-    id: "mesure",
-    title: {
-      de: "04 Messprinzip",
-      fr: "04 Principe de mesure"
-    },
-    content: {
-      de: "Messung der Echo-Zeit und Bildberechnung...",
-      fr: "Mesure du temps des échos et calcul de l’image..."
-    }
+{
+  id: "mesure",
+  title: {
+    de: "04 Messprinzip",
+    fr: "04 Principe de mesure"
   },
+  content: {
+    de: `
+<b>Prinzip der Echographie (Messprinzip)</b><br><br>
+
+Die Echographie basiert auf der Messung der Zeit, die ein Ultraschallsignal benötigt, um ins Gewebe zu gelangen und als Echo zur Sonde zurückzukehren.<br><br>
+
+<b>Grundprinzip:</b><br>
+Die Sonde sendet kurze Ultraschallimpulse in den Körper. Diese werden an verschiedenen Gewebegrenzen reflektiert und kehren als Echo zurück.<br><br>
+
+<b>Entfernungsmessung:</b><br>
+Die Tiefe eines Organs wird berechnet durch die Laufzeit des Echos. Je länger die Zeit, desto tiefer liegt das Gewebe.<br><br>
+
+<b>Formel-Idee:</b><br>
+Entfernung = (Schallgeschwindigkeit × Zeit) / 2<br>
+(Division durch 2, weil Hin- und Rückweg gemessen werden)<br><br>
+
+<b>Bildentstehung:</b><br>
+Das Gerät setzt viele dieser Messpunkte zusammen und erstellt daraus ein zweidimensionales Bild.<br><br>
+
+<b>Beispiel: Herz (Echokardiographie)</b><br>
+Beim Herz werden schnelle Bewegungen gemessen. Die Ultraschallwellen zeigen in Echtzeit, wie sich das Herz zusammenzieht und wieder entspannt.<br><br>
+
+So kann man z. B. sehen:<br>
+• Herzklappenbewegung<br>
+• Blutfluss<br>
+• Herzschlag in Echtzeit<br><br>
+
+Das ist besonders wichtig zur Diagnose von Herzkrankheiten.
+`,
+    fr: `
+<b>Principe de l’échographie (principe de mesure)</b><br><br>
+
+L’échographie repose sur la mesure du temps nécessaire à une onde ultrasonore pour pénétrer dans le corps et revenir sous forme d’écho.<br><br>
+
+<b>Principe de base :</b><br>
+La sonde émet des impulsions ultrasonores. Ces ondes sont réfléchies par les tissus et reviennent vers la sonde.<br><br>
+
+<b>Mesure de la profondeur :</b><br>
+La profondeur d’un organe est calculée grâce au temps de retour de l’écho. Plus le temps est long, plus la structure est profonde.<br><br>
+
+<b>Idée de formule :</b><br>
+Distance = (vitesse du son × temps) / 2<br>
+(le facteur 2 correspond à l’aller-retour de l’onde)<br><br>
+
+<b>Formation de l’image :</b><br>
+L’appareil combine de nombreux points de mesure pour créer une image en deux dimensions.<br><br>
+
+<b>Exemple : cœur (échocardiographie)</b><br>
+Dans le cas du cœur, on observe des mouvements rapides en temps réel. L’échographie permet de voir la contraction et la relaxation du cœur.<br><br>
+
+On peut ainsi analyser :<br>
+• le mouvement des valves cardiaques<br>
+• le flux sanguin<br>
+• le rythme cardiaque en temps réel<br><br>
+
+C’est essentiel pour diagnostiquer les maladies cardiaques.
+`
+  }
+},
 
   {
     id: "types",
