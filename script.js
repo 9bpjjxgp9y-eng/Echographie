@@ -1,41 +1,66 @@
+let lang = "de";
+
 let score = 0;
 let questionIndex = 0;
 
+const texts = {
+  de: {
+    title: "Meine Echographie App",
+    btnInfo: "Was ist Echographie?",
+    btnQuiz: "Quiz starten",
+    info: "Echographie nutzt Ultraschallwellen, um Bilder im Körper zu erzeugen.",
+    quizDone: "Quiz fertig! Punkte: "
+  },
+  fr: {
+    title: "Mon application d’échographie",
+    btnInfo: "Qu’est-ce que l’échographie ?",
+    btnQuiz: "Commencer le quiz",
+    info: "L’échographie utilise des ultrasons pour créer des images du corps.",
+    quizDone: "Quiz terminé ! Points : "
+  }
+};
+
 const questions = [
   {
-    q: "Was nutzt Echographie?",
+    de: "Was nutzt Echographie?",
+    fr: "Que utilise l’échographie ?",
     a: "ultraschall"
   },
   {
-    q: "Was wird bei der Echographie erzeugt?",
+    de: "Was wird erzeugt?",
+    fr: "Qu’est-ce qui est créé ?",
     a: "bilder"
-  },
-  {
-    q: "Welche Wellen werden gesendet?",
-    a: "schallwellen"
   }
 ];
 
+function setLanguage(l) {
+  lang = l;
+  document.getElementById("title").innerText = texts[lang].title;
+  document.getElementById("btnInfo").innerText = texts[lang].btnInfo;
+  document.getElementById("btnQuiz").innerText = texts[lang].btnQuiz;
+}
+
 function showInfo() {
-  document.getElementById("output").innerText =
-    "Echographie nutzt Ultraschallwellen, die im Körper reflektiert werden.";
+  document.getElementById("output").innerText = texts[lang].info;
 }
 
 function quiz() {
   if (questionIndex >= questions.length) {
-    alert("Quiz fertig! Punkte: " + score + "/" + questions.length);
+    alert(texts[lang].quizDone + score + "/" + questions.length);
     score = 0;
     questionIndex = 0;
     return;
   }
 
-  let userAnswer = prompt(questions[questionIndex].q);
+  let q = lang === "de" ? questions[questionIndex].de : questions[questionIndex].fr;
 
-  if (userAnswer && userAnswer.toLowerCase() === questions[questionIndex].a) {
+  let answer = prompt(q);
+
+  if (answer && answer.toLowerCase() === questions[questionIndex].a) {
     score++;
-    alert("Richtig!");
+    alert("✔");
   } else {
-    alert("Falsch! Richtige Antwort: " + questions[questionIndex].a);
+    alert("✘");
   }
 
   questionIndex++;
