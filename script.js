@@ -58,6 +58,17 @@ function quiz() {
     return;
   }
 
+  let q = questions[questionIndex];
+
+  let questionText = lang === "de" ? q.de : q.fr;
+
+  document.getElementById("output").innerHTML = `
+    <h3>${questionText}</h3>
+    <button onclick="answer('ultraschall')">Ultraschall</button>
+    <button onclick="answer('licht')">Licht</button>
+  `;
+}
+
   let q = lang === "de" ? questions[questionIndex].de : questions[questionIndex].fr;
 
   let answer = prompt(q);
@@ -70,4 +81,20 @@ function quiz() {
   }
 
   questionIndex++;
+}
+function renderUI() {
+  document.getElementById("title").innerText = texts[lang].title;
+  document.getElementById("btnInfo").innerText = texts[lang].btnInfo;
+  document.getElementById("btnQuiz").innerText = texts[lang].btnQuiz;
+  document.getElementById("output").innerText = "";
+}
+
+renderUI();
+function answer(val) {
+  if (val === questions[questionIndex].a) {
+    score++;
+  }
+
+  questionIndex++;
+  quiz();
 }
