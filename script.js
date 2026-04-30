@@ -519,16 +519,36 @@ Ces types ne sont pas détaillés ici car ils sont plus spécialisés.
 },
 
   {
-    id: "conclusion",
-    title: {
-      de: "06 Fazit",
-      fr: "06 Conclusion"
-    },
-    content: {
-      de: "Zusammenfassung der wichtigsten Punkte...",
-      fr: "Résumé des points essentiels..."
-    }
+  id: "conclusion",
+  title: {
+    de: "06 Fazit",
+    fr: "06 Conclusion"
+  },
+  content: {
+    de: `
+<b>Fazit</b><br><br>
+
+Die Echographie zeigt, wie physikalische Prinzipien direkt in der Medizin genutzt werden können.<br><br>
+
+Sie verbindet einfache Ultraschallwellen mit komplexer Bildentstehung und ermöglicht so eine sichere Untersuchung des Körpers ohne Eingriff.<br><br>
+
+Besonders wichtig ist, dass die Qualität der Bilder von vielen Faktoren abhängt, wie der Impedanz der Gewebe und der richtigen Wahl der Sonde.<br><br>
+
+Insgesamt ist die Echographie ein sehr präzises, schnelles und unverzichtbares Werkzeug in der modernen Diagnostik.
+`,
+    fr: `
+<b>Conclusion</b><br><br>
+
+L’échographie montre comment des principes physiques simples peuvent être utilisés en médecine.<br><br>
+
+Elle transforme des ondes ultrasonores en images utiles pour examiner le corps sans intervention.<br><br>
+
+La qualité des images dépend de plusieurs facteurs comme l’impédance des tissus et le choix de la sonde.<br><br>
+
+Dans l’ensemble, l’échographie est un outil essentiel, rapide et très précis pour le diagnostic médical.
+`
   }
+},
 ];
 function showTheory() {
   resetScreens();
