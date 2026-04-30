@@ -1,4 +1,10 @@
-let lang = "de";
+let lang = localStorage.getItem("lang") || "de";
+
+function setLanguage(l) {
+  lang = l;
+  localStorage.setItem("lang", l);
+  renderUI();
+}
 
 let score = 0;
 let questionIndex = 0;
