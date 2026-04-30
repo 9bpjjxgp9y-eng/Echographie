@@ -1,11 +1,5 @@
 let lang = localStorage.getItem("lang") || "de";
 
-function setLanguage(l) {
-  lang = l;
-  localStorage.setItem("lang", l);
-  renderUI();
-}
-
 let score = 0;
 let questionIndex = 0;
 
@@ -41,9 +35,15 @@ const questions = [
 
 function setLanguage(l) {
   lang = l;
+  localStorage.setItem("lang", l);
+  renderUI();
+}
+
+function renderUI() {
   document.getElementById("title").innerText = texts[lang].title;
   document.getElementById("btnInfo").innerText = texts[lang].btnInfo;
   document.getElementById("btnQuiz").innerText = texts[lang].btnQuiz;
+  document.getElementById("output").innerText = "";
 }
 
 function showInfo() {
@@ -59,7 +59,6 @@ function quiz() {
   }
 
   let q = questions[questionIndex];
-
   let questionText = lang === "de" ? q.de : q.fr;
 
   document.getElementById("output").innerHTML = `
@@ -69,27 +68,6 @@ function quiz() {
   `;
 }
 
-  let q = lang === "de" ? questions[questionIndex].de : questions[questionIndex].fr;
-
-  let answer = prompt(q);
-
-  if (answer && answer.toLowerCase() === questions[questionIndex].a) {
-    score++;
-    alert("✔");
-  } else {
-    alert("✘");
-  }
-
-  questionIndex++;
-}
-function renderUI() {
-  document.getElementById("title").innerText = texts[lang].title;
-  document.getElementById("btnInfo").innerText = texts[lang].btnInfo;
-  document.getElementById("btnQuiz").innerText = texts[lang].btnQuiz;
-  document.getElementById("output").innerText = "";
-}
-
-renderUI();
 function answer(val) {
   if (val === questions[questionIndex].a) {
     score++;
@@ -98,3 +76,5 @@ function answer(val) {
   questionIndex++;
   quiz();
 }
+
+renderUI();
