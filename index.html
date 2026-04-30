@@ -8,32 +8,40 @@
 
 <body>
 
+<!-- START SCREEN -->
 <div id="startScreen">
-  <h1>📱 Echographie App</h1>
+  <h1>Echographie App</h1>
 
-  <button onclick="startQuiz()" id="btnStart">Quiz starten</button>
-  <button onclick="showTheory()" id="btnTheory">Theorie</button>
+  <button id="btnTheory" onclick="showTheory()"></button>
+  <button id="btnQuiz" onclick="startQuiz()"></button>
 
   <div id="langBox">
-    <button onclick="setLanguage('de')">🇩🇪</button>
-    <button onclick="setLanguage('fr')">🇫🇷</button>
+    <button onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+    <button onclick="setLanguage('fr')">🇫🇷 Français</button>
   </div>
 </div>
 
+<!-- THEORY -->
+<div id="theoryScreen" style="display:none;">
+  <h2 id="theoryTitle"></h2>
+  <p id="theoryText"></p>
+  <button onclick="goHome()" id="btnHome1"></button>
+</div>
+
+<!-- QUIZ -->
 <div id="quizScreen" style="display:none;">
   <h2 id="question"></h2>
   <div id="answers"></div>
+
+  <button onclick="goHome()" id="btnHome2"></button>
+  <button onclick="restartQuiz()" id="btnRestart"></button>
 </div>
 
+<!-- RESULT -->
 <div id="resultScreen" style="display:none;">
   <h2 id="resultText"></h2>
-  <button onclick="goHome()" id="btnHome">Zur Startseite</button>
-</div>
-
-<div id="theoryScreen" style="display:none;">
-  <h2>📘 Theorie</h2>
-  <p id="theoryText"></p>
-  <button onclick="goHome()" id="btnBack">Zurück</button>
+  <button onclick="goHome()" id="btnHome3"></button>
+  <button onclick="restartQuiz()" id="btnRestart2"></button>
 </div>
 
 <script src="script.js"></script>
