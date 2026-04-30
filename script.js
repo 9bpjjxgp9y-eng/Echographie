@@ -5,21 +5,26 @@ let index = 0;
 
 const texts = {
   de: {
-    start: "Quiz starten",
     theory: "Theorie",
+    quiz: "Quiz starten",
     home: "Zur Startseite",
-    back: "Zurück",
-    result: "Score: ",
-    quizDone: "Quiz fertig! Punkte: "
+    restart: "Neustart",
+    theoryTitle: "Theorie",
+    result: "Score: "
   },
   fr: {
-    start: "Commencer le quiz",
     theory: "Théorie",
+    quiz: "Commencer le quiz",
     home: "Accueil",
-    back: "Retour",
-    result: "Score : ",
-    quizDone: "Quiz terminé ! Points : "
+    restart: "Redémarrer",
+    theoryTitle: "Théorie",
+    result: "Score : "
   }
+};
+
+const theory = {
+  de: "Echographie nutzt Ultraschallwellen, um Bilder im Körper zu erzeugen.",
+  fr: "L’échographie utilise des ultrasons pour créer des images du corps."
 };
 
 const questions = [
@@ -35,18 +40,46 @@ const questions = [
   }
 ];
 
-const theory = {
-  de: "Echographie nutzt Ultraschallwellen, um Bilder im Körper zu erzeugen.",
-  fr: "L’échographie utilise des ultrasons pour créer des images du corps."
-};
-
 function setLanguage(l) {
   lang = l;
   localStorage.setItem("lang", l);
+  updateUI();
+}
+
+function updateUI() {
+  document.getElementById("btnTheory").innerText = texts[lang].theory;
+  document.getElementById("btnQuiz").innerText = texts[lang].quiz;
+
+  document.getElementById("btnHome1").innerText = texts[lang].home;
+  document.getElementById("btnHome2").innerText = texts[lang].home;
+  document.getElementById("btnHome3").innerText = texts[lang].home;
+
+  document.getElementById("btnRestart").innerText = texts[lang].restart;
+  document.getElementById("btnRestart2").innerText = texts[lang].restart;
+
+  document.getElementById("theoryTitle").innerText = texts[lang].theoryTitle;
+}
+
+function resetScreens() {
+  document.getElementById("startScreen").style.display = "none";
+  document.getElementById("theoryScreen").style.display = "none";
+  document.getElementById("quizScreen").style.display = "none";
+  document.getElementById("resultScreen").style.display = "none";
+}
+
+function goHome() {
+  resetScreens();
+  document.getElementById("startScreen").style.display = "block";
+}
+
+function showTheory() {
+  resetScreens();
+  document.getElementById("theoryScreen").style.display = "block";
+  document.getElementById("theoryText").innerText = theory[lang];
 }
 
 function startQuiz() {
-  reset();
+  resetScreens();
   document.getElementById("quizScreen").style.display = "block";
   showQuestion();
 }
@@ -77,27 +110,18 @@ function answer(val) {
 }
 
 function showResult() {
-  reset();
+  resetScreens();
   document.getElementById("resultScreen").style.display = "block";
 
   document.getElementById("resultText").innerText =
     texts[lang].result + score + "/" + questions.length;
 }
 
-function goHome() {
-  reset();
-  document.getElementById("startScreen").style.display = "block";
+function restartQuiz() {
+  score = 0;
+  index = 0;
+  startQuiz();
 }
 
-function showTheory() {
-  reset();
-  document.getElementById("theoryScreen").style.display = "block";
-  document.getElementById("theoryText").innerText = theory[lang];
-}
-
-function reset() {
-  document.getElementById("startScreen").style.display = "none";
-  document.getElementById("quizScreen").style.display = "none";
-  document.getElementById("resultScreen").style.display = "none";
-  document.getElementById("theoryScreen").style.display = "none";
-}
+updateUI();
+goHome();
