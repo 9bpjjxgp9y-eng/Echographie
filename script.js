@@ -48,56 +48,202 @@ const theoryContent = [
     id: "intro",
     title: { de: "00 Einführung", fr: "00 Introduction" },
     content: {
-      de: "Nicht-invasive Bildgebungsmethode... (DE TEXT)",
-      fr: "Méthode d’imagerie non invasive... (FR TEXT)"
+      de: `
+<b>Nicht-invasive Bildgebungsmethode</b><br><br>
+
+Die Echographie ist eine nicht-invasive medizinische Methode. Das bedeutet, dass kein chirurgischer Eingriff notwendig ist und nichts in den Körper eingeführt wird. Sie ist daher schmerzfrei und sicher.<br><br>
+
+Sie basiert auf Ultraschallwellen, also Schallwellen mit hoher Frequenz, die für den Menschen nicht hörbar sind. Diese werden in den Körper gesendet und reflektiert, wodurch ein Bild entsteht.<br><br>
+
+Ein großer Vorteil ist die Echtzeit-Beobachtung von Gewebe. So kann man Bewegungen wie das schlagende Herz direkt sehen.<br><br>
+
+Diese Technik wird in vielen medizinischen Bereichen genutzt, wie Kardiologie oder Schwangerschaft.
+`,
+      fr: `
+<b>Méthode d’imagerie non invasive</b><br><br>
+
+L’échographie est une méthode d’imagerie médicale non invasive, ce qui signifie qu’elle ne nécessite aucune intervention chirurgicale. Elle est donc sans douleur et sans danger.<br><br>
+
+Elle utilise des ultrasons, c’est-à-dire des ondes sonores à haute fréquence, invisibles pour l’oreille humaine. Ces ondes traversent le corps et sont réfléchies pour former une image.<br><br>
+
+Un avantage important est l’observation en temps réel des tissus. On peut voir des mouvements comme le cœur en direct.<br><br>
+
+Elle est utilisée dans plusieurs domaines médicaux, comme la cardiologie ou la grossesse.
+`
     }
   },
+
   {
     id: "ultrasons",
     title: { de: "01 Ultraschall", fr: "01 Ultrasons" },
     content: {
-      de: "Ultraschall = Druckwellen... (DE TEXT)",
-      fr: "Ultrasons = ondes de pression... (FR TEXT)"
+      de: `
+<b>Définition der Ultraschallwellen</b><br><br>
+
+„Ultraschall sind mechanische Druckwellen. Es sind Variationen des Drucks, die sich in einem Medium ausbreiten.“<br><br>
+
+Ultraschall sind longitudinale Wellen.<br>
+Sie brauchen Teilchen zur Übertragung → im Vakuum nicht möglich.<br><br>
+
+<b>Frequenzen</b><br>
+In der Echographie: ca. 1–15 MHz<br><br>
+
+<b>Schallbereiche</b><br>
+Infraschall: < 20 Hz<br>
+Hörbar: 20 Hz – 20 kHz<br>
+Ultraschall: > 20 kHz
+`,
+      fr: `
+<b>Définition des ultrasons</b><br><br>
+
+« Les ultrasons sont des ondes mécaniques de pression. Ce sont des variations de pression qui se propagent dans un milieu. »<br><br>
+
+Les ultrasons sont des ondes longitudinales.<br>
+Ils ont besoin d’un milieu matériel → pas de propagation dans le vide.<br><br>
+
+<b>Fréquences</b><br>
+Échographie : 1–15 MHz<br><br>
+
+<b>Domaines</b><br>
+Infrasons : < 20 Hz<br>
+Audible : 20 Hz – 20 kHz<br>
+Ultrasons : > 20 kHz
+`
     }
   },
+
   {
     id: "ondes",
     title: { de: "02 Kompression / Rarefaktion", fr: "02 Compression / Raréfaction" },
     content: {
-      de: "Kompression = Druck hoch... Rarefaktion... (DE TEXT)",
-      fr: "Compression... Raréfaction... (FR TEXT)"
+      de: `
+<b>Variationen der Druckwellen</b><br><br>
+
+Ultraschall besteht aus Druckänderungen im Medium.<br><br>
+
+<b>Kompression</b><br>
+Teilchen werden zusammengedrückt → hoher Druck<br><br>
+
+<b>Rarefaktion</b><br>
+Teilchen werden auseinandergezogen → niedriger Druck<br><br>
+
+<b>Zusammenhang</b><br>
+Diese Wechsel erzeugen die Welle und ermöglichen die Bildbildung.
+`,
+      fr: `
+<b>Variations de pression</b><br><br>
+
+Les ultrasons sont des variations de pression dans un milieu.<br><br>
+
+<b>Compression</b><br>
+Particules rapprochées → pression élevée<br><br>
+
+<b>Raréfaction</b><br>
+Particules éloignées → pression faible<br><br>
+
+<b>Lien</b><br>
+Ces alternances créent l’onde ultrasonore et l’image.
+`
     }
   },
+
   {
     id: "impedance",
     title: { de: "03 Impedanz & Gewebe", fr: "03 Impédance & tissus" },
     content: {
-      de: "Reflexion, Brechung, Streuung... Gel... (DE TEXT)",
-      fr: "Réflexion, réfraction... gel... (FR TEXT)"
+      de: `
+<b>Interaktion mit Gewebe</b><br><br>
+
+• Reflexion → Rückwurf der Welle<br>
+• Brechung → Richtungsänderung<br>
+• Streuung → Verteilung der Welle<br>
+• Absorption → Energieverlust (Wärme)<br><br>
+
+<b>Bildtypen</b><br>
+Hyperechogen = weiß (Knochen, Luft)<br>
+Hypoechogen = grau (Muskel)<br>
+Anechogen = schwarz (Flüssigkeit)<br><br>
+
+<b>Warum Gel?</b><br>
+Luft blockiert Ultraschall → Gel ersetzt Luft → bessere Bildqualität
+`,
+      fr: `
+<b>Interactions avec les tissus</b><br><br>
+
+• Réflexion<br>
+• Réfraction<br>
+• Diffusion<br>
+• Absorption<br><br>
+
+<b>Image</b><br>
+Hyperéchogène = blanc<br>
+Hypoéchogène = gris<br>
+Anéchogène = noir<br><br>
+
+<b>Gel</b><br>
+Élimine l’air → meilleure transmission des ultrasons
+`
     }
   },
+
   {
     id: "mesure",
     title: { de: "04 Messprinzip", fr: "04 Principe de mesure" },
     content: {
-      de: "Zeitmessung → Entfernung... Herz Beispiel...",
-      fr: "Temps → distance... cœur..."
+      de: `
+<b>Prinzip</b><br>
+Zeitmessung des Echos → Entfernung<br><br>
+
+Formel: Entfernung = (v × t) / 2<br><br>
+
+<b>Beispiel Herz</b><br>
+Echtzeitbewegung des Herzens sichtbar (Klappen, Blutfluss)
+`,
+      fr: `
+<b>Principe</b><br>
+Mesure du temps de retour de l’écho<br><br>
+
+Formule : Distance = (v × t) / 2<br><br>
+
+<b>Cœur</b><br>
+Visualisation en temps réel (valves, flux sanguin)
+`
     }
   },
+
   {
     id: "types",
     title: { de: "05 Arten", fr: "05 Types" },
     content: {
-      de: "Herz, Schwangerschaft, Abdomen...",
-      fr: "Cœur, grossesse, abdomen..."
+      de: `
+<b>Echokardiographie</b> → Phased Array (1–5 MHz)<br>
+<b>Schwangerschaft</b> → Konvexsonde (2–6 MHz)<br>
+<b>Abdomen</b> → Konvex / Linear<br><br>
+
+Weitere: Doppler, Schilddrüse, Notfallsonographie
+`,
+      fr: `
+<b>Échocardiographie</b> → phased array<br>
+<b>Grossesse</b> → sonde convexe<br>
+<b>Abdomen</b> → convexe / linéaire<br><br>
+
+Autres : Doppler, urgence, thyroïde
+`
     }
   },
+
   {
     id: "conclusion",
     title: { de: "06 Fazit", fr: "06 Conclusion" },
     content: {
-      de: "Echographie ist wichtig, sicher, schnell.",
-      fr: "L’échographie est rapide et sûre."
+      de: `
+Echographie = sichere, schnelle Bildgebung ohne Eingriff.<br>
+Sehr wichtig in der modernen Medizin.
+`,
+      fr: `
+L’échographie est rapide, sûre et non invasive.<br>
+Essentielle en médecine moderne.
+`
     }
   }
 ];
