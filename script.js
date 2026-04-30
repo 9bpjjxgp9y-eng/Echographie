@@ -123,56 +123,82 @@ goHome();
 const theoryContent = [
   {
     id: "intro",
-    de: "00 Einführung",
-    fr: "00 Introduction"
+    title: {
+      de: "00 Einführung",
+      fr: "00 Introduction"
+    },
+    content: {
+      de: "Hier schreibst du deine Einführung auf Deutsch.",
+      fr: "Ici tu écris ton introduction en français."
+    }
   },
   {
-    id: "base1",
-    de: "01 Grundlagen: Ultraschall",
-    fr: "01 Principes: Ultrasons"
+    id: "ultrasons",
+    title: {
+      de: "01 Ultraschall",
+      fr: "01 Ultrasons"
+    },
+    content: {
+      de: "Definition + Erklärung + Hörtest...",
+      fr: "Définition + explication + test d’audibilité..."
+    }
   },
   {
-    id: "base2",
-    de: "02 Kompression / Rarefaktion",
-    fr: "02 Compression / Rarefaction"
+    id: "ondes",
+    title: {
+      de: "02 Kompression / Rarefaktion",
+      fr: "02 Compression / Rarefaction"
+    },
+    content: {
+      de: "Phase der Wellen + Bildentstehung...",
+      fr: "Phases des ondes + formation de l’image..."
+    }
   },
   {
-    id: "base3",
-    de: "03 Impedanz & Gewebe",
-    fr: "03 Impédance & tissus"
+    id: "impedance",
+    title: {
+      de: "03 Impedanz & Gewebe",
+      fr: "03 Impédance & tissus"
+    },
+    content: {
+      de: "Interaktion mit Gewebe + Impedanz...",
+      fr: "Interaction avec les tissus + impédance..."
+    }
   },
   {
-    id: "base4",
-    de: "04 Messprinzip",
-    fr: "04 Principe de mesure"
+    id: "mesure",
+    title: {
+      de: "04 Messprinzip",
+      fr: "04 Principe de mesure"
+    },
+    content: {
+      de: "Wie misst man Echo-Zeit etc...",
+      fr: "Comment on mesure les échos..."
+    }
   },
   {
-    id: "types1",
-    de: "05 Echokardiographie",
-    fr: "05 Échocardiographie"
-  },
-  {
-    id: "types2",
-    de: "06 Schwangerschaft",
-    fr: "06 Grossesse"
-  },
-  {
-    id: "types3",
-    de: "07 Abdomen",
-    fr: "07 Abdominale"
-  },
-  {
-    id: "types4",
-    de: "08 2D / 3D / 4D / Doppler",
-    fr: "08 2D / 3D / 4D / Doppler"
+    id: "types",
+    title: {
+      de: "05 Arten der Echographie",
+      fr: "05 Types d’échographie"
+    },
+    content: {
+      de: "Herz, Schwangerschaft, Abdomen, 2D/3D/4D/Doppler...",
+      fr: "Cœur, grossesse, abdomen, 2D/3D/4D/Doppler..."
+    }
   },
   {
     id: "conclusion",
-    de: "09 Fazit",
-    fr: "09 Conclusion"
+    title: {
+      de: "06 Fazit",
+      fr: "06 Conclusion"
+    },
+    content: {
+      de: "Zusammenfassung...",
+      fr: "Résumé..."
+    }
   }
 ];
-
 function showTheory() {
   resetScreens();
   document.getElementById("theoryScreen").style.display = "block";
@@ -180,10 +206,10 @@ function showTheory() {
   let menuHTML = "";
 
   theoryContent.forEach(item => {
-    let title = item[lang];
-
     menuHTML += `
-      <button onclick="openDetail('${item.id}')">${title}</button><br>
+      <button onclick="openDetail('${item.id}')">
+        ${item.title[lang]}
+      </button><br>
     `;
   });
 
@@ -196,11 +222,11 @@ function openDetail(id) {
 
   let item = theoryContent.find(x => x.id === id);
 
-  document.getElementById("detailTitle").innerText = item[lang];
+  document.getElementById("detailTitle").innerText =
+    item.title[lang];
 
-  // 👉 HIER KOMMT DEIN TEXT SPÄTER
   document.getElementById("detailContent").innerText =
-    "Hier kommt dein Inhalt...";
+    item.content[lang];
 }
 
 function backToTheory() {
