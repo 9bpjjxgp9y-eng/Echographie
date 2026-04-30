@@ -251,8 +251,8 @@ function openDetail(id) {
   document.getElementById("detailTitle").innerText =
     item.title[lang];
 
-  document.getElementById("detailContent").innerText =
-    item.content[lang];
+document.getElementById("detailContent").innerHTML =
+  item.content[lang];
 }
 
 function backToTheory() {
