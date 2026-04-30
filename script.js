@@ -58,6 +58,7 @@ function updateUI() {
 function resetScreens() {
   document.getElementById("startScreen").style.display = "none";
   document.getElementById("theoryScreen").style.display = "none";
+  document.getElementById("theoryDetailScreen").style.display = "none";
   document.getElementById("quizScreen").style.display = "none";
   document.getElementById("resultScreen").style.display = "none";
 }
