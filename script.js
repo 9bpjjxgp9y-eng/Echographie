@@ -128,10 +128,31 @@ const theoryContent = [
       fr: "00 Introduction"
     },
     content: {
-      de: "Hier schreibst du deine Einführung auf Deutsch.",
-      fr: " "
+      de: `
+<b>Nicht-invasive Bildgebungsmethode</b><br><br>
+
+Die Echographie ist eine nicht-invasive medizinische Methode. Das bedeutet, dass kein chirurgischer Eingriff notwendig ist und nichts in den Körper eingeführt wird. Sie ist daher schmerzfrei und sicher.<br><br>
+
+Sie basiert auf Ultraschallwellen, also Schallwellen mit hoher Frequenz, die für den Menschen nicht hörbar sind. Diese werden in den Körper gesendet und reflektiert, wodurch ein Bild entsteht.<br><br>
+
+Ein großer Vorteil ist die Echtzeit-Beobachtung von Gewebe. So kann man Bewegungen wie das schlagende Herz direkt sehen.<br><br>
+
+Diese Technik wird in vielen medizinischen Bereichen genutzt, wie Kardiologie oder Schwangerschaft.
+`,
+      fr: `
+<b>Méthode d’imagerie non invasive</b><br><br>
+
+L’échographie est une méthode d’imagerie médicale non invasive, ce qui signifie qu’elle ne nécessite aucune intervention chirurgicale. Elle est donc sans douleur et sans danger.<br><br>
+
+Elle utilise des ultrasons, c’est-à-dire des ondes sonores à haute fréquence, invisibles pour l’oreille humaine. Ces ondes traversent le corps et sont réfléchies pour former une image.<br><br>
+
+Un avantage important est l’observation en temps réel des tissus. On peut voir des mouvements comme le cœur en direct.<br><br>
+
+Elle est utilisée dans plusieurs domaines médicaux, comme la cardiologie ou la grossesse.
+`
     }
   },
+
   {
     id: "ultrasons",
     title: {
@@ -139,10 +160,11 @@ const theoryContent = [
       fr: "01 Ultrasons"
     },
     content: {
-      de: "Definition + Erklärung + Hörtest...",
-      fr: "Définition + explication + test d’audibilité..."
+      de: "Definition von Ultraschall + Erklärung + Hörtest...",
+      fr: "Définition des ultrasons + explication + test d’audibilité..."
     }
   },
+
   {
     id: "ondes",
     title: {
@@ -150,10 +172,11 @@ const theoryContent = [
       fr: "02 Compression / Rarefaction"
     },
     content: {
-      de: "Phase der Wellen + Bildentstehung...",
-      fr: "Phases des ondes + formation de l’image..."
+      de: "Erklärung der Wellenphasen und Bildentstehung...",
+      fr: "Explication des phases des ondes et formation de l’image..."
     }
   },
+
   {
     id: "impedance",
     title: {
@@ -161,10 +184,11 @@ const theoryContent = [
       fr: "03 Impédance & tissus"
     },
     content: {
-      de: "Interaktion mit Gewebe + Impedanz...",
-      fr: "Interaction avec les tissus + impédance..."
+      de: "Interaktion mit Gewebe und akustische Impedanz...",
+      fr: "Interaction avec les tissus et impédance acoustique..."
     }
   },
+
   {
     id: "mesure",
     title: {
@@ -172,10 +196,11 @@ const theoryContent = [
       fr: "04 Principe de mesure"
     },
     content: {
-      de: "Wie misst man Echo-Zeit etc...",
-      fr: "Comment on mesure les échos..."
+      de: "Messung der Echo-Zeit und Bildberechnung...",
+      fr: "Mesure du temps des échos et calcul de l’image..."
     }
   },
+
   {
     id: "types",
     title: {
@@ -183,10 +208,11 @@ const theoryContent = [
       fr: "05 Types d’échographie"
     },
     content: {
-      de: "Herz, Schwangerschaft, Abdomen, 2D/3D/4D/Doppler...",
-      fr: "Cœur, grossesse, abdomen, 2D/3D/4D/Doppler..."
+      de: "Echokardiographie, Schwangerschaft, Abdomen, 2D/3D/4D/Doppler...",
+      fr: "Échocardiographie, grossesse, abdomen, 2D/3D/4D/Doppler..."
     }
   },
+
   {
     id: "conclusion",
     title: {
@@ -194,8 +220,8 @@ const theoryContent = [
       fr: "06 Conclusion"
     },
     content: {
-      de: "Zusammenfassung...",
-      fr: "Résumé..."
+      de: "Zusammenfassung der wichtigsten Punkte...",
+      fr: "Résumé des points essentiels..."
     }
   }
 ];
