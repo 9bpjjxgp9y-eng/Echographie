@@ -154,16 +154,48 @@ Elle est utilisée dans plusieurs domaines médicaux, comme la cardiologie ou la
   },
 
   {
-    id: "ultrasons",
-    title: {
-      de: "01 Ultraschall",
-      fr: "01 Ultrasons"
-    },
-    content: {
-      de: "Definition von Ultraschall + Erklärung + Hörtest...",
-      fr: "Définition des ultrasons + explication + test d’audibilité..."
-    }
+  id: "ultrasons",
+  title: {
+    de: "01 Ultraschall",
+    fr: "01 Ultrasons"
   },
+  content: {
+    de: `
+<b>Definition von Ultraschall</b><br><br>
+
+Ultraschall sind mechanische Druckwellen. Das bedeutet, dass es sich um Druckschwankungen handelt, die sich in einem Medium wie Luft, Wasser oder menschlichem Gewebe ausbreiten.<br><br>
+
+Im Gegensatz zu elektromagnetischen Wellen benötigen Ultraschallwellen Teilchen, um sich fortzubewegen. Deshalb können sie sich nicht im Vakuum ausbreiten.<br><br>
+
+Ultraschallwellen sind longitudinale Wellen. Das heißt, die Teilchen bewegen sich in die gleiche Richtung wie die Ausbreitung der Welle.<br><br>
+
+<b>Frequenzen</b><br><br>
+
+Das menschliche Ohr kann Schall im Bereich von etwa 20 Hz bis 20.000 Hz wahrnehmen. Darunter spricht man von Infraschall, darüber von Ultraschall.<br><br>
+
+In der Echographie werden typischerweise Frequenzen zwischen 1 und 15 MHz verwendet. Diese hohen Frequenzen ermöglichen es, detaillierte Bilder der inneren Strukturen des Körpers zu erzeugen.<br><br>
+
+Durch diese Eigenschaften eignet sich Ultraschall besonders gut für die medizinische Bildgebung.
+`,
+    fr: `
+<b>Définition des ultrasons</b><br><br>
+
+Les ultrasons sont des ondes mécaniques de pression. Cela signifie qu’il s’agit de variations de pression qui se propagent dans un milieu matériel, comme l’air, l’eau ou les tissus du corps humain.<br><br>
+
+Contrairement aux ondes électromagnétiques, les ultrasons ont besoin de particules pour se transmettre. Ils ne peuvent donc pas se propager dans le vide.<br><br>
+
+Les ultrasons sont des ondes longitudinales. Cela veut dire que les particules du milieu vibrent dans la même direction que la propagation de l’onde.<br><br>
+
+<b>Fréquences</b><br><br>
+
+L’oreille humaine peut entendre des sons entre environ 20 Hz et 20 000 Hz. En dessous de cette limite, on parle d’infrasons, et au-dessus, d’ultrasons.<br><br>
+
+Les ultrasons utilisés en échographie se situent généralement entre 1 et 15 MHz. Ces hautes fréquences permettent d’obtenir des images précises des tissus internes du corps.<br><br>
+
+Grâce à ces propriétés, les ultrasons sont particulièrement adaptés à l’imagerie médicale.
+`
+  }
+},
 
   {
     id: "ondes",
