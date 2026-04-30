@@ -22,3 +22,12 @@ button {
 button:hover {
   background: #1b6fd1;
 }
+#langBox {
+  margin-top: 10px;
+}
+
+#langBox button {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+}
