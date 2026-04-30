@@ -7,18 +7,18 @@ const texts = {
   de: {
     theory: "Theorie",
     quiz: "Quiz starten",
-    home: "Zur Startseite",
-    restart: "Neustart",
+    home: "🏠",
+    restart: "🔄",
     theoryTitle: "Theorie",
-    result: "Score: "
+    result: "Score🧑‍🏫 : "
   },
   fr: {
     theory: "Théorie",
     quiz: "Commencer le quiz",
-    home: "Accueil",
-    restart: "Redémarrer",
+    home: "🏠",
+    restart: "🔄",
     theoryTitle: "Théorie",
-    result: "Score : "
+    result: "Score👨‍🏫 : "
   }
 };
 
