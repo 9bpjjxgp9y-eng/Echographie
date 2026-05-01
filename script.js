@@ -28,20 +28,7 @@ const texts = {
 };
 
 /* ================= QUIZ ================= */
-
 const questions = [
-  function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-    function prepareQuiz() {
-  quizQuestions = shuffle([...questions]); // wichtige Kopie!
-  score = 0;
-  index = 0;
-}
-  return array;
-}
   {
     de: { q: "Was nutzt Echographie?", options: ["Ultraschall", "Licht"] },
     fr: { q: "Que utilise l’échographie ?", options: ["Ultrasons", "Lumière"] },
@@ -53,6 +40,19 @@ const questions = [
     a: 0
   }
 ];
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function prepareQuiz() {
+  quizQuestions = shuffle([...questions]); // wichtig!
+  score = 0;
+  index = 0;
+}
 
 /* ================= THEORIE ================= */
 
@@ -327,7 +327,7 @@ function startQuiz() {
   reset();
   document.getElementById("quizScreen").style.display = "block";
 
-  prepareQuiz(); // 🔥 NEU
+  prepareQuiz(); // MUSS drin sein
   showQuestion();
 }
 
