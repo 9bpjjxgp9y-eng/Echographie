@@ -22,3 +22,76 @@ button:hover {
   font-size: 12px;
   padding: 5px 8px;
 }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f7fb;
+  color: #1d2b3a;
+}
+
+/* HEADER / TITLES */
+h1, h2 {
+  text-align: center;
+  font-weight: 700;
+}
+
+/* BUTTONS GLOBAL */
+button {
+  background: #2b6fff;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  margin: 6px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #1f4fd6;
+  transform: scale(1.02);
+}
+
+/* CENTER LAYOUT */
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* THEORY CARDS */
+#theoryMenu button {
+  width: 90%;
+  max-width: 400px;
+  background: white;
+  color: #1d2b3a;
+  border: 1px solid #dbe5f1;
+  text-align: left;
+  font-weight: 600;
+}
+
+/* CONTENT BOX */
+#theoryDetailScreen div {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* QUIZ BOX */
+#answers button {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* RESULT SCREEN */
+#resultScreen {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
