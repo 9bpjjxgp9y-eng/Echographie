@@ -389,25 +389,27 @@ function showQuestion() {
   document.getElementById("question").innerText = q.q;
 
   let options = [...q.options];
-let correctIndex = quizQuestions[index].a;
 
-// shuffle options
-let shuffled = options
-  .map((val, i) => ({ val, i }))
-  .sort(() => Math.random() - 0.5);
+  // richtige Antwort merken
+  let correctIndex = quizQuestions[index].a;
 
-// finde neue Position der richtigen Antwort
-let newCorrectIndex = shuffled.findIndex(o => o.i === correctIndex);
+  // shuffle mit Mapping
+  let shuffled = options
+    .map((val, i) => ({ val, i }))
+    .sort(() => Math.random() - 0.5);
 
-document.getElementById("answers").innerHTML = shuffled
-  .map((o, i) => `<button onclick="answer(${i})">${o.val}</button>`)
-  .join("");
+  let newCorrectIndex = shuffled.findIndex(o => o.i === correctIndex);
 
-quizQuestions[index].a = newCorrectIndex;
+  document.getElementById("answers").innerHTML = shuffled
+    .map((o, i) => `<button onclick="answer(${i})">${o.val}</button>`)
+    .join("");
+
+  // WICHTIG: speichere korrekt temporär
+  quizQuestions[index].currentCorrect = newCorrectIndex;
 }
 
 function answer(val) {
-  if (val === quizQuestions[index].a) score++;
+  if (val === quizQuestions[index].currentCorrect) score++;
   index++;
   showQuestion();
 }
