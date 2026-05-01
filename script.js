@@ -388,10 +388,22 @@ function showQuestion() {
 
   document.getElementById("question").innerText = q.q;
 
-  document.getElementById("answers").innerHTML = `
-    <button onclick="answer(0)">${q.options[0]}</button>
-    <button onclick="answer(1)">${q.options[1]}</button>
-  `;
+  let options = [...q.options];
+let correctIndex = quizQuestions[index].a;
+
+// shuffle options
+let shuffled = options
+  .map((val, i) => ({ val, i }))
+  .sort(() => Math.random() - 0.5);
+
+// finde neue Position der richtigen Antwort
+let newCorrectIndex = shuffled.findIndex(o => o.i === correctIndex);
+
+document.getElementById("answers").innerHTML = shuffled
+  .map((o, i) => `<button onclick="answer(${i})">${o.val}</button>`)
+  .join("");
+
+quizQuestions[index].a = newCorrectIndex;
 }
 
 function answer(val) {
