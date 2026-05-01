@@ -39,6 +39,56 @@ const questions = [
     fr: { q: "Qu’est-ce qui est créé ?", options: ["Images", "Sons"] },
     a: 0
   }
+  {
+  de: { q: "Welche Frequenz wird in der Echographie typischerweise verwendet?", options: ["20–200 Hz", "1–15 MHz"] },
+  fr: { q: "Quelle fréquence est utilisée en échographie ?", options: ["20–200 Hz", "1–15 MHz"] },
+  a: 1
+},
+{
+  de: { q: "Warum wird Gel bei der Echographie verwendet?", options: ["Um das Gerät zu kühlen", "Um Luft zu entfernen"] },
+  fr: { q: "Pourquoi utilise-t-on du gel ?", options: ["Pour refroidir l’appareil", "Pour éliminer l’air"] },
+  a: 1
+},
+{
+  de: { q: "Was passiert bei Reflexion?", options: ["Die Welle wird zurückgeworfen", "Die Welle verschwindet"] },
+  fr: { q: "Que se passe-t-il lors de la réflexion ?", options: ["L’onde est renvoyée", "L’onde disparaît"] },
+  a: 0
+},
+{
+  de: { q: "Welche Struktur erscheint schwarz im Ultraschallbild?", options: ["Knochen", "Flüssigkeit"] },
+  fr: { q: "Quelle structure apparaît noire ?", options: ["Os", "Liquide"] },
+  a: 1
+},
+{
+  de: { q: "Was bedeutet hyperechogen?", options: ["Sehr dunkel", "Sehr hell"] },
+  fr: { q: "Que signifie hyperéchogène ?", options: ["Très sombre", "Très clair"] },
+  a: 1
+},
+{
+  de: { q: "Welche Sonde wird für das Herz verwendet?", options: ["Linearsonde", "Phased Array"] },
+  fr: { q: "Quelle sonde pour le cœur ?", options: ["Linéaire", "Phased array"] },
+  a: 1
+},
+{
+  de: { q: "Warum nutzt man niedrige Frequenzen?", options: ["Für bessere Farbe", "Für tiefere Eindringtiefe"] },
+  fr: { q: "Pourquoi utiliser des basses fréquences ?", options: ["Pour améliorer la couleur", "Pour pénétrer plus profondément"] },
+  a: 1
+},
+{
+  de: { q: "Was misst das Gerät?", options: ["Zeit des Echos", "Temperatur"] },
+  fr: { q: "Que mesure l’appareil ?", options: ["Le temps de retour", "La température"] },
+  a: 0
+},
+{
+  de: { q: "Was ist eine longitudinale Welle?", options: ["Schwingung quer dazu", "Schwingung in Ausbreitungsrichtung"] },
+  fr: { q: "Qu’est-ce qu’une onde longitudinale ?", options: ["Oscillation perpendiculaire", "Oscillation dans la direction"] },
+  a: 1
+},
+{
+  de: { q: "Was passiert bei Absorption?", options: ["Die Welle wird stärker", "Energie wird in Wärme umgewandelt"] },
+  fr: { q: "Que se passe-t-il lors de l’absorption ?", options: ["L’onde devient plus forte", "Énergie transformée en chaleur"] },
+  a: 1
+}
 ];
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
