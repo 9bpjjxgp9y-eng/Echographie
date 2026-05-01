@@ -2,6 +2,7 @@ let lang = localStorage.getItem("lang") || "de";
 
 let score = 0;
 let index = 0;
+let quizQuestions = [];
 
 /* ================= UI TEXT ================= */
 
@@ -29,6 +30,18 @@ const texts = {
 /* ================= QUIZ ================= */
 
 const questions = [
+  function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+    function prepareQuiz() {
+  quizQuestions = shuffle([...questions]); // wichtige Kopie!
+  score = 0;
+  index = 0;
+}
+  return array;
+}
   {
     de: { q: "Was nutzt Echographie?", options: ["Ultraschall", "Licht"] },
     fr: { q: "Que utilise l’échographie ?", options: ["Ultrasons", "Lumière"] },
@@ -313,13 +326,15 @@ function openTheory(id) {
 function startQuiz() {
   reset();
   document.getElementById("quizScreen").style.display = "block";
+
+  prepareQuiz(); // 🔥 NEU
   showQuestion();
 }
 
 function showQuestion() {
-  if (index >= questions.length) return showResult();
+  if (index >= quizQuestions.length) return showResult();
 
-  let q = questions[index][lang];
+  let q = quizQuestions[index][lang];
 
   document.getElementById("question").innerText = q.q;
 
@@ -330,7 +345,7 @@ function showQuestion() {
 }
 
 function answer(val) {
-  if (val === questions[index].a) score++;
+  if (val === quizQuestions[index].a) score++;
   index++;
   showQuestion();
 }
@@ -340,7 +355,7 @@ function showResult() {
   document.getElementById("resultScreen").style.display = "block";
 
   document.getElementById("resultText").innerText =
-    texts[lang].result + score + "/" + questions.length;
+    texts[lang].result + score + "/" + quizQuestions.length;
 }
 
 function restartQuiz() {
