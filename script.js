@@ -34,12 +34,12 @@ const questions = [
     fr: { q: "Que utilise l’échographie ?", options: ["Ultrasons", "Lumière"] },
     a: 0
   },
-  {
-    de: { q: "Was entsteht?", options: ["Bilder", "Geräusche"] },
-    fr: { q: "Qu’est-ce qui est créé ?", options: ["Images", "Sons"] },
-    a: 0
-  },
-  {
+{
+  de: { q: "Was entsteht?", options: ["Bilder", "Geräusche"] },
+  fr: { q: "Qu’est-ce qui est créé ?", options: ["Images", "Sons"] },
+  a: 0
+},
+{
   de: { q: "Welche Frequenz wird in der Echographie typischerweise verwendet?", options: ["20–200 Hz", "1–15 MHz"] },
   fr: { q: "Quelle fréquence est utilisée en échographie ?", options: ["20–200 Hz", "1–15 MHz"] },
   a: 1
