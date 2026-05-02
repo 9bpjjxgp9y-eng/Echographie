@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <title>Echographie App</title>
@@ -15,56 +15,67 @@
 <div class="app">
 
   <!-- HEADER -->
-  <div class="header">
+  <header class="header">
     <h1>Echographie</h1>
-  </div>
+  </header>
 
-  <!-- SCREENS -->
-  <div class="content">
+  <!-- CONTENT -->
+  <main class="content">
 
     <!-- HOME -->
-    <div id="startScreen" class="screen">
-  <div class="card">
-    <button id="btnTheory" onclick="showTheory()"></button>
-    <button id="btnQuiz" onclick="startQuiz()"></button>
-  </div>
+    <section id="startScreen" class="screen">
 
-  <div class="lang-buttons">
-    <button onclick="setLanguage('de')">🇩🇪 Deutsch</button>
-    <button onclick="setLanguage('fr')">🇫🇷 Français</button>
-  </div>
-</div> 
-
-    <!-- THEORY -->
-    <div id="theoryScreen" class="screen" style="display:none;">
-      <div id="theoryMenu"></div>
-    </div>
-
-    <!-- THEORY DETAIL -->
-    <div id="theoryDetailScreen" class="screen" style="display:none;"></div>
-
-    <!-- QUIZ -->
-    <div id="quizScreen" class="screen" style="display:none;">
-      <div class="progress">
-        <div id="progressBar"></div>
+      <div class="card">
+        <button id="btnTheory" onclick="showTheory()"></button>
+        <button id="btnQuiz" onclick="startQuiz()"></button>
       </div>
 
-  <div id="resultText"></div>
+      <div class="lang-buttons">
+        <button onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+        <button onclick="setLanguage('fr')">🇫🇷 Français</button>
+      </div>
+
+    </section>
+
+    <!-- THEORY LIST -->
+    <section id="theoryScreen" class="screen" style="display:none;">
+      <div id="theoryMenu"></div>
+    </section>
+
+    <!-- THEORY DETAIL -->
+    <section id="theoryDetailScreen" class="screen" style="display:none;"></section>
+
+    <!-- QUIZ -->
+    <section id="quizScreen" class="screen" style="display:none;">
+
+      <!-- PROGRESS -->
+      <div class="progress">
+        <div class="progress-bar">
+          <div id="progressBar"></div>
+        </div>
+      </div>
+
+      <h2 id="question"></h2>
       <div id="answers"></div>
-    </div>
+
+    </section>
 
     <!-- RESULT -->
-    <div id="resultScreen" class="screen" style="display:none;">
-      <h2 id="resultText"></h2>
-    </div>
+    <section id="resultScreen" class="screen" style="display:none;">
 
-  </div>
+      <h2 id="scoreText"></h2>
 
-  <!-- BOTTOM NAV -->
-  <div class="nav">
-  <button onclick="goHome()">🏠</button>
-  <button id="restartBtn" onclick="restartQuiz()" style="display:none;">🔄</button>
-</div>
+      <div id="resultList"></div>
+
+    </section>
+
+  </main>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <button onclick="goHome()">🏠</button>
+    <button id="restartBtn" onclick="restartQuiz()" style="display:none;">🔄</button>
+  </nav>
 
 </div>
 
