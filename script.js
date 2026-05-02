@@ -401,7 +401,8 @@ document.getElementById("progressBar").style.width = progress + "%";
     .map((val, i) => ({ val, i }))
     .sort(() => Math.random() - 0.5);
 
-  let newCorrectIndex = shuffled.findIndex(o => o.i === correctIndex);
+  current.shuffled = shuffled;
+current.currentCorrect = shuffled.findIndex(o => o.i === correctIndex);
 
   document.getElementById("answers").innerHTML = shuffled
     .map((o, i) => `<button onclick="answer(${i})">${o.val}</button>`)
@@ -414,7 +415,7 @@ document.getElementById("progressBar").style.width = progress + "%";
 function answer(val) {
   let current = quizQuestions[index];
 
-  let isCorrect = val === current.a;
+  let isCorrect = val === current.currentCorrect;
 
   if (isCorrect) {
     score++;
