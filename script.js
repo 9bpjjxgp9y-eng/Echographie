@@ -252,7 +252,7 @@ function showResult() {
   document.getElementById("result").style.display = "block";
 
   document.getElementById("score").innerText =
-    `Score: ${score}/${quiz.length}`;
+    `🏆Score: ${score}/${quiz.length}`;
 
   document.getElementById("results").innerHTML =
     results.map(r => `
