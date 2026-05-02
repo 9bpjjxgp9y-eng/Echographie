@@ -262,8 +262,21 @@ function shuffle(a){
 }
 
 function restartQuiz(){ startQuiz(); }
-function setLanguage(l){ lang=l; localStorage.setItem("lang",l); goHome(); }
+function setLanguage(l){
+  lang = l;
+  localStorage.setItem("lang", l);
+  updateUI();   
+  goHome();
+}
+function updateUI() {
+  const t = texts[lang];
 
+  const btnTheory = document.getElementById("btnTheory");
+  const btnQuiz = document.getElementById("btnQuiz");
+
+  if (btnTheory) btnTheory.innerText = t.theory;
+  if (btnQuiz) btnQuiz.innerText = t.quiz;
+}
 /* INIT */
-
+updateUI();
 goHome();
