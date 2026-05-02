@@ -4,6 +4,30 @@ let score = 0;
 let quiz = [];
 let results = [];
 
+const qa = [
+  {
+    de: {
+      q: "Was ist die akustische Impedanz? 🥸",
+      a: "Die akustische Impedanz ist das Produkt aus Dichte des Mediums und Schallgeschwindigkeit. Sie bestimmt, wie Ultraschall an Grenzflächen reagiert. Unterschiedliche Impedanzen führen zu Reflexion, Brechung sowie Absorption und Streuung der Welle."
+    },
+    fr: {
+      q: "Qu’est-ce que l’impédance acoustique ? 🥸",
+      a: "L’impédance acoustique est définie comme le produit de la densité du milieu et de la vitesse du son. Elle détermine le comportement des ultrasons à une interface et entraîne réflexion, réfraction, absorption et diffusion."
+    }
+  },
+
+  {
+    de: {
+      q: "Warum gibt es verschiedene Ultraschallmodi (2D, 3D, 4D, Doppler)? 🤷‍♀️",
+      a: "Es gibt verschiedene Modi, weil sie unterschiedliche Informationen liefern. 2D zeigt Schnittbilder der Organe, 3D rekonstruiert Volumenstrukturen und 4D zeigt diese in Echtzeit mit Bewegung. Der Doppler-Modus analysiert dagegen den Blutfluss mithilfe des Doppler-Effekts, wobei Farben nur die Geschwindigkeit darstellen."
+    },
+    fr: {
+      q: "Pourquoi existe-t-il différents modes (2D, 3D, 4D, Doppler) ? 🤷‍♀️",
+      a: "Les différents modes permettent d’obtenir des informations différentes : le 2D montre des coupes, le 3D reconstruit des volumes et le 4D montre le mouvement en temps réel. Le mode Doppler analyse le flux sanguin grâce à l’effet Doppler, les couleurs représentant la vitesse."
+    }
+  }
+];
+
 /* TEXT */
 const T = {
   de: { your: "Deine Antwort:", correct: "Richtige Antwort:" },
