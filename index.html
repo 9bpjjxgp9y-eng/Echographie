@@ -15,53 +15,43 @@
   <!-- HOME -->
   <div id="startScreen" class="screen">
     <div class="card">
-      <button id="btnTheory" onclick="showTheory()"></button>
-      <button id="btnQuiz" onclick="startQuiz()"></button>
-    </div>
+      <button id="btnTheory" onclick="showTheory()">Theorie</button>
+      <button id="btnQuiz" onclick="startQuiz()">Quiz</button>
 
-    <!-- LANGUAGE -->
-    <div class="card">
-      <button onclick="setLanguage('de')">🇩🇪 Deutsch</button>
-      <button onclick="setLanguage('fr')">🇫🇷 Français</button>
+      <div class="lang">
+        <button onclick="setLanguage('de')">🇩🇪</button>
+        <button onclick="setLanguage('fr')">🇫🇷</button>
+      </div>
     </div>
   </div>
 
   <!-- THEORY -->
-  <div id="theoryScreen" class="screen" style="display:none;">
-    <div class="card">
-      <div id="theoryMenu"></div>
-    </div>
+  <div id="theoryScreen" class="screen hidden">
+    <div id="theoryMenu"></div>
   </div>
 
-  <!-- THEORY DETAIL -->
-  <div id="theoryDetailScreen" class="screen" style="display:none;"></div>
+  <div id="theoryDetailScreen" class="screen hidden"></div>
 
   <!-- QUIZ -->
-  <div id="quizScreen" class="screen" style="display:none;">
-    <div class="card">
-
-      <div id="progressContainer">
-        <div id="progressBar"></div>
-      </div>
-
-      <h2 id="question"></h2>
-      <div id="answers"></div>
-
+  <div id="quizScreen" class="screen hidden">
+    <div id="progressContainer">
+      <div id="progressBar"></div>
     </div>
+
+    <h2 id="question"></h2>
+    <div id="answers"></div>
   </div>
 
   <!-- RESULT -->
-  <div id="resultScreen" class="screen" style="display:none;">
-    <div class="card">
-      <h2 id="scoreText"></h2>
-      <div id="resultList"></div>
-    </div>
+  <div id="resultScreen" class="screen hidden">
+    <h2 id="scoreText"></h2>
+    <div id="resultList"></div>
   </div>
 
   <!-- NAV -->
-  <div class="nav">
+  <div id="nav" class="nav hidden">
     <button onclick="goHome()">🏠</button>
-    <button id="restartBtn" onclick="restartQuiz()">🔄</button>
+    <button onclick="restartQuiz()">🔄</button>
   </div>
 
 </div>
