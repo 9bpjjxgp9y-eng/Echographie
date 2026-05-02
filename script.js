@@ -789,29 +789,6 @@ quizQuestions[index].currentCorrect = shuffled.findIndex(o => o.i === correctInd
 document.getElementById("answers").innerHTML = shuffled
   .map((o, i) => `<button onclick="answer(${i})">${o.val}</button>`)
   .join("");
-
-  // WICHTIG: speichere korrekt temporär
-  quizQuestions[index].currentCorrect = newCorrectIndex;
-}
-
-function answer(val) {
-  let current = quizQuestions[index];
-
-  let isCorrect = val === current.currentCorrect;
-
-  if (isCorrect) {
-    score++;
-  }
-
-  results.push({
-    question: current[lang].q,
-    options: current.shuffled.map(o => o.val),
-    userAnswer: val,
-    correctAnswer: current.currentCorrect
-  });
-
-  index++;
-  showQuestion();
 }
 
 function showResult() {
@@ -865,7 +842,7 @@ function answer(val) {
 
   results.push({
     question: current[lang].q,
-    shuffledOptions: current.shuffled.map(o => o.val),
+    options: current.shuffled.map(o => o.val),
     userAnswer: val,
     correctAnswer: current.currentCorrect
   });
@@ -922,7 +899,6 @@ function restartQuiz() {
   index = 0;
   startQuiz();
 }
-
 /* INIT */
 updateUI();
 goHome();
