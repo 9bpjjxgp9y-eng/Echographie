@@ -250,9 +250,11 @@ function showQuestion() {
 
 function answer(selected) {
   const current = quizQuestions[index];
-  const correct = current.a;
 
-  if (selected === correct) score++;
+  const correct = current.a;
+  const isCorrect = selected === correct;
+
+  if (isCorrect) score++;
 
   results.push({
     question: current[lang].q,
@@ -271,21 +273,27 @@ function showResult() {
   resetScreens();
   document.getElementById("resultScreen").style.display = "block";
 
-  let html = `<h2>${texts[lang].result} ${score}/${quizQuestions.length}</h2>`;
+  document.getElementById("scoreText").innerText =
+    `${texts[lang].result} ${score}/${quizQuestions.length}`;
 
-  results.forEach(r => {
-    html += `
-      <div style="margin:10px;padding:10px;background:#eee;border-radius:10px">
-        <b>${r.question}</b><br>
-        Deine Antwort: ${r.options[r.user]}<br>
-        Richtig: ${r.options[r.correct]}
-      </div>
-    `;
-  });
+  document.getElementById("resultList").innerHTML =
+    results.map(r => {
+      const isWrong = r.user !== r.correct;
 
-  document.getElementById("resultText").innerHTML = html;
+      return `
+        <div style="
+          margin:10px;
+          padding:10px;
+          border-radius:10px;
+          background:${isWrong ? '#ffe5e5' : '#e6ffe6'};
+        ">
+          <b>${r.question}</b><br><br>
+          Deine Antwort: ${r.options[r.user]}<br>
+          Richtige Antwort: ${r.options[r.correct]}
+        </div>
+      `;
+    }).join("");
 }
-
 function restartQuiz() {
   startQuiz();
 }
