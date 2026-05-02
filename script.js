@@ -198,13 +198,10 @@ function resetScreens() {
 
 function goHome() {
   resetScreens();
+
   document.getElementById("startScreen").style.display = "flex";
 
-  // Home screen → restart button aus
   document.getElementById("restartBtn").style.display = "none";
-
-  // optional: Nav verstecken auf Startscreen
-  document.querySelector(".nav").style.display = "none";
 }
 
 /* ================= THEORY ================= */
@@ -238,15 +235,17 @@ function openTheory(id) {
 
 function startQuiz() {
   resetScreens();
-  document.getElementById("quizScreen").style.display = "block";
+
+  document.getElementById("quizScreen").style.display = "flex";
+
+  document.getElementById("restartBtn").style.display = "block";
 
   score = 0;
   index = 0;
   results = [];
-
   quizQuestions = shuffle([...questions]);
+
   showQuestion();
-  document.querySelector(".nav").style.display = "flex";
 }
 
 function showQuestion() {
@@ -285,28 +284,26 @@ function answer(selected) {
 
 function showResult() {
   resetScreens();
-  document.getElementById("resultScreen").style.display = "block";
+
+  document.getElementById("resultScreen").style.display = "flex";
+
+  document.getElementById("restartBtn").style.display = "block";
 
   document.getElementById("scoreText").innerText =
     `${texts[lang].result} ${score}/${quizQuestions.length}`;
 
   document.getElementById("resultList").innerHTML =
-  results.map(r => {
-    const isWrong = r.user !== r.correct;
+    results.map(r => {
+      const wrong = r.user !== r.correct;
 
-    return `
-      <div style="
-        margin:10px;
-        padding:10px;
-        border-radius:10px;
-        background:${isWrong ? '#ffe5e5' : '#e6ffe6'};
-      ">
-        <b>${r.question}</b><br><br>
-        ${texts[lang].yourAnswer} ${r.options[r.user]}<br>
-        ${texts[lang].correctAnswer} ${r.options[r.correct]}
-      </div>
-    `;
-  }).join("");
+      return `
+        <div style="margin:10px;padding:10px;border-radius:10px;background:${wrong ? '#ffe5e5' : '#e6ffe6'}">
+          <b>${r.question}</b><br><br>
+          ${texts[lang].yourAnswer} ${r.options[r.user]}<br>
+          ${texts[lang].correctAnswer} ${r.options[r.correct]}
+        </div>
+      `;
+    }).join("");
 }
 function restartQuiz() {
   score = 0;
