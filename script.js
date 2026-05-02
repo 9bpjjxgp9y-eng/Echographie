@@ -189,14 +189,22 @@ function resetScreens() {
   ];
 
   screens.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = "none";
+    document.getElementById(id).style.display = "none";
   });
+
+  // NAV standardmäßig ausblenden
+  document.querySelector(".nav").style.display = "none";
 }
 
 function goHome() {
   resetScreens();
-  document.getElementById("startScreen").style.display = "block";
+  document.getElementById("startScreen").style.display = "flex";
+
+  // Home screen → restart button aus
+  document.getElementById("restartBtn").style.display = "none";
+
+  // optional: Nav verstecken auf Startscreen
+  document.querySelector(".nav").style.display = "none";
 }
 
 /* ================= THEORY ================= */
@@ -209,6 +217,7 @@ function showTheory() {
     theoryContent
       .map(t => `<button onclick="openTheory('${t.id}')">${t.title[lang]}</button>`)
       .join("<br>");
+  document.querySelector(".nav").style.display = "flex";
 }
 
 function openTheory(id) {
@@ -237,6 +246,7 @@ function startQuiz() {
 
   quizQuestions = shuffle([...questions]);
   showQuestion();
+  document.querySelector(".nav").style.display = "flex";
 }
 
 function showQuestion() {
