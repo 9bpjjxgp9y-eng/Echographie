@@ -1,53 +1,59 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<title>Echographie</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Echographie App</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>Echographie</h1>
+<div class="app">
 
-<!-- HOME -->
-<section id="home">
-  <button onclick="openTheory()">Theorie</button>
-  <button onclick="startQuiz()">Quiz</button>
+  <h1>Echographie</h1>
 
-  <div>
-    <button onclick="setLang('de')">Deutsch</button>
-    <button onclick="setLang('fr')">Français</button>
+  <!-- HOME -->
+  <div id="home" class="screen">
+    <div class="card">
+      <button onclick="showTheory()">Theorie</button>
+      <button onclick="startQuiz()">Quiz</button>
+
+      <button onclick="setLang('de')">Deutsch</button>
+      <button onclick="setLang('fr')">Français</button>
+    </div>
   </div>
-</section>
 
-<!-- THEORY -->
-<section id="theory" class="hidden">
-  <div id="theoryList"></div>
-  <button onclick="goHome()">🏠 Home</button>
-</section>
+  <!-- THEORY -->
+  <div id="theory" class="screen hidden">
+    <div id="theoryMenu"></div>
+  </div>
 
-<section id="theoryDetail" class="hidden"></section>
+  <div id="theoryDetail" class="screen hidden"></div>
 
-<!-- QUIZ -->
-<section id="quiz" class="hidden">
-  <div class="bar"><div id="fill"></div></div>
+  <!-- QUIZ -->
+  <div id="quiz" class="screen hidden">
 
-  <h2 id="question"></h2>
-  <div id="answers"></div>
+    <div id="progressContainer">
+      <div id="fill"></div>
+    </div>
 
-  <button id="restartQuizBtn" onclick="startQuiz()">🔄 Restart</button>
-  <button onclick="goHome()">🏠 Home</button>
-</section>
+    <h2 id="question"></h2>
+    <div id="answers"></div>
+  </div>
 
-<!-- RESULT -->
-<section id="result" class="hidden">
-  <h2 id="score"></h2>
-  <div id="results"></div>
+  <!-- RESULT -->
+  <div id="result" class="screen hidden">
+    <h2 id="score"></h2>
+    <div id="results"></div>
+  </div>
 
-  <button onclick="startQuiz()">🔄 Restart</button>
-  <button onclick="goHome()">🏠 Home</button>
-</section>
+  <!-- NAV (nur global, aber dynamisch sichtbar) -->
+  <div class="nav">
+    <button onclick="goHome()">🏠</button>
+    <button onclick="restartQuiz()" id="restartBtn">🔄</button>
+  </div>
+
+</div>
 
 <script src="script.js"></script>
 </body>
