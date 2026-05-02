@@ -1,7 +1,8 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Arial;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Arial;
   background: #ffd6e8;
+  color: #1a1a1a;
 }
 
 .app {
@@ -10,58 +11,62 @@ body {
 
 h1 {
   text-align: center;
+  font-size: 34px;
 }
 
 .screen {
   display: none;
 }
 
-.hidden {
-  display: none;
-}
-
 .card {
-  background: white;
+  background: rgba(255,255,255,0.9);
+  border-radius: 20px;
   padding: 20px;
-  border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  margin-top: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
 button {
   width: 100%;
   padding: 14px;
-  margin: 6px 0;
+  margin: 8px 0;
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
   background: white;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
 }
 
 button:active {
   transform: scale(0.97);
 }
 
-/* PROGRESS */
 #progressContainer {
   height: 10px;
-  background: #eee;
+  background: white;
   border-radius: 20px;
   overflow: hidden;
   margin-bottom: 10px;
 }
 
-#progressBar {
+#fill {
   height: 100%;
   width: 0%;
   background: #ff4fa3;
+  transition: width 0.3s;
 }
 
-/* THEORY */
-.theory-card {
+.nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
   background: white;
-  padding: 18px;
-  margin: 10px 0;
-  border-radius: 16px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  padding: 10px;
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
+}
+
+.hidden {
+  display: none;
 }
