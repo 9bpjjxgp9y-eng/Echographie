@@ -385,7 +385,8 @@ function showQuestion() {
   if (index >= quizQuestions.length) return showResult();
 
   let q = quizQuestions[index][lang];
-
+let progress = ((index) / quizQuestions.length) * 100;
+document.getElementById("progressBar").style.width = progress + "%";
   document.getElementById("question").innerText = q.q;
 
   let options = [...q.options];
