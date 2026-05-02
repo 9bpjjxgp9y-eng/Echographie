@@ -205,15 +205,26 @@ function startQuiz() {
   showQ();
 }
 
-function showQ() {
-  if (index >= quiz.length) return showResult();
+function shuffle(arr){
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+function showQ(){
+  if(index >= quiz.length) return showResult();
 
   const q = quiz[index][lang];
 
   document.getElementById("question").innerText = q.q;
 
+  // 👉 WICHTIG: Antworten JEDES MAL neu mischen
+  const shuffledAnswers = q.o
+    .map((text, i) => ({ text, i })) // Originalindex behalten
+    .sort(() => Math.random() - 0.5);
+
   document.getElementById("answers").innerHTML =
-    q.o.map((o, i) => `<button onclick="answer(${i})">${o}</button>`).join("");
+    shuffledAnswers.map(a =>
+      `<button onclick="answer(${a.i})">${a.text}</button>`
+    ).join("");
 
   document.getElementById("fill").style.width =
     (index / quiz.length * 100) + "%";
