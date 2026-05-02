@@ -156,74 +156,52 @@ const questions = [
 
 function $(id){ return document.getElementById(id); }
 
-function reset(){
+function resetScreens(){
   ["startScreen","theoryScreen","theoryDetailScreen","quizScreen","resultScreen"]
-  .forEach(id => $(id).style.display="none");
+  .forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.style.display = "none";
+  });
 }
 
-function updateNav(screen) {
-  const nav = document.querySelector(".nav");
-  const restart = document.getElementById("restartBtn");
-
-  if (!nav) return;
-
-  // Default alles aus
-  nav.style.display = "none";
-  if (restart) restart.style.display = "none";
-
-  if (screen === "quiz") {
-    nav.style.display = "flex";
-    if (restart) restart.style.display = "inline-block";
-  }
-
-  if (screen === "result") {
-    nav.style.display = "flex";
-    if (restart) restart.style.display = "inline-block";
-  }
-
-  if (screen === "theory") {
-    nav.style.display = "flex";
-    // ❌ KEIN restart hier
-  }
-}
-
-function goHome() {
+function goHome(){
   resetScreens();
   document.getElementById("startScreen").style.display = "flex";
-
-  updateNav("home"); 
+  updateNav("home");
 }
 
 /* THEORY */
 
-function showTheory() {
+function showTheory(){
   resetScreens();
   document.getElementById("theoryScreen").style.display = "block";
 
   document.getElementById("theoryMenu").innerHTML =
-    theoryContent.map(t =>
-      `<button onclick="openTheory('${t.id}')">${t.title[lang]}</button>`
+    theory.map(t =>
+      `<button onclick="openTheory('${t.id}')">${t[lang][0]}</button>`
     ).join("<br>");
 
-  updateNav("theory"); 
+  updateNav("theory");
 }
 
 function openTheory(id){
-  const t = theory.find(x=>x.id===id);
-  reset();
-  showNav();
+  const t = theory.find(x => x.id === id);
 
-  $("theoryDetailScreen").style.display="block";
-  $("theoryDetailScreen").innerHTML = `
+  resetScreens();
+  document.getElementById("theoryDetailScreen").style.display = "block";
+
+  document.getElementById("theoryDetailScreen").innerHTML = `
     <button onclick="showTheory()">${texts[lang].back}</button>
     <h2>${t[lang][0]}</h2>
     <p>${t[lang][1]}</p>
   `;
+
+  updateNav("theory");
 }
 
 /* QUIZ */
 
-function startQuiz() {
+function startQuiz(){
   score = 0;
   index = 0;
   results = [];
@@ -232,8 +210,7 @@ function startQuiz() {
   resetScreens();
   document.getElementById("quizScreen").style.display = "block";
 
-  updateNav("quiz"); 
-
+  updateNav("quiz");
   showQuestion();
 }
 
@@ -261,22 +238,24 @@ function answer(i){
 
 /* RESULT */
 
-function showResult() {
+function showResult(){
   resetScreens();
   document.getElementById("resultScreen").style.display = "block";
 
-  updateNav("result");
-  $("scoreText").innerText =
+  document.getElementById("scoreText").innerText =
     `${texts[lang].result} ${score}/${quizQuestions.length}`;
 
-  $("resultList").innerHTML =
-    results.map(r=>`
-      <div style="margin:10px;padding:10px;background:${r.u===r.c?"#d4edda":"#f8d7da"}">
-        <b>${r.q}</b><br>
+  document.getElementById("resultList").innerHTML =
+    results.map(r => `
+      <div style="margin:10px;padding:10px;border-radius:10px;
+      background:${r.u===r.c ? "#d4edda" : "#f8d7da"}">
+        <b>${r.q}</b><br><br>
         ${texts[lang].your} ${r.o[r.u]}<br>
         ${texts[lang].correct} ${r.o[r.c]}
       </div>
     `).join("");
+
+  updateNav("result");
 }
 
 /* UTIL */
