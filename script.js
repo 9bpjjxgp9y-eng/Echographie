@@ -203,7 +203,8 @@ function openTheory(id) {
 /* ================= QUIZ ================= */
 
 function startQuiz() {
-  reset();
+  resetScreens(); // FIX
+
   document.getElementById("quizScreen").style.display = "block";
 
   score = 0;
