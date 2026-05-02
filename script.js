@@ -10,23 +10,27 @@ let results = [];
 
 const texts = {
   de: {
-    theory: "Theorie",
-    quiz: "Quiz",
-    home: "🏠",
-    restart: "🔄",
-    back: "Zurück",
-    title: "Theorie",
-    result: "Score: "
-  },
-  fr: {
-    theory: "Théorie",
-    quiz: "Quiz",
-    home: "🏠",
-    restart: "🔄",
-    back: "Retour",
-    title: "Théorie",
-    result: "Score : "
-  }
+  theory: "Theorie",
+  quiz: "Quiz",
+  home: "🏠",
+  restart: "🔄",
+  back: "Zurück",
+  title: "Theorie",
+  result: "Score: ",
+  yourAnswer: "Deine Antwort:",
+  correctAnswer: "Richtige Antwort:"
+},
+fr: {
+  theory: "Théorie",
+  quiz: "Quiz",
+  home: "🏠",
+  restart: "🔄",
+  back: "Retour",
+  title: "Théorie",
+  result: "Score : ",
+  yourAnswer: "Ta réponse :",
+  correctAnswer: "Bonne réponse :"
+}
 };
 
 /* ================= QUIZ ================= */
@@ -277,25 +281,33 @@ function showResult() {
     `${texts[lang].result} ${score}/${quizQuestions.length}`;
 
   document.getElementById("resultList").innerHTML =
-    results.map(r => {
-      const isWrong = r.user !== r.correct;
+  results.map(r => {
+    const isWrong = r.user !== r.correct;
 
-      return `
-        <div style="
-          margin:10px;
-          padding:10px;
-          border-radius:10px;
-          background:${isWrong ? '#ffe5e5' : '#e6ffe6'};
-        ">
-          <b>${r.question}</b><br><br>
-          Deine Antwort: ${r.options[r.user]}<br>
-          Richtige Antwort: ${r.options[r.correct]}
-        </div>
-      `;
-    }).join("");
+    return `
+      <div style="
+        margin:10px;
+        padding:10px;
+        border-radius:10px;
+        background:${isWrong ? '#ffe5e5' : '#e6ffe6'};
+      ">
+        <b>${r.question}</b><br><br>
+        ${texts[lang].yourAnswer} ${r.options[r.user]}<br>
+        ${texts[lang].correctAnswer} ${r.options[r.correct]}
+      </div>
+    `;
+  }).join("");
 }
 function restartQuiz() {
-  startQuiz();
+  score = 0;
+  index = 0;
+  results = [];
+  quizQuestions = shuffle([...questions]);
+
+  resetScreens();
+  document.getElementById("quizScreen").style.display = "block";
+
+  showQuestion();
 }
 
 /* ================= UTIL ================= */
