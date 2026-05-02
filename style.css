@@ -3,7 +3,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Arial;
   background: #ffd6e8;
   color: #1a1a1a;
-  font-size: 18px;
+  font-size: 19px;
+  line-height: 1.5;
 }
 
 .app {
@@ -21,29 +22,33 @@ h2 {
 .screen {
   display: none;
 }
-
+.screen.active {
+  display: block;
+}
 .card {
-  background: rgba(255,255,255,0.9);
-  border-radius: 20px;
-  padding: 20px;
-  margin-top: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.92);
+  border-radius: 22px;
+  padding: 22px;
+  margin-top: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  backdrop-filter: blur(10px);
 }
 
 button {
   width: 100%;
-  padding: 14px;
-  margin: 8px 0;
+  padding: 16px;
+  margin: 10px 0;
   border: none;
-  border-radius: 14px;
+  border-radius: 16px;
   background: white;
   font-weight: 600;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
   font-size: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  transition: all 0.2s ease;
 }
 
 button:active {
-  transform: scale(0.97);
+  transform: scale(0.96);
 }
 
 #progressContainer {
@@ -65,10 +70,10 @@ button:active {
   position: fixed;
   bottom: 0;
   width: 100%;
-  display: flex;
+  display: none;
   justify-content: space-around;
   background: white;
-  padding: 10px;
+  padding: 12px;
   box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
 }
 
