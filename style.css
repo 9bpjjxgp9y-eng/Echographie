@@ -1,37 +1,106 @@
-body{
-  font-family: Arial;
-  margin:0;
-  text-align:center;
-  background:linear-gradient(180deg,#f3e8ff,#fdf4ff);
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Arial;
+  background: #ffd6e8; /* hellpink einfarbig */
+  color: #1a1a1a;
 }
 
-section{padding:20px;}
-
-.hidden{display:none;}
-
-button{
-  padding:12px;
-  margin:6px;
-  border:none;
-  border-radius:12px;
-  background:#e9d5ff;
-  font-weight:bold;
-  box-shadow:0 6px 15px rgba(0,0,0,0.1);
+/* APP LAYOUT */
+.app {
+  padding: 20px;
 }
 
-button:active{transform:scale(0.96);}
-
-.bar{
-  width:80%;
-  height:10px;
-  background:#ddd;
-  margin:10px auto;
-  border-radius:10px;
+/* TITLE */
+h1 {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
-#fill{
-  height:10px;
-  width:0%;
-  background:#a855f7;
-  border-radius:10px;
+/* SCREEN */
+.screen {
+  display: none;
+  padding-bottom: 80px;
+}
+
+/* CARD STYLE (HOME + THEORY BOXES) */
+.card, .theory-card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 12px 0;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  backdrop-filter: blur(10px);
+}
+
+/* BUTTONS */
+button {
+  width: 100%;
+  padding: 16px;
+  margin: 8px 0;
+
+  border: none;
+  border-radius: 16px;
+
+  background: white;
+  font-size: 16px;
+  font-weight: 600;
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+
+  transition: 0.2s;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* THEORY TEXT */
+.theory-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.theory-text {
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* QUIZ */
+#question {
+  font-size: 22px;
+  margin: 20px 0;
+}
+
+#answers button {
+  font-size: 15px;
+}
+
+/* PROGRESS BAR */
+#progressContainer {
+  width: 100%;
+  height: 10px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+#progressBar {
+  height: 100%;
+  width: 0%;
+  background: #ff4fa3;
+  transition: width 0.3s;
+}
+
+/* RESULT BOX */
+.result-box {
+  background: white;
+  border-radius: 16px;
+  padding: 12px;
+  margin: 10px 0;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
 }
