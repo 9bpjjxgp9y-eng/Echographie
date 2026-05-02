@@ -1,68 +1,70 @@
 let lang = localStorage.getItem("lang") || "de";
-let i = 0;
+let index = 0;
 let score = 0;
-let list = [];
-let res = [];
+let quiz = [];
+let results = [];
 
+/* TEXT */
 const T = {
-  de: { your:"Deine Antwort:", correct:"Richtige Antwort:" },
-  fr: { your:"Ta réponse :", correct:"Bonne réponse :" }
+  de: {your:"Deine Antwort:", correct:"Richtige Antwort:"},
+  fr: {your:"Ta réponse :", correct:"Bonne réponse :"}
 };
 
 /* THEORY */
 const theory = [
-  {de:["Einführung","Ultraschall ist nicht-invasiv."], fr:["Introduction","Imagerie par ultrasons."]},
-  {de:["Ultraschall","Mechanische Wellen."], fr:["Ultrasons","Ondes mécaniques."]},
+  {de:["Einführung","Echographie nutzt Ultraschall."], fr:["Introduction","Utilise les ultrasons."]},
+  {de:["Ultraschall","Mechanische Wellen >20kHz."], fr:["Ultrasons","Ondes mécaniques >20kHz."]},
   {de:["Kompression","Teilchen werden gedrückt."], fr:["Compression","Particules comprimées."]},
-  {de:["Rarefaktion","Teilchen gehen auseinander."], fr:["Raréfaction","Particules s’éloignent."]},
-  {de:["Reflexion","Wellen gehen zurück."], fr:["Réflexion","Retour des ondes."]},
-  {de:["Absorption","Energie wird Wärme."], fr:["Absorption","Énergie devient chaleur."]},
-  {de:["Frequenz","Bestimmt Tiefe & Detail."], fr:["Fréquence","Détermine profondeur."]},
-  {de:["Sonden","Linear, konvex, phased array."], fr:["Sondes","Linéaire, convexe, phased array."]}
+  {de:["Rarefaktion","Teilchen entfernen sich."], fr:["Raréfaction","Particules s’éloignent."]},
+  {de:["Reflexion","Wellen werden zurückgeworfen."], fr:["Réflexion","Retour des ondes."]},
+  {de:["Absorption","Energie wird Wärme."], fr:["Absorption","Énergie devient chaleur."]}
 ];
 
-/* QUIZ */
-const q = Array.from({length:15}, (_,n)=>({
-  de:{q:`Frage ${n+1}`,o:["A","B","C","D"]},
-  fr:{q:`Question ${n+1}`,o:["A","B","C","D"]},
+/* QUESTIONS (15) */
+const questions = Array.from({length:15}, (_,i)=>({
+  de:{q:`Frage ${i+1}`,o:["A","B","C","D"]},
+  fr:{q:`Question ${i+1}`,o:["A","B","C","D"]},
   a:0
 }));
 
-function $(x){return document.getElementById(x);}
+/* HELP */
+const $ = id => document.getElementById(id);
 
-function hide(){
+function hideAll(){
   ["home","theory","theoryDetail","quiz","result"]
-  .forEach(e=>$(e).classList.add("hidden"));
+  .forEach(id => $(id).classList.add("hidden"));
 }
 
+/* HOME */
 function goHome(){
-  hide();
+  hideAll();
   $("home").classList.remove("hidden");
 }
 
+/* LANGUAGE */
 function setLang(l){
-  lang=l;
+  lang = l;
   localStorage.setItem("lang",l);
   goHome();
 }
 
 /* THEORY */
-function showTheory(){
-  hide();
+function openTheory(){
+  hideAll();
   $("theory").classList.remove("hidden");
 
   $("theoryList").innerHTML =
     theory.map((t,i)=>
-      `<button onclick="openT(${i})">${t[lang][0]}</button>`
+      `<button onclick="showTheory(${i})">${t[lang][0]}</button>`
     ).join("");
 }
 
-function openT(i){
-  hide();
+function showTheory(i){
+  hideAll();
   $("theoryDetail").classList.remove("hidden");
 
-  $("theoryDetail").innerHTML=`
-    <button onclick="showTheory()">Back</button>
+  $("theoryDetail").innerHTML = `
+    <button onclick="openTheory()">Back</button>
     <h2>${theory[i][lang][0]}</h2>
     <p>${theory[i][lang][1]}</p>
   `;
@@ -70,65 +72,64 @@ function openT(i){
 
 /* QUIZ */
 function startQuiz(){
+  index=0;
   score=0;
-  i=0;
-  res=[];
-  list=[...q].sort(()=>Math.random()-0.5);
+  results=[];
+  quiz=[...questions].sort(()=>Math.random()-0.5);
 
-  hide();
+  hideAll();
   $("quiz").classList.remove("hidden");
 
   showQ();
 }
 
 function showQ(){
-  if(i>=list.length) return showR();
+  if(index>=quiz.length) return showResult();
 
-  const x=list[i][lang];
+  const q = quiz[index][lang];
 
-  $("q").innerText=x.q;
+  $("question").innerText = q.q;
 
-  $("a").innerHTML=x.o.map((o,j)=>
-    `<button onclick="ans(${j})">${o}</button>`
-  ).join("");
+  $("answers").innerHTML =
+    q.o.map((o,i)=>
+      `<button onclick="answer(${i})">${o}</button>`
+    ).join("");
 
-  $("fill").style.width=(i/list.length*100)+"%";
+  $("fill").style.width = (index/quiz.length*100)+"%";
 }
 
-function ans(j){
-  const x=list[i];
-  if(j===x.a) score++;
+function answer(i){
+  const q = quiz[index];
 
-  res.push({
-    q:x[lang].q,
-    o:x[lang].o,
-    u:j,
-    c:x.a
+  if(i===q.a) score++;
+
+  results.push({
+    q:q[lang].q,
+    o:q[lang].o,
+    u:i,
+    c:q.a
   });
 
-  i++;
+  index++;
   showQ();
 }
 
 /* RESULT */
-function showR(){
-  hide();
+function showResult(){
+  hideAll();
   $("result").classList.remove("hidden");
 
-  $("score").innerText=`Score: ${score}/${list.length}`;
+  $("score").innerText =
+    `Score: ${score}/${quiz.length}`;
 
-  $("list").innerHTML=res.map(r=>`
-    <div>
-      <b>${r.q}</b><br>
-      ${T[lang].your} ${r.o[r.u]}<br>
-      ${T[lang].correct} ${r.o[r.c]}
-    </div>
-  `).join("");
-}
-
-/* RESTART */
-function restart(){
-  startQuiz();
+  $("results").innerHTML =
+    results.map(r=>`
+      <div style="margin:10px;padding:10px;background:${r.u===r.c?"#d4edda":"#f8d7da"}">
+        <b>${r.q}</b><br>
+        ${T[lang].your} ${r.o[r.u]}<br>
+        ${T[lang].correct} ${r.o[r.c]}
+      </div>
+    `).join("");
 }
 
 goHome();
