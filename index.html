@@ -12,48 +12,62 @@
 
 <body>
 
-<!-- HOME -->
-<div id="startScreen" class="screen">
-  <h1>Echographie App</h1>
+<div class="app">
 
-  <button id="btnTheory" onclick="showTheory()"></button>
-  <button id="btnQuiz" onclick="startQuiz()"></button>
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Echographie</h1>
+  </div>
 
-  <br><br>
+  <!-- SCREENS -->
+  <div class="content">
 
-  <button onclick="setLanguage('de')">🇩🇪 Deutsch</button>
-  <button onclick="setLanguage('fr')">🇫🇷 Français</button>
-</div>
+    <!-- HOME -->
+    <div id="startScreen" class="screen">
+      <div class="card">
+        <button id="btnTheory" onclick="showTheory()"></button>
+        <button id="btnQuiz" onclick="startQuiz()"></button>
+      </div>
 
-<!-- THEORY LIST -->
-<div id="theoryScreen" class="screen" style="display:none;">
-  <h2 id="theoryTitle"></h2>
-  <div id="theoryMenu"></div>
+      <div class="lang">
+        <button onclick="setLanguage('de')">🇩🇪</button>
+        <button onclick="setLanguage('fr')">🇫🇷</button>
+      </div>
+    </div>
 
-  <button onclick="goHome()" id="btnHome1"></button>
-</div>
+    <!-- THEORY -->
+    <div id="theoryScreen" class="screen" style="display:none;">
+      <div id="theoryMenu"></div>
+    </div>
 
-<!-- THEORY DETAIL -->
-<div id="theoryDetailScreen" style="display:none;"></div>
+    <!-- THEORY DETAIL -->
+    <div id="theoryDetailScreen" class="screen" style="display:none;"></div>
 
-<!-- QUIZ -->
-<div id="quizScreen" class="screen" style="display:none;">
-  <h2 id="question"></h2>
-  <div id="answers"></div>
+    <!-- QUIZ -->
+    <div id="quizScreen" class="screen" style="display:none;">
+      <div class="progress">
+        <div id="progressBar"></div>
+      </div>
 
-  <button onclick="goHome()" id="btnHome2"></button>
-  <button onclick="restartQuiz()" id="btnRestart"></button>
-</div>
+      <h2 id="question"></h2>
+      <div id="answers"></div>
+    </div>
 
-<!-- RESULT -->
-<div id="resultScreen" class="screen" style="display:none;">
-  <h2 id="resultText"></h2>
+    <!-- RESULT -->
+    <div id="resultScreen" class="screen" style="display:none;">
+      <h2 id="resultText"></h2>
+    </div>
 
-  <button onclick="goHome()" id="btnHome3"></button>
-  <button onclick="restartQuiz()" id="btnRestart2"></button>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="nav">
+    <button onclick="goHome()">🏠</button>
+    <button onclick="restartQuiz()">🔄</button>
+  </div>
+
 </div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
