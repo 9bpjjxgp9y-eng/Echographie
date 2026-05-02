@@ -3,77 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <title>Echographie App</title>
-
   <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#000000">
-  <link rel="apple-touch-icon" href="icon.png">
 </head>
 
 <body>
 
 <div class="app">
 
-  <!-- HEADER -->
-  <header class="header">
-    <h1>Echographie</h1>
-  </header>
+  <h1>Echographie</h1>
 
-  <!-- CONTENT -->
-  <main class="content">
+  <!-- HOME -->
+  <div id="startScreen" class="screen">
+    <button onclick="showTheory()" id="btnTheory"></button>
+    <button onclick="startQuiz()" id="btnQuiz"></button>
 
-    <!-- HOME -->
-    <section id="startScreen" class="screen">
+    <div class="lang">
+      <button onclick="setLanguage('de')">🇩🇪</button>
+      <button onclick="setLanguage('fr')">🇫🇷</button>
+    </div>
+  </div>
 
-      <div class="card">
-        <button id="btnTheory" onclick="showTheory()"></button>
-        <button id="btnQuiz" onclick="startQuiz()"></button>
-      </div>
+  <!-- THEORY -->
+  <div id="theoryScreen" class="screen" style="display:none;">
+    <div id="theoryMenu"></div>
+  </div>
 
-      <div class="lang-buttons">
-        <button onclick="setLanguage('de')">🇩🇪 Deutsch</button>
-        <button onclick="setLanguage('fr')">🇫🇷 Français</button>
-      </div>
+  <div id="theoryDetailScreen" class="screen" style="display:none;"></div>
 
-    </section>
+  <!-- QUIZ -->
+  <div id="quizScreen" class="screen" style="display:none;">
+    <div id="progressContainer">
+      <div id="progressBar"></div>
+    </div>
 
-    <!-- THEORY LIST -->
-    <section id="theoryScreen" class="screen" style="display:none;">
-      <div id="theoryMenu"></div>
-    </section>
+    <h2 id="question"></h2>
+    <div id="answers"></div>
+  </div>
 
-    <!-- THEORY DETAIL -->
-    <section id="theoryDetailScreen" class="screen" style="display:none;"></section>
-
-    <!-- QUIZ -->
-    <section id="quizScreen" class="screen" style="display:none;">
-
-      <!-- PROGRESS -->
-      <div class="progress">
-        <div class="progress-bar">
-          <div id="progressBar"></div>
-        </div>
-      </div>
-
-      <h2 id="question"></h2>
-      <div id="answers"></div>
-
-    </section>
-
-    <!-- RESULT -->
-    <section id="resultScreen" class="screen" style="display:none;">
-  <h2 id="scoreText"></h2>
-  <div id="resultList"></div>
-</section>
-
-  </main>
+  <!-- RESULT -->
+  <div id="resultScreen" class="screen" style="display:none;">
+    <h2 id="scoreText"></h2>
+    <div id="resultList"></div>
+  </div>
 
   <!-- NAV -->
   <div class="nav">
-  <button onclick="goHome()">🏠</button>
-  <button id="restartBtn" onclick="restartQuiz()">🔄</button>
-</div>
+    <button onclick="goHome()">🏠</button>
+    <button onclick="restartQuiz()">🔄</button>
+  </div>
 
+</div>
 
 <script src="script.js"></script>
 </body>
