@@ -1,35 +1,80 @@
+/* BACKGROUND */
 body {
-  font-family: Arial;
   margin: 0;
-  text-align: center;
+  font-family: Arial;
+  background: linear-gradient(180deg, #fdf6ff, #f3e8ff);
 }
 
+/* SCREENS */
 .screen {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* CARD / KISTEN */
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 350px;
+
+  box-shadow:
+    0 10px 25px rgba(180,120,255,0.2),
+    0 3px 8px rgba(0,0,0,0.05);
+}
+
+/* BUTTONS */
 button {
-  margin: 8px;
-  padding: 12px;
-  font-size: 16px;
-}
-
-.nav {
-  position: fixed;
-  bottom: 0;
   width: 100%;
-  background: #eee;
-  display: none;
+  margin: 8px 0;
+  padding: 12px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #e9d5ff, #fbcfe8);
+  color: #4b0082;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  box-shadow: 0 5px 12px rgba(200,150,255,0.3);
 }
 
+/* CLICK EFFECT */
+button:active {
+  transform: scale(0.96);
+}
+
+/* PROGRESS BAR */
 #progressContainer {
   width: 100%;
   height: 10px;
   background: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 #progressBar {
-  height: 10px;
+  height: 100%;
   width: 0%;
-  background: green;
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+}
+
+/* NAV BAR */
+.nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  display: none;
+
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
+}
+
+.nav button {
+  width: 45%;
 }
