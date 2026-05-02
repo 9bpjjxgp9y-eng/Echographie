@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<title>Echographie App</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Echographie App</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -13,45 +13,43 @@
   <h1>Echographie</h1>
 
   <!-- HOME -->
-  <div id="homeScreen" class="screen">
+  <div id="home" class="screen">
     <div class="card">
-      <button onclick="showTheoryMenu()">Theorie</button>
+      <button onclick="showTheory()">Theorie</button>
       <button onclick="startQuiz()">Quiz</button>
 
-      <div class="lang">
-        <button onclick="setLang('de')">DE</button>
-        <button onclick="setLang('fr')">FR</button>
-      </div>
+      <button onclick="setLang('de')">Deutsch</button>
+      <button onclick="setLang('fr')">Français</button>
     </div>
   </div>
 
   <!-- THEORY -->
-  <div id="theoryScreen" class="screen hidden"></div>
-  <div id="theoryDetailScreen" class="screen hidden"></div>
+  <div id="theory" class="screen hidden">
+    <div id="theoryMenu"></div>
+  </div>
+
+  <div id="theoryDetail" class="screen hidden"></div>
 
   <!-- QUIZ -->
-  <div id="quizScreen" class="screen hidden">
-    <div class="card">
-
-      <div id="progressContainer">
-        <div id="progressBar"></div>
-      </div>
-
-      <h2 id="question"></h2>
-      <div id="answers"></div>
-
+  <div id="quiz" class="screen hidden">
+    <div id="progressContainer">
+      <div id="fill"></div>
     </div>
+
+    <h2 id="question"></h2>
+    <div id="answers"></div>
   </div>
 
   <!-- RESULT -->
-  <div id="resultScreen" class="screen hidden">
-    <div class="card">
-      <h2 id="score"></h2>
-      <div id="results"></div>
+  <div id="result" class="screen hidden">
+    <h2 id="score"></h2>
+    <div id="results"></div>
+  </div>
 
-      <button onclick="startQuiz()">🔄 Restart Quiz</button>
-      <button onclick="goHome()">🏠 Home</button>
-    </div>
+  <!-- NAV -->
+  <div class="nav hidden" id="nav">
+    <button onclick="goHome()">🏠</button>
+    <button onclick="restartQuiz()" id="restartBtn">🔄</button>
   </div>
 
 </div>
