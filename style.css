@@ -30,11 +30,11 @@ body {
 
 /* SCREENS */
 .screen {
+  flex: 1; /* DAS ist entscheidend */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center; /* DAS fehlt dir */
-  height: 100%;
+  justify-content: center; /* vertikal */
+  align-items: center;     /* horizontal */
 }
 
 /* CARD */
@@ -44,6 +44,8 @@ body {
   border-radius: 20px;
   width: 100%;
   box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 300px;
 }
 
 /* BUTTONS */
