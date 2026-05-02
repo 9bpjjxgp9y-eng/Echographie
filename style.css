@@ -85,10 +85,3 @@ button:active {
   line-height: 1.6;
 }
 
-.theory-card {
-  background: white;
-  padding: 20px;
-  border-radius: 18px;
-  margin: 12px 0;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
