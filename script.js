@@ -174,27 +174,32 @@ function setLang(l){
 }
 
 /* THEORY */
-function openTheory(){
-  hideAll();
-  $("theory").classList.remove("hidden");
+function openTheory(i){
+  const t = theory[i][lang];
 
-  $("theoryList").innerHTML =
-    theory.map((t,i)=>
-      `<button onclick="showTheory(${i})">${t[lang][0]}</button>`
-    ).join("");
-}
+  document.getElementById("theoryDetailScreen").innerHTML = `
+    <div class="theory-card">
+      <div class="theory-title">${t[0]}</div>
+      <div class="theory-text">${t[1]}</div>
+    </div>
 
-function showTheory(i){
-  hideAll();
-  $("theoryDetail").classList.remove("hidden");
-
-  $("theoryDetail").innerHTML = `
-    <button onclick="openTheory()">Back</button>
-    <h2>${theory[i][lang][0]}</h2>
-    <p>${theory[i][lang][1]}</p>
+    <button onclick="showTheory()">Back</button>
   `;
+
+  document.getElementById("theoryScreen").style.display = "none";
+  document.getElementById("theoryDetailScreen").style.display = "block";
 }
 
+function showTheory(){
+  document.getElementById("theoryScreen").style.display = "block";
+
+  document.getElementById("theoryMenu").innerHTML =
+    theory.map((t,i)=>`
+      <div class="card">
+        <button onclick="openTheory(${i})">${t[lang][0]}</button>
+      </div>
+    `).join("");
+}
 /* QUIZ */
 function startQuiz(){
   index=0;
