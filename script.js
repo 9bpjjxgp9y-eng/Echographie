@@ -4,6 +4,11 @@ let score = 0;
 let quiz = [];
 let results = [];
 
+/* TEXT */
+const T = {
+  de: { your: "Deine Antwort:", correct: "Richtige Antwort:" },
+  fr: { your: "Ta réponse :", correct: "Bonne réponse :" }
+};
 const qa = [
   {
     de: {
@@ -27,12 +32,6 @@ const qa = [
     }
   }
 ];
-
-/* TEXT */
-const T = {
-  de: { your: "Deine Antwort:", correct: "Richtige Antwort:" },
-  fr: { your: "Ta réponse :", correct: "Bonne réponse :" }
-};
 
 /* THEORY */
 const theory = [
