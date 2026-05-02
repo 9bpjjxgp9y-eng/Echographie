@@ -387,26 +387,22 @@ function showQuestion() {
   if (index >= quizQuestions.length) return showResult();
 
   let q = quizQuestions[index][lang];
-let progress = ((index) / quizQuestions.length) * 100;
-document.getElementById("progressBar").style.width = progress + "%";
   document.getElementById("question").innerText = q.q;
 
-let options = [...q.options];
-let correctIndex = quizQuestions[index].a;
+  let options = [...q.options];
+  let correctIndex = quizQuestions[index].a;
 
-let shuffled = options
-  .map((val, i) => ({ val, i }))
-  .sort(() => Math.random() - 0.5);
+  let shuffled = options
+    .map((val, i) => ({ val, i }))
+    .sort(() => Math.random() - 0.5);
 
-quizQuestions[index].shuffled = shuffled;
-quizQuestions[index].currentCorrect = shuffled.findIndex(o => o.i === correctIndex);
+  quizQuestions[index].shuffled = shuffled;
+  quizQuestions[index].currentCorrect =
+    shuffled.findIndex(o => o.i === correctIndex);
 
-document.getElementById("answers").innerHTML = shuffled
-  .map((o, i) => `<button onclick="answer(${i})">${o.val}</button>`)
-  .join("");
-
-  // WICHTIG: speichere korrekt temporär
-  quizQuestions[index].currentCorrect = newCorrectIndex;
+  document.getElementById("answers").innerHTML = shuffled
+    .map((o, i) => `<button onclick="answer(${i})">${o.val}</button>`)
+    .join("");
 }
 
 function answer(val) {
@@ -414,9 +410,18 @@ function answer(val) {
 
   let isCorrect = val === current.currentCorrect;
 
-  if (isCorrect) {
-    score++;
-  }
+  if (isCorrect) score++;
+
+  results.push({
+    question: current[lang].q,
+    shuffledOptions: current.shuffled.map(o => o.val),
+    userAnswer: val,
+    correctAnswer: current.currentCorrect
+  });
+
+  index++;
+  showQuestion();
+}
 
   results.push({
     question: current[lang].q,
@@ -439,8 +444,8 @@ function showResult() {
   `;
 
   results.forEach(r => {
-    let userText = r.options[r.userAnswer];
-    let correctText = r.options[r.correctAnswer];
+    let userText = r.shuffledOptions[r.userAnswer];
+let correctText = r.shuffledOptions[r.correctAnswer];
 
     let isWrong = r.userAnswer !== r.correctAnswer;
 
