@@ -1,5 +1,5 @@
 let lang = localStorage.getItem("lang") || "de";
-
+let results = [];
 let score = 0;
 let index = 0;
 let quizQuestions = [];
@@ -99,9 +99,10 @@ function shuffle(array) {
 }
 
 function prepareQuiz() {
-  quizQuestions = shuffle([...questions]); // wichtig!
+  quizQuestions = shuffle([...questions]);
   score = 0;
   index = 0;
+  results = []; // RESET Fehlerliste
 }
 
 /* ================= THEORIE ================= */
@@ -411,7 +412,21 @@ document.getElementById("progressBar").style.width = progress + "%";
 }
 
 function answer(val) {
-  if (val === quizQuestions[index].currentCorrect) score++;
+  let current = quizQuestions[index];
+
+  let isCorrect = val === current.a;
+
+  if (isCorrect) {
+    score++;
+  }
+
+  results.push({
+    question: current[lang].q,
+    options: current[lang].options,
+    userAnswer: val,
+    correctAnswer: current.a
+  });
+
   index++;
   showQuestion();
 }
@@ -420,9 +435,32 @@ function showResult() {
   reset();
   document.getElementById("resultScreen").style.display = "block";
 
-  document.getElementById("resultText").innerText =
-    texts[lang].result + score + "/" + quizQuestions.length;
-  document.getElementById("restartBtn").style.display = "block";
+  let html = `
+    <h2>${texts[lang].result} ${score}/${quizQuestions.length}</h2>
+    <h3>Fehleranalyse</h3>
+  `;
+
+  results.forEach(r => {
+    let userText = r.options[r.userAnswer];
+    let correctText = r.options[r.correctAnswer];
+
+    let isWrong = r.userAnswer !== r.correctAnswer;
+
+    html += `
+      <div style="
+        background:${isWrong ? '#ffe5e5' : '#e6ffe6'};
+        padding:10px;
+        margin:10px 0;
+        border-radius:10px;
+      ">
+        <b>${r.question}</b><br><br>
+        Deine Antwort: ${userText}<br>
+        Richtige Antwort: ${correctText}
+      </div>
+    `;
+  });
+
+  document.getElementById("resultText").innerHTML = html;
 }
 
 function restartQuiz() {
