@@ -11,43 +11,43 @@
 <h1>Echographie</h1>
 
 <!-- HOME -->
-<div id="home">
-  <button onclick="showTheory()">Theorie</button>
+<section id="home">
+  <button onclick="openTheory()">Theorie</button>
   <button onclick="startQuiz()">Quiz</button>
 
   <div>
     <button onclick="setLang('de')">Deutsch</button>
     <button onclick="setLang('fr')">Français</button>
   </div>
-</div>
+</section>
 
 <!-- THEORY -->
-<div id="theory" class="hidden">
+<section id="theory" class="hidden">
   <div id="theoryList"></div>
   <button onclick="goHome()">🏠 Home</button>
-</div>
+</section>
 
-<div id="theoryDetail" class="hidden"></div>
+<section id="theoryDetail" class="hidden"></section>
 
 <!-- QUIZ -->
-<div id="quiz" class="hidden">
-  <div id="bar"><div id="fill"></div></div>
+<section id="quiz" class="hidden">
+  <div class="bar"><div id="fill"></div></div>
 
-  <h2 id="q"></h2>
-  <div id="a"></div>
+  <h2 id="question"></h2>
+  <div id="answers"></div>
 
-  <button onclick="restart()">🔄 Restart</button>
+  <button id="restartQuizBtn" onclick="startQuiz()">🔄 Restart</button>
   <button onclick="goHome()">🏠 Home</button>
-</div>
+</section>
 
 <!-- RESULT -->
-<div id="result" class="hidden">
+<section id="result" class="hidden">
   <h2 id="score"></h2>
-  <div id="list"></div>
+  <div id="results"></div>
 
-  <button onclick="restart()">🔄 Restart</button>
+  <button onclick="startQuiz()">🔄 Restart</button>
   <button onclick="goHome()">🏠 Home</button>
-</div>
+</section>
 
 <script src="script.js"></script>
 </body>
