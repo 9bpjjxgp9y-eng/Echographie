@@ -1,145 +1,35 @@
-/* ================= BASE ================= */
-
 body {
+  font-family: Arial;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: linear-gradient(180deg, #fdf6ff, #f3e8ff);
-  color: #333;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+  text-align: center;
 }
 
-/* ================= LAYOUT ================= */
-
-.content {
-  flex: 1;
-  display: flex;
-}
-
-/* screens should NOT force centering everywhere */
 .screen {
-  flex: 1;
-  display: none;
-  flex-direction: column;
-  align-items: center;
   padding: 20px;
 }
 
-.screen.active {
-  display: flex;
-}
-
-/* HOME special centering */
-#startScreen {
-  justify-content: center;
-}
-
-/* ================= CARD ================= */
-
-.card {
-  background: white;
-  padding: 25px;
-  border-radius: 20px;
-  width: 85%;
-  max-width: 340px;
-
-  box-shadow:
-    0 10px 30px rgba(180, 120, 255, 0.15),
-    0 2px 8px rgba(0,0,0,0.05);
-
-  text-align: center;
-}
-
-/* ================= TYPO ================= */
-
-h1, h2 {
-  margin: 10px 0 20px;
-}
-
-/* ================= BUTTON SYSTEM ================= */
-
 button {
-  border: none;
-  border-radius: 14px;
-  font-weight: 600;
-  transition: 0.15s ease;
-  cursor: pointer;
-}
-
-/* main buttons */
-.card button,
-#theoryMenu button,
-#answers button {
-  width: 100%;
-  padding: 14px;
-  margin: 8px 0;
-
-  background: linear-gradient(135deg, #e9d5ff, #fbcfe8);
-  color: #4b0082;
-
+  margin: 8px;
+  padding: 12px;
   font-size: 16px;
-
-  box-shadow:
-    0 6px 12px rgba(200, 150, 255, 0.25),
-    inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
-/* click effect */
-button:active {
-  transform: scale(0.96);
-}
-
-/* small buttons (lang + nav) */
-.lang-buttons button,
-.nav button {
-  width: auto;
-  padding: 10px 14px;
-  font-size: 14px;
-}
-
-/* ================= QUIZ ================= */
-
-#quizScreen {
-  justify-content: flex-start;
-}
-
-#question {
-  margin: 20px 0;
-  text-align: center;
-}
-
-#answers {
+.nav {
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  max-width: 400px;
-}
-
-/* ================= PROGRESS ================= */
-
-.progress {
-  width: 100%;
-  max-width: 400px;
-  height: 10px;
   background: #eee;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 20px;
+  display: none;
+}
+
+#progressContainer {
+  width: 100%;
+  height: 10px;
+  background: #ddd;
 }
 
 #progressBar {
-  height: 100%;
+  height: 10px;
   width: 0%;
-  background: linear-gradient(90deg, #c084fc, #f472b6);
-  transition: width 0.3s ease;
-}
-
-/* ================= NAV ================= */
-
-.nav {
-  display: flex;
-  justify-content: space-around;
-  padding: 12px;
-  background: white;
-  border-top: 1px solid #eee;
-  box-shadow: 0 -3px 10px rgba(0,0,0,0.05);
+  background: green;
 }
