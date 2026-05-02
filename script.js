@@ -391,22 +391,19 @@ let progress = ((index) / quizQuestions.length) * 100;
 document.getElementById("progressBar").style.width = progress + "%";
   document.getElementById("question").innerText = q.q;
 
-  let options = [...q.options];
+let options = [...q.options];
+let correctIndex = quizQuestions[index].a;
 
-  // richtige Antwort merken
-  let correctIndex = quizQuestions[index].a;
+let shuffled = options
+  .map((val, i) => ({ val, i }))
+  .sort(() => Math.random() - 0.5);
 
-  // shuffle mit Mapping
-  let shuffled = options
-    .map((val, i) => ({ val, i }))
-    .sort(() => Math.random() - 0.5);
+quizQuestions[index].shuffled = shuffled;
+quizQuestions[index].currentCorrect = shuffled.findIndex(o => o.i === correctIndex);
 
-  current.shuffled = shuffled;
-current.currentCorrect = shuffled.findIndex(o => o.i === correctIndex);
-
-  document.getElementById("answers").innerHTML = shuffled
-    .map((o, i) => `<button onclick="answer(${i})">${o.val}</button>`)
-    .join("");
+document.getElementById("answers").innerHTML = shuffled
+  .map((o, i) => `<button onclick="answer(${i})">${o.val}</button>`)
+  .join("");
 
   // WICHTIG: speichere korrekt temporär
   quizQuestions[index].currentCorrect = newCorrectIndex;
