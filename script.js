@@ -161,26 +161,51 @@ function reset(){
   .forEach(id => $(id).style.display="none");
 }
 
-function showNav(){ document.querySelector(".nav").style.display="block"; }
-function hideNav(){ document.querySelector(".nav").style.display="none"; }
+function updateNav(screen) {
+  const nav = document.querySelector(".nav");
+  const restart = document.getElementById("restartBtn");
 
-function goHome(){
-  reset();
-  $("startScreen").style.display="block";
-  hideNav();
+  if (!nav) return;
+
+  // Default alles aus
+  nav.style.display = "none";
+  if (restart) restart.style.display = "none";
+
+  if (screen === "quiz") {
+    nav.style.display = "flex";
+    if (restart) restart.style.display = "inline-block";
+  }
+
+  if (screen === "result") {
+    nav.style.display = "flex";
+    if (restart) restart.style.display = "inline-block";
+  }
+
+  if (screen === "theory") {
+    nav.style.display = "flex";
+    // ❌ KEIN restart hier
+  }
+}
+
+function goHome() {
+  resetScreens();
+  document.getElementById("startScreen").style.display = "flex";
+
+  updateNav("home"); 
 }
 
 /* THEORY */
 
-function showTheory(){
-  reset();
-  showNav();
-  $("theoryScreen").style.display="block";
+function showTheory() {
+  resetScreens();
+  document.getElementById("theoryScreen").style.display = "block";
 
-  $("theoryMenu").innerHTML =
-    theory.map(t =>
-      `<button onclick="openTheory('${t.id}')">${t[lang][0]}</button>`
-    ).join("");
+  document.getElementById("theoryMenu").innerHTML =
+    theoryContent.map(t =>
+      `<button onclick="openTheory('${t.id}')">${t.title[lang]}</button>`
+    ).join("<br>");
+
+  updateNav("theory"); 
 }
 
 function openTheory(id){
@@ -198,13 +223,16 @@ function openTheory(id){
 
 /* QUIZ */
 
-function startQuiz(){
-  score=0; index=0; results=[];
+function startQuiz() {
+  score = 0;
+  index = 0;
+  results = [];
   quizQuestions = shuffle([...questions]);
 
-  reset();
-  showNav();
-  $("quizScreen").style.display="block";
+  resetScreens();
+  document.getElementById("quizScreen").style.display = "block";
+
+  updateNav("quiz"); 
 
   showQuestion();
 }
@@ -233,11 +261,11 @@ function answer(i){
 
 /* RESULT */
 
-function showResult(){
-  reset();
-  showNav();
-  $("resultScreen").style.display="block";
+function showResult() {
+  resetScreens();
+  document.getElementById("resultScreen").style.display = "block";
 
+  updateNav("result");
   $("scoreText").innerText =
     `${texts[lang].result} ${score}/${quizQuestions.length}`;
 
