@@ -342,6 +342,7 @@ function reset() {
 function goHome() {
   reset();
   document.getElementById("startScreen").style.display = "block";
+  document.getElementById("restartBtn").style.display = "none";
 }
 
 /* ================= THEORY ================= */
@@ -376,7 +377,7 @@ function openTheory(id) {
 function startQuiz() {
   reset();
   document.getElementById("quizScreen").style.display = "block";
-
+  document.getElementById("restartBtn").style.display = "block";
   prepareQuiz(); // MUSS drin sein
   showQuestion();
 }
@@ -421,6 +422,7 @@ function showResult() {
 
   document.getElementById("resultText").innerText =
     texts[lang].result + score + "/" + quizQuestions.length;
+  document.getElementById("restartBtn").style.display = "block";
 }
 
 function restartQuiz() {
