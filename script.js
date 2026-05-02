@@ -6,365 +6,264 @@ let index = 0;
 let quizQuestions = [];
 let results = [];
 
-/* ================= DATA ================= */
+/* ================= TEXT ================= */
 
 const texts = {
   de: {
-  theory: "Theorie",
-  quiz: "Quiz",
-  home: "🏠",
-  restart: "🔄",
-  back: "Zurück",
-  title: "Theorie",
-  result: "Score: ",
-  yourAnswer: "Deine Antwort:",
-  correctAnswer: "Richtige Antwort:"
-},
-fr: {
-  theory: "Théorie",
-  quiz: "Quiz",
-  home: "🏠",
-  restart: "🔄",
-  back: "Retour",
-  title: "Théorie",
-  result: "Score : ",
-  yourAnswer: "Ta réponse :",
-  correctAnswer: "Bonne réponse :"
-}
+    theory: "Theorie",
+    quiz: "Quiz",
+    back: "Zurück",
+    result: "Score:",
+    your: "Deine Antwort:",
+    correct: "Richtige Antwort:"
+  },
+  fr: {
+    theory: "Théorie",
+    quiz: "Quiz",
+    back: "Retour",
+    result: "Score :",
+    your: "Ta réponse :",
+    correct: "Bonne réponse :"
+  }
 };
 
-/* ================= QUIZ ================= */
+/* ================= THEORY ================= */
+
+const theory = [
+  {
+    id: "intro",
+    de: ["Einführung", "Echographie ist eine nicht-invasive Methode mit Ultraschall."],
+    fr: ["Introduction", "L’échographie utilise des ultrasons pour créer des images."]
+  },
+  {
+    id: "ultrasons",
+    de: ["Ultraschall", "Mechanische longitudinale Wellen über 20 kHz."],
+    fr: ["Ultrasons", "Ondes mécaniques longitudinales > 20 kHz."]
+  },
+  {
+    id: "compression",
+    de: ["Kompression & Rarefaktion", "Teilchen werden zusammengepresst und auseinandergezogen."],
+    fr: ["Compression & raréfaction", "Les particules oscillent."]
+  },
+  {
+    id: "impedance",
+    de: ["Impedanz", "Unterschiede erzeugen Reflexionen."],
+    fr: ["Impédance", "Les différences créent des réflexions."]
+  },
+  {
+    id: "reflection",
+    de: ["Reflexion", "Wellen werden zurückgeworfen."],
+    fr: ["Réflexion", "Les ondes reviennent."]
+  },
+  {
+    id: "absorption",
+    de: ["Absorption", "Energie wird in Wärme umgewandelt."],
+    fr: ["Absorption", "L’énergie devient chaleur."]
+  },
+  {
+    id: "frequency",
+    de: ["Frequenz", "Hohe Frequenz = Detail, niedrige = Tiefe"],
+    fr: ["Fréquence", "Haute = détail, basse = profondeur"]
+  },
+  {
+    id: "types",
+    de: ["Sonden", "Linear, Konvex, Phased Array"],
+    fr: ["Sondes", "Linéaire, convexe, phased array"]
+  }
+];
+
+/* ================= QUIZ (15 QUESTIONS) ================= */
 
 const questions = [
   {
-    de: { q: "Was nutzt Echographie?", options: ["Ultraschall", "Licht"] },
-    fr: { q: "Que utilise l’échographie ?", options: ["Ultrasons", "Lumière"] },
+    de: { q: "Was nutzt Echographie?", o: ["Ultraschall","Licht","Magnetfeld","Röntgen"] },
+    fr: { q: "Que utilise l’échographie ?", o: ["Ultrasons","Lumière","Rayons X","Champ"] },
     a: 0
   },
   {
-    de: { q: "Was entsteht?", options: ["Bilder", "Geräusche"] },
-    fr: { q: "Qu’est-ce qui est créé ?", options: ["Images", "Sons"] },
+    de: { q: "Was entsteht?", o: ["Bilder","Geräusche","Hitze","Licht"] },
+    fr: { q: "Que produit-elle ?", o: ["Images","Sons","Chaleur","Lumière"] },
     a: 0
   },
   {
-    de: { q: "Welche Frequenz wird verwendet?", options: ["20–200 Hz", "1–15 MHz"] },
-    fr: { q: "Quelle fréquence est utilisée ?", options: ["20–200 Hz", "1–15 MHz"] },
-    a: 1
-  },
-  {
-    de: { q: "Warum wird Gel verwendet?", options: ["Kühlen", "Luft entfernen"] },
-    fr: { q: "Pourquoi du gel ?", options: ["Refroidir", "Enlever l’air"] },
-    a: 1
-  },
-  {
-    de: { q: "Was passiert bei Reflexion?", options: ["Zurückgeworfen", "Verschwindet"] },
-    fr: { q: "Réflexion ?", options: ["Renvoi", "Disparition"] },
+    de: { q: "Frequenz?", o: ["1–15 MHz","20 Hz","100 Hz","1 kHz"] },
+    fr: { q: "Fréquence ?", o: ["1–15 MHz","20 Hz","100 Hz","1 kHz"] },
     a: 0
   },
   {
-    de: { q: "Welche Struktur ist schwarz?", options: ["Knochen", "Flüssigkeit"] },
-    fr: { q: "Structure noire ?", options: ["Os", "Liquide"] },
-    a: 1
-  },
-  {
-    de: { q: "Was bedeutet hyperechogen?", options: ["Dunkel", "Hell"] },
-    fr: { q: "Hyperéchogène ?", options: ["Sombre", "Clair"] },
-    a: 1
-  },
-  {
-    de: { q: "Sonde für Herz?", options: ["Linear", "Phased Array"] },
-    fr: { q: "Sonde cœur ?", options: ["Linéaire", "Phased array"] },
-    a: 1
-  },
-  {
-    de: { q: "Warum niedrige Frequenz?", options: ["Farbe", "Tiefe"] },
-    fr: { q: "Basses fréquences ?", options: ["Couleur", "Profondeur"] },
-    a: 1
-  },
-  {
-    de: { q: "Was misst das Gerät?", options: ["Zeit", "Temperatur"] },
-    fr: { q: "Que mesure-t-il ?", options: ["Temps", "Température"] },
+    de: { q: "Gel?", o: ["Luft entfernen","Kühlen","Farbe","Strom"] },
+    fr: { q: "Gel ?", o: ["Enlever l’air","Refroidir","Couleur","Électricité"] },
     a: 0
   },
   {
-    de: { q: "Longitudinale Welle?", options: ["Quer", "In Richtung"] },
-    fr: { q: "Onde longitudinale ?", options: ["Transversale", "Longitudinale"] },
-    a: 1
+    de: { q: "Reflexion?", o: ["Zurück","Weiter","Verschwindet","Explodiert"] },
+    fr: { q: "Réflexion ?", o: ["Retour","Avance","Disparaît","Explosion"] },
+    a: 0
   },
   {
-    de: { q: "Absorption?", options: ["Stärker", "Wärme"] },
-    fr: { q: "Absorption ?", options: ["Plus fort", "Chaleur"] },
-    a: 1
+    de: { q: "Schwarz?", o: ["Flüssigkeit","Knochen","Luft","Metall"] },
+    fr: { q: "Noir ?", o: ["Liquide","Os","Air","Métal"] },
+    a: 0
+  },
+  {
+    de: { q: "Hyperechogen?", o: ["Hell","Dunkel","Unsichtbar","Blau"] },
+    fr: { q: "Hyperéchogène ?", o: ["Clair","Sombre","Invisible","Bleu"] },
+    a: 0
+  },
+  {
+    de: { q: "Herzsonde?", o: ["Phased Array","Linear","Konvex","Rund"] },
+    fr: { q: "Sonde cœur ?", o: ["Phased array","Linéaire","Convexe","Ronde"] },
+    a: 0
+  },
+  {
+    de: { q: "Niedrige Frequenz?", o: ["Tiefe","Farbe","Tempo","Ton"] },
+    fr: { q: "Basse fréquence ?", o: ["Profondeur","Couleur","Vitesse","Son"] },
+    a: 0
+  },
+  {
+    de: { q: "Messung?", o: ["Zeit","Temperatur","Druck","Farbe"] },
+    fr: { q: "Mesure ?", o: ["Temps","Température","Pression","Couleur"] },
+    a: 0
+  },
+  {
+    de: { q: "Welle?", o: ["Longitudinal","Quer","Still","Fest"] },
+    fr: { q: "Onde ?", o: ["Longitudinale","Transversale","Fixe","Solide"] },
+    a: 0
+  },
+  {
+    de: { q: "Absorption?", o: ["Wärme","Kälte","Licht","Strom"] },
+    fr: { q: "Absorption ?", o: ["Chaleur","Froid","Lumière","Électricité"] },
+    a: 0
+  },
+  {
+    de: { q: "Impedanz?", o: ["Materialunterschied","Farbe","Größe","Zeit"] },
+    fr: { q: "Impédance ?", o: ["Différence de matière","Couleur","Taille","Temps"] },
+    a: 0
+  },
+  {
+    de: { q: "Echo?", o: ["Reflexion","Absorption","Brechung","Diffusion"] },
+    fr: { q: "Écho ?", o: ["Réflexion","Absorption","Réfraction","Diffusion"] },
+    a: 0
+  },
+  {
+    de: { q: "Tiefe messen?", o: ["Zeit","Licht","Farbe","Druck"] },
+    fr: { q: "Mesure profondeur ?", o: ["Temps","Lumière","Couleur","Pression"] },
+    a: 0
   }
 ];
 
-/* ================= THEORY ================= */
+/* ================= CORE ================= */
 
-const theoryContent = [
-  {
-    id: "intro",
-    title: { de: "Einführung", fr: "Introduction" },
-    content: {
-      de: "Echographie ist eine nicht-invasive Bildgebung mit Ultraschall.",
-      fr: "L’échographie est une imagerie non invasive par ultrasons."
-    }
-  },
-  {
-    id: "ultraschall",
-    title: { de: "Ultraschall", fr: "Ultrasons" },
-    content: {
-      de: "Ultraschall sind mechanische longitudinale Wellen.",
-      fr: "Les ultrasons sont des ondes mécaniques longitudinales."
-    }
-  },
-  {
-    id: "kompression",
-    title: { de: "Kompression", fr: "Compression" },
-    content: {
-      de: "Kompression + Rarefaktion erzeugen die Welle.",
-      fr: "Compression + raréfaction créent l’onde."
-    }
-  },
-  {
-    id: "impedanz",
-    title: { de: "Impedanz", fr: "Impédance" },
-    content: {
-      de: "Reflexion, Brechung, Streuung und Absorption formen das Bild.",
-      fr: "Réflexion, réfraction, diffusion et absorption forment l’image."
-    }
-  },
-  {
-    id: "messung",
-    title: { de: "Messprinzip", fr: "Mesure" },
-    content: {
-      de: "Entfernung = (v × t) / 2",
-      fr: "Distance = (v × t) / 2"
-    }
-  },
-  {
-    id: "arten",
-    title: { de: "Arten", fr: "Types" },
-    content: {
-      de: "Phased Array für Herz, Konvex für Schwangerschaft.",
-      fr: "Phased array pour le cœur, convexe pour grossesse."
-    }
-  }
-];
+function $(id){ return document.getElementById(id); }
 
-/* ================= UI HELPERS ================= */
-
-function $(id) {
-
-  return document.getElementById(id);
-
+function reset(){
+  ["startScreen","theoryScreen","theoryDetailScreen","quizScreen","resultScreen"]
+  .forEach(id => $(id).style.display="none");
 }
 
-function setText(id, value) {
+function showNav(){ document.querySelector(".nav").style.display="block"; }
+function hideNav(){ document.querySelector(".nav").style.display="none"; }
 
-  const el = $(id);
-
-  if (el) el.innerText = value;
-
-}
-
-/* ================= NAV ================= */
-
-function resetScreens() {
-
-  ["startScreen", "theoryScreen", "theoryDetailScreen", "quizScreen", "resultScreen"]
-
-    .forEach(id => {
-
-      const el = $(id);
-
-      if (el) el.style.display = "none";
-
-    });
-
-}
-
-/* ================= HOME ================= */
-
-function goHome() {
-
-  resetScreens();
-
-  $("startScreen").style.display = "flex";
-
+function goHome(){
+  reset();
+  $("startScreen").style.display="block";
   hideNav();
-
 }
 
-/* ================= THEORY ================= */
+/* THEORY */
 
-function showTheory() {
+function showTheory(){
+  reset();
+  showNav();
+  $("theoryScreen").style.display="block";
 
-  resetScreens();
+  $("theoryMenu").innerHTML =
+    theory.map(t =>
+      `<button onclick="openTheory('${t.id}')">${t[lang][0]}</button>`
+    ).join("");
+}
 
-  $("theoryScreen").style.display = "block";
-
+function openTheory(id){
+  const t = theory.find(x=>x.id===id);
+  reset();
   showNav();
 
+  $("theoryDetailScreen").style.display="block";
+  $("theoryDetailScreen").innerHTML = `
+    <button onclick="showTheory()">${texts[lang].back}</button>
+    <h2>${t[lang][0]}</h2>
+    <p>${t[lang][1]}</p>
+  `;
 }
 
-/* ================= QUIZ ================= */
+/* QUIZ */
 
-function startQuiz() {
-
-  score = 0;
-
-  index = 0;
-
-  results = [];
-
+function startQuiz(){
+  score=0; index=0; results=[];
   quizQuestions = shuffle([...questions]);
 
-  resetScreens();
-
-  $("quizScreen").style.display = "block";
-
+  reset();
   showNav();
+  $("quizScreen").style.display="block";
 
   showQuestion();
-
 }
 
-function showQuestion() {
-
-  if (index >= quizQuestions.length) return showResult();
+function showQuestion(){
+  if(index>=quizQuestions.length) return showResult();
 
   const q = quizQuestions[index][lang];
-
   $("question").innerText = q.q;
 
-  $("answers").innerHTML = q.options.map((o, i) =>
+  $("answers").innerHTML =
+    q.o.map((o,i)=>`<button onclick="answer(${i})">${o}</button>`).join("");
 
-    `<button onclick="answer(${i})">${o}</button>`
-
-  ).join("");
-
+  $("progressBar").style.width =
+    (index/quizQuestions.length*100)+"%";
 }
 
-function answer(selected) {
+function answer(i){
+  const q = quizQuestions[index];
+  if(i===q.a) score++;
 
-  const current = quizQuestions[index];
-
-  const correct = current.a;
-
-  if (selected === correct) score++;
-
-  results.push({
-
-    question: current[lang].q,
-
-    options: current[lang].options,
-
-    user: selected,
-
-    correct: correct
-
-  });
-
+  results.push({q:q[lang].q,o:q[lang].o,u:i,c:q.a});
   index++;
-
   showQuestion();
-
 }
 
-/* ================= RESULT ================= */
+/* RESULT */
 
-function showResult() {
-
-  resetScreens();
-
-  $("resultScreen").style.display = "block";
+function showResult(){
+  reset();
+  showNav();
+  $("resultScreen").style.display="block";
 
   $("scoreText").innerText =
-
     `${texts[lang].result} ${score}/${quizQuestions.length}`;
 
-  $("resultList").innerHTML = results.map(r => {
-
-    const wrong = r.user !== r.correct;
-
-    return `
-
-      <div style="margin:10px;padding:10px;border-radius:10px;
-
-      background:${wrong ? "#ffe5e5" : "#e6ffe6"}">
-
-        <b>${r.question}</b><br><br>
-
-        ${texts[lang].yourAnswer} ${r.options[r.user]}<br>
-
-        ${texts[lang].correctAnswer} ${r.options[r.correct]}
-
+  $("resultList").innerHTML =
+    results.map(r=>`
+      <div style="margin:10px;padding:10px;background:${r.u===r.c?"#d4edda":"#f8d7da"}">
+        <b>${r.q}</b><br>
+        ${texts[lang].your} ${r.o[r.u]}<br>
+        ${texts[lang].correct} ${r.o[r.c]}
       </div>
-
-    `;
-
-  }).join("");
-
-  showNav();
-
+    `).join("");
 }
 
-/* ================= RESTART ================= */
+/* UTIL */
 
-function restartQuiz() {
-
-  startQuiz();
-
-}
-
-/* ================= LANGUAGE ================= */
-
-function setLanguage(l) {
-
-  lang = l;
-
-  localStorage.setItem("lang", l);
-
-  goHome();
-
-}
-
-/* ================= UI NAV CONTROL ================= */
-
-function showNav() {
-
-  const nav = document.querySelector(".nav");
-
-  if (nav) nav.style.display = "flex";
-
-}
-
-function hideNav() {
-
-  const nav = document.querySelector(".nav");
-
-  if (nav) nav.style.display = "none";
-
-}
-
-/* ================= UTIL ================= */
-
-function shuffle(arr) {
-
-  const a = [...arr];
-
-  for (let i = a.length - 1; i > 0; i--) {
-
-    const j = Math.floor(Math.random() * (i + 1));
-
-    [a[i], a[j]] = [a[j], a[i]];
-
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){
+    let j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
   }
-
   return a;
-
 }
 
-/* ================= INIT ================= */
+function restartQuiz(){ startQuiz(); }
+function setLanguage(l){ lang=l; localStorage.setItem("lang",l); goHome(); }
+
+/* INIT */
 
 goHome();
