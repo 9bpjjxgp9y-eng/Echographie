@@ -4,151 +4,180 @@ let score = 0;
 let quiz = [];
 let results = [];
 
-/* ================= THEORY ================= */
+const T = {
+  de: {your:"Deine Antwort:", correct:"Richtige Antwort:"},
+  fr: {your:"Ta réponse :", correct:"Bonne réponse :"}
+};
 
+/* THEORY */
 const theory = [
 {
-title: {
-de: "Einführung",
-fr: "Introduction"
-},
-text: {
-de: "Die Echographie ist eine medizinische Bildgebung, die Ultraschall verwendet. Sie funktioniert ohne Strahlung und erlaubt Echtzeitbilder des Körpers. Ultraschallwellen werden in den Körper gesendet, reflektiert und als Bild dargestellt. Diese Methode ist sicher, schnell und wird in vielen Bereichen wie Schwangerschaft oder Kardiologie genutzt. Sie basiert auf physikalischen Prinzipien von Wellen und Impedanzunterschieden.",
-fr: "L’échographie est une technique d’imagerie médicale utilisant les ultrasons. Elle est sans radiation et permet une visualisation en temps réel. Les ondes sont envoyées, réfléchies et transformées en image. Elle est utilisée en obstétrique et cardiologie."
-}
+id:"intro",
+de:["Einführung","Echographie ist eine sichere Echtzeit-Ultraschallmethode zur medizinischen Bildgebung."],
+fr:["Introduction","L’échographie est une méthode d’imagerie par ultrasons en temps réel."]
 },
 {
-title: {de:"Ultraschall", fr:"Ultrasons"},
-text: {
-de:"Ultraschall sind Schallwellen über 20 kHz. In der Medizin nutzt man 1–15 MHz. Sie sind longitudinal und brauchen ein Medium. Unterschiedliche Gewebe reflektieren sie unterschiedlich stark.",
-fr:"Les ultrasons sont des ondes >20 kHz utilisées en médecine entre 1 et 15 MHz."
-}
+id:"ultrasound",
+de:["Ultraschall","Ultraschall sind hochfrequente Schallwellen über 20 kHz."],
+fr:["Ultrasons","Ondes sonores à haute fréquence > 20 kHz."]
 },
 {
-title:{de:"Kompression & Rarefaktion", fr:"Compression & raréfaction"},
-text:{
-de:"Ultraschall besteht aus Wechsel von Druckzonen (Kompression) und niedrigen Druckzonen (Rarefaktion). Diese Struktur erlaubt die Bildbildung.",
-fr:"Les ultrasons alternent compression et raréfaction."
-}
+id:"compression",
+de:["Compression & Rarefaction","Wechsel von Druckzonen erzeugt die Welle."],
+fr:["Compression & raréfaction","Alternance de zones de pression."]
 },
 {
-title:{de:"Arten", fr:"Types"},
-text:{
-de:"2D zeigt Schnittbilder. 3D erzeugt Volumenbilder. 4D zeigt Bewegung in Echtzeit. Doppler misst Blutfluss und Geschwindigkeit. In Kardiologie untersucht man Herz, in Abdominalmedizin Organe, in Schwangerschaft den Fötus.",
-fr:"2D images, 3D volume, 4D mouvement. Doppler mesure le flux sanguin."
-}
+id:"types",
+de:["Types","2D zeigt Schnittbilder, 3D räumlich, 4D Bewegung. Doppler misst Blutfluss."],
+fr:["Types","2D images, 3D volume, 4D mouvement. Doppler mesure le flux sanguin."]
+},
+{
+id:"conclusion",
+de:["Fazit","Echographie ist sicher, schnell und essenziell in der Medizin."],
+fr:["Conclusion","L’échographie est rapide, sûre et essentielle."]
 }
 ];
 
-/* ================= QUIZ ================= */
+/* QUESTIONS 15 */
+const questions = Array.from({length:15}, (_,i)=>({
+de:{q:`Frage ${i+1}`,o:["A","B","C","D"]},
+fr:{q:`Question ${i+1}`,o:["A","B","C","D"]},
+a:Math.floor(Math.random()*4)
+}));
 
-const questions = [
-{q:{de:"Was nutzt Echographie?",fr:"Que utilise l’échographie?"},o:["Ultraschall","Licht","Röntgen","Magnetfeld"],a:0},
-{q:{de:"Was entsteht?",fr:"Que produit-elle?"},o:["Bilder","Hitze","Ton","Strom"],a:0},
-{q:{de:"Frequenz?",fr:"Fréquence?"},o:["1–15 MHz","20 Hz","1 kHz","5 Hz"],a:0},
-{q:{de:"Gel?",fr:"Gel?"},o:["Luft entfernen","Kühlen","Farbe","Schutz"],a:0},
-{q:{de:"Reflexion?",fr:"Réflexion?"},o:["Zurück","Stop","Verschwindet","Explodiert"],a:0},
-{q:{de:"Schwarz im Bild?",fr:"Noir?"},o:["Flüssigkeit","Knochen","Luft","Metall"],a:0},
-{q:{de:"Hyperechogen?",fr:"Hyperéchogène?"},o:["Hell","Dunkel","Rot","Blau"],a:0},
-{q:{de:"Herzsonde?",fr:"Sonde cœur?"},o:["Phased Array","Linear","Konvex","Rund"],a:0},
-{q:{de:"Tiefe?",fr:"Profondeur?"},o:["Niedrige Frequenz","Farbe","Licht","Ton"],a:0},
-{q:{de:"Messung?",fr:"Mesure?"},o:["Zeit","Farbe","Masse","Licht"],a:0},
-{q:{de:"Welle?",fr:"Onde?"},o:["Longitudinal","Quer","Statisch","Fest"],a:0},
-{q:{de:"Absorption?",fr:"Absorption?"},o:["Wärme","Licht","Kälte","Strom"],a:0},
-{q:{de:"Impedanz?",fr:"Impédance?"},o:["Materialunterschied","Farbe","Zeit","Größe"],a:0},
-{q:{de:"Echo?",fr:"Écho?"},o:["Reflexion","Absorption","Brechung","Streuung"],a:0},
-{q:{de:"Tiefe messen?",fr:"Mesure profondeur?"},o:["Zeit","Farbe","Licht","Druck"],a:0}
-];
+/* NAV CONTROL */
+function showNav(mode){
+  const nav = document.getElementById("nav");
+  const restart = document.getElementById("restartBtn");
 
-/* ================= CORE ================= */
+  if(mode === "home"){
+    nav.classList.add("hidden");
+  } else {
+    nav.classList.remove("hidden");
+  }
 
-function $(id){return document.getElementById(id)}
+  restart.style.display = (mode === "quiz") ? "block" : "none";
+}
 
-function show(id){
-  document.querySelectorAll(".screen").forEach(e=>e.style.display="none");
-  $(id).style.display="block";
+/* RESET */
+function reset(){
+  ["home","theory","theoryDetail","quiz","result"].forEach(id=>{
+    document.getElementById(id).style.display="none";
+  });
 }
 
 /* HOME */
 function goHome(){
-  show("homeScreen");
+  reset();
+  document.getElementById("home").style.display="block";
+  showNav("home");
 }
 
-/* THEORY */
-function showTheoryMenu(){
-  let html="";
-  theory.forEach((t,i)=>{
-    html+=`<div class="theory-card">
-      <button onclick="openTheory(${i})">${t.title[lang]}</button>
-    </div>`;
-  });
-  $("theoryScreen").innerHTML=html;
-  show("theoryScreen");
-}
-
-function openTheory(i){
-  const t=theory[i];
-  $("theoryDetailScreen").innerHTML=`
-    <div class="card">
-      <h2>${t.title[lang]}</h2>
-      <p>${t.text[lang]}</p>
-      <button onclick="showTheoryMenu()">Back</button>
-    </div>
-  `;
-  show("theoryDetailScreen");
-}
-
-/* QUIZ */
-function startQuiz(){
-  index=0;score=0;results=[];
-  quiz=[...questions].sort(()=>Math.random()-0.5);
-  show("quizScreen");
-  nextQ();
-}
-
-function nextQ(){
-  if(index>=quiz.length) return showResult();
-
-  let q=quiz[index];
-
-  $("question").innerText=q.q[lang];
-
-  $("answers").innerHTML=q.o.map((o,i)=>
-    `<button onclick="answer(${i})">${o}</button>`
-  ).join("");
-
-  $("progressBar").style.width=(index/quiz.length*100)+"%";
-}
-
-function answer(i){
-  let q=quiz[index];
-  if(i===q.a)score++;
-
-  results.push({q:q.q[lang],o:q.o,u:i,c:q.a});
-  index++;
-  nextQ();
-}
-
-/* RESULT */
-function showResult(){
-  show("resultScreen");
-
-  $("score").innerText=`Score: ${score}/${quiz.length}`;
-
-  $("results").innerHTML=results.map(r=>`
-    <div class="card">
-      <b>${r.q}</b><br>
-      ${T[lang].your} ${r.o[r.u]}<br>
-      ${T[lang].correct} ${r.o[r.c]}
-    </div>
-  `).join("");
-}
-
-/* LANG */
+/* LANGUAGE */
 function setLang(l){
   lang=l;
   localStorage.setItem("lang",l);
   goHome();
 }
 
+/* THEORY */
+function showTheory(){
+  reset();
+  document.getElementById("theory").style.display="block";
+
+  document.getElementById("theoryMenu").innerHTML =
+    theory.map((t,i)=>`
+      <div class="card">
+        <button onclick="openTheory(${i})">${t[lang][0]}</button>
+      </div>
+    `).join("");
+
+  showNav("theory");
+}
+
+function openTheory(i){
+  reset();
+  document.getElementById("theoryDetail").style.display="block";
+
+  const t = theory[i][lang];
+
+  document.getElementById("theoryDetail").innerHTML = `
+    <div class="card">
+      <h2>${t[0]}</h2>
+      <p>${t[1]}</p>
+      <button onclick="showTheory()">Back</button>
+    </div>
+  `;
+}
+
+/* QUIZ */
+function startQuiz(){
+  reset();
+  document.getElementById("quiz").style.display="block";
+
+  score=0;
+  index=0;
+  results=[];
+  quiz=[...questions].sort(()=>Math.random()-0.5);
+
+  showNav("quiz");
+  showQ();
+}
+
+function showQ(){
+  if(index>=quiz.length) return showResult();
+
+  const q=quiz[index][lang];
+
+  document.getElementById("question").innerText=q.q;
+
+  document.getElementById("answers").innerHTML =
+    q.o.map((o,i)=>`<button onclick="answer(${i})">${o}</button>`).join("");
+
+  document.getElementById("fill").style.width =
+    (index/quiz.length*100)+"%";
+}
+
+function answer(i){
+  const q=quiz[index];
+
+  if(i===q.a) score++;
+
+  results.push({
+    q:q[lang].q,
+    o:q[lang].o,
+    u:i,
+    c:q.a
+  });
+
+  index++;
+  showQ();
+}
+
+/* RESULT */
+function showResult(){
+  reset();
+  document.getElementById("result").style.display="block";
+
+  document.getElementById("score").innerText =
+    `Score: ${score}/${quiz.length}`;
+
+  document.getElementById("results").innerHTML =
+    results.map(r=>`
+      <div class="card" style="background:${r.u===r.c?'#d4edda':'#f8d7da'}">
+        <b>${r.q}</b><br>
+        ${T[lang].your} ${r.o[r.u]}<br>
+        ${T[lang].correct} ${r.o[r.c]}
+      </div>
+    `).join("");
+
+  showNav("result");
+}
+
+/* RESTART */
+function restartQuiz(){
+  startQuiz();
+}
+
+/* INIT */
 goHome();
