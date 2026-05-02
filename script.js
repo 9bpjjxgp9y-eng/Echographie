@@ -151,187 +151,220 @@ const theoryContent = [
   }
 ];
 
-/* ================= UI ================= */
+/* ================= UI HELPERS ================= */
 
-function setLanguage(l) {
-  lang = l;
-  localStorage.setItem("lang", l);
-  updateUI();
-  goHome();
+function $(id) {
+
+  return document.getElementById(id);
+
 }
 
-function updateUI() {
-  const t = texts[lang];
+function setText(id, value) {
 
-  const set = (id, val) => {
-    const el = document.getElementById(id);
-    if (el) el.innerText = val;
-  };
+  const el = $(id);
 
-  set("btnTheory", t.theory);
-  set("btnQuiz", t.quiz);
-  set("btnHome1", t.home);
-  set("btnHome2", t.home);
-  set("btnHome3", t.home);
-  set("btnRestart", t.restart);
-  set("theoryTitle", t.title);
+  if (el) el.innerText = value;
+
 }
 
 /* ================= NAV ================= */
 
 function resetScreens() {
-  ["startScreen","theoryScreen","theoryDetailScreen","quizScreen","resultScreen"]
+
+  ["startScreen", "theoryScreen", "theoryDetailScreen", "quizScreen", "resultScreen"]
+
     .forEach(id => {
-      document.getElementById(id).style.display = "none";
+
+      const el = $(id);
+
+      if (el) el.style.display = "none";
+
     });
+
 }
 
-  screens.forEach(id => {
-    document.getElementById(id).style.display = "none";
-  });
-
-  // NAV standardmäßig ausblenden
-  document.querySelector(".nav").style.display = "none";
-}
+/* ================= HOME ================= */
 
 function goHome() {
+
   resetScreens();
 
-  document.getElementById("startScreen").style.display = "flex";
+  $("startScreen").style.display = "flex";
 
-  document.getElementById("restartBtn").style.display = "none";
+  hideNav();
+
 }
 
 /* ================= THEORY ================= */
 
 function showTheory() {
-  resetScreens();
-  document.getElementById("theoryScreen").style.display = "block";
-
-  document.getElementById("theoryMenu").innerHTML =
-    theoryContent
-      .map(t => `<button onclick="openTheory('${t.id}')">${t.title[lang]}</button>`)
-      .join("<br>");
-  document.querySelector(".nav").style.display = "flex";
-}
-
-function openTheory(id) {
-  const item = theoryContent.find(t => t.id === id);
-  if (!item) return;
 
   resetScreens();
-  document.getElementById("theoryDetailScreen").style.display = "block";
 
-  document.getElementById("theoryDetailScreen").innerHTML = `
-    <button onclick="showTheory()">${texts[lang].back}</button>
-    <h2>${item.title[lang]}</h2>
-    <p>${item.content[lang]}</p>
-  `;
+  $("theoryScreen").style.display = "block";
+
+  showNav();
+
 }
 
 /* ================= QUIZ ================= */
 
 function startQuiz() {
-  resetScreens();
-
-  document.getElementById("quizScreen").style.display = "flex";
 
   score = 0;
+
   index = 0;
+
   results = [];
+
   quizQuestions = shuffle([...questions]);
 
-  updateNav("quiz");
+  resetScreens();
+
+  $("quizScreen").style.display = "block";
+
+  showNav();
+
   showQuestion();
+
 }
 
 function showQuestion() {
+
   if (index >= quizQuestions.length) return showResult();
 
   const q = quizQuestions[index][lang];
 
-  document.getElementById("question").innerText = q.q;
+  $("question").innerText = q.q;
 
-  document.getElementById("answers").innerHTML =
-    q.options
-      .map((o, i) => `<button onclick="answer(${i})">${o}</button>`)
-      .join("");
+  $("answers").innerHTML = q.options.map((o, i) =>
+
+    `<button onclick="answer(${i})">${o}</button>`
+
+  ).join("");
+
 }
 
 function answer(selected) {
+
   const current = quizQuestions[index];
 
   const correct = current.a;
-  const isCorrect = selected === correct;
 
-  if (isCorrect) score++;
+  if (selected === correct) score++;
 
   results.push({
+
     question: current[lang].q,
+
     options: current[lang].options,
+
     user: selected,
+
     correct: correct
+
   });
 
   index++;
+
   showQuestion();
+
 }
 
 /* ================= RESULT ================= */
 
 function showResult() {
+
   resetScreens();
 
-  document.getElementById("resultScreen").style.display = "flex";
+  $("resultScreen").style.display = "block";
 
-  document.getElementById("scoreText").innerText =
+  $("scoreText").innerText =
+
     `${texts[lang].result} ${score}/${quizQuestions.length}`;
 
-  document.getElementById("resultList").innerHTML =
-    results.map(r => {
-      const wrong = r.user !== r.correct;
+  $("resultList").innerHTML = results.map(r => {
 
-      return `
-        <div style="margin:10px;padding:10px;border-radius:10px;background:${wrong ? '#ffe5e5' : '#e6ffe6'}">
-          <b>${r.question}</b><br><br>
-          ${texts[lang].yourAnswer} ${r.options[r.user]}<br>
-          ${texts[lang].correctAnswer} ${r.options[r.correct]}
-        </div>
-      `;
-    }).join("");
+    const wrong = r.user !== r.correct;
 
-  updateNav("result");
+    return `
+
+      <div style="margin:10px;padding:10px;border-radius:10px;
+
+      background:${wrong ? "#ffe5e5" : "#e6ffe6"}">
+
+        <b>${r.question}</b><br><br>
+
+        ${texts[lang].yourAnswer} ${r.options[r.user]}<br>
+
+        ${texts[lang].correctAnswer} ${r.options[r.correct]}
+
+      </div>
+
+    `;
+
+  }).join("");
+
+  showNav();
+
 }
+
+/* ================= RESTART ================= */
+
 function restartQuiz() {
-  score = 0;
-  index = 0;
-  results = [];
-  quizQuestions = shuffle([...questions]);
 
-  resetScreens();
-  document.getElementById("quizScreen").style.display = "block";
+  startQuiz();
 
-  showQuestion();
+}
+
+/* ================= LANGUAGE ================= */
+
+function setLanguage(l) {
+
+  lang = l;
+
+  localStorage.setItem("lang", l);
+
+  goHome();
+
+}
+
+/* ================= UI NAV CONTROL ================= */
+
+function showNav() {
+
+  const nav = document.querySelector(".nav");
+
+  if (nav) nav.style.display = "flex";
+
+}
+
+function hideNav() {
+
+  const nav = document.querySelector(".nav");
+
+  if (nav) nav.style.display = "none";
+
 }
 
 /* ================= UTIL ================= */
 
 function shuffle(arr) {
+
   const a = [...arr];
+
   for (let i = a.length - 1; i > 0; i--) {
+
     const j = Math.floor(Math.random() * (i + 1));
+
     [a[i], a[j]] = [a[j], a[i]];
+
   }
+
   return a;
-}
-function goHome() {
-  resetScreens();
 
-  document.getElementById("startScreen").style.display = "flex";
-
-  updateNav("home");
 }
+
 /* ================= INIT ================= */
 
-updateUI();
 goHome();
