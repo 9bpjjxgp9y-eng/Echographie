@@ -62,63 +62,63 @@ const questions = [
     a: 0
   },
   {
-    de: { q: "Welche Frequenz?", o: ["1–15 MHz", "20 Hz", "1 kHz", "100 Hz"] },
-    fr: { q: "Quelle fréquence ?", o: ["1–15 MHz", "20 Hz", "1 kHz", "100 Hz"] },
+    de: { q: "Welche Frequenz wird in der Echographie benutzt?", o: ["1–15 MHz", "20 Hz", "1 kHz", "100 Hz"] },
+    fr: { q: "Quelle fréquence est utilisée en échographie?", o: ["1–15 MHz", "20 Hz", "1 kHz", "100 Hz"] },
     a: 0
   },
   {
-    de: { q: "Warum Gel?", o: ["Luft entfernen", "Kühlen", "Farbe", "Schutz"] },
-    fr: { q: "Pourquoi gel ?", o: ["Enlever l’air", "Refroidir", "Couleur", "Protection"] },
+    de: { q: "Warum Gel zwischen dem Aparat und Körper?", o: ["Luft entfernen", "Kühlen", "Farbe", "Schutz"] },
+    fr: { q: "Pourquoi mettre du gel entre l'apareil et le corps ?", o: ["Enlever l’air", "Refroidir", "Couleur", "Protection"] },
     a: 0
   },
   {
     de: { q: "Was ist Reflexion?", o: ["Zurück", "Verschwindet", "Wird zerstört", "Bleibt"] },
-    fr: { q: "Réflexion ?", o: ["Retour", "Disparaît", "Détruit", "Reste"] },
+    fr: { q: "Réflexion, c'est quoi ?", o: ["Retour", "Disparaît", "Détruit", "Reste"] },
     a: 0
   },
   {
-    de: { q: "Welche Struktur ist schwarz?", o: ["Flüssigkeit", "Knochen", "Luft", "Metall"] },
-    fr: { q: "Structure noire ?", o: ["Liquide", "Os", "Air", "Métal"] },
+    de: { q: "Welche Struktur ist schwarz auf dem Bild?", o: ["Flüssigkeit", "Knochen", "Luft", "Metall"] },
+    fr: { q: "Quelle Structure est noire sur l'image ?", o: ["Liquide", "Os", "Air", "Métal"] },
     a: 0
   },
   {
-    de: { q: "Hyperechogen?", o: ["Hell", "Dunkel", "Unsichtbar", "Rot"] },
-    fr: { q: "Hyperéchogène ?", o: ["Clair", "Sombre", "Invisible", "Rouge"] },
+    de: { q: "Bedeutung : Hyperechogen?", o: ["Hell", "Dunkel", "Unsichtbar", "Rot"] },
+    fr: { q: "Hyperéchogène, c'est quoi ?", o: ["Clair", "Sombre", "Invisible", "Rouge"] },
     a: 0
   },
   {
-    de: { q: "Sonde Herz?", o: ["Phased Array", "Linear", "Konvex", "Mini"] },
-    fr: { q: "Sonde cœur ?", o: ["Phased array", "Linéaire", "Convexe", "Mini"] },
+    de: { q: "Welche Sonde für das Herz?", o: ["Phased Array", "Linear", "Konvex", "Mini"] },
+    fr: { q: "Quelle Sonde pour le cœur ?", o: ["Phased array", "Linéaire", "Convexe", "Mini"] },
     a: 0
   },
   {
     de: { q: "Ultraschall ist?", o: ["Longitudinal", "Quer", "Statisch", "Optisch"] },
-    fr: { q: "Ultrasons ?", o: ["Longitudinal", "Transversal", "Statique", "Optique"] },
+    fr: { q: "les Ultrasons sont?", o: ["Longitudinal", "Transversal", "Statique", "Optique"] },
     a: 0
   },
   {
-    de: { q: "Absorption?", o: ["Wärme", "Licht", "Ton", "Druck"] },
-    fr: { q: "Absorption ?", o: ["Chaleur", "Lumière", "Son", "Pression"] },
+    de: { q: "Bedeutung : Absorption?", o: ["Wärme", "Licht", "Ton", "Druck"] },
+    fr: { q: "Absorption, c'est quoi?", o: ["Chaleur", "Lumière", "Son", "Pression"] },
     a: 0
   },
   {
-    de: { q: "Impedanz?", o: ["Materialunterschied", "Farbe", "Zeit", "Größe"] },
-    fr: { q: "Impédance ?", o: ["Différence matière", "Couleur", "Temps", "Taille"] },
+    de: { q: "Bedeutung : Impedanz?", o: ["Materialunterschied", "Farbe", "Zeit", "Größe"] },
+    fr: { q: "Impédance, c'est quoi?", o: ["Différence matière", "Couleur", "Temps", "Taille"] },
     a: 0
   },
   {
-    de: { q: "Echo?", o: ["Reflexion", "Absorption", "Brechung", "Stop"] },
-    fr: { q: "Écho ?", o: ["Réflexion", "Absorption", "Réfraction", "Stop"] },
+    de: { q: "Bedeutung : Echo?", o: ["Reflexion", "Absorption", "Brechung", "Stop"] },
+    fr: { q: "Écho, c'est quoi?", o: ["Réflexion", "Absorption", "Réfraction", "Stop"] },
     a: 0
   },
   {
-    de: { q: "Tiefe messen?", o: ["Zeit", "Farbe", "Licht", "Masse"] },
-    fr: { q: "Profondeur ?", o: ["Temps", "Couleur", "Lumière", "Masse"] },
+    de: { q: "Tiefe messen,wie?", o: ["Zeit", "Farbe", "Licht", "Masse"] },
+    fr: { q: "mesurer la Profondeur, comment?", o: ["Temps", "Couleur", "Lumière", "Masse"] },
     a: 0
   },
   {
-    de: { q: "3D Ultraschall?", o: ["Raum", "Ton", "Licht", "Hitze"] },
-    fr: { q: "3D ?", o: ["Volume", "Son", "Lumière", "Chaleur"] },
+    de: { q: "3D?", o: ["Raum", "Ton", "Licht", "Hitze"] },
+    fr: { q: "3D?", o: ["Volume", "Son", "Lumière", "Chaleur"] },
     a: 0
   },
   {
@@ -128,7 +128,7 @@ const questions = [
   },
   {
     de: { q: "Ultraschall Vorteil?", o: ["Sicher", "Gefährlich", "Langsam", "Teuer"] },
-    fr: { q: "Avantage ?", o: ["Sûr", "Dangereux", "Lent", "Cher"] },
+    fr: { q: "Avantage de l'échographie?", o: ["Sûr", "Dangereux", "Lent", "Cher"] },
     a: 0
   }
 ];
