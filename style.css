@@ -1,29 +1,42 @@
-/* RESET */
+/* ================= BASE ================= */
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: linear-gradient(180deg, #fdf6ff, #f3e8ff);
   color: #333;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  height: 100vh;
 }
 
-/* CONTENT */
+/* ================= LAYOUT ================= */
+
 .content {
   flex: 1;
   display: flex;
 }
 
-/* SCREEN CENTER */
+/* screens should NOT force centering everywhere */
 .screen {
   flex: 1;
-  display: flex;
-  justify-content: center;
+  display: none;
+  flex-direction: column;
   align-items: center;
+  padding: 20px;
 }
 
-/* CARD (MAIN BOX) */
+.screen.active {
+  display: flex;
+}
+
+/* HOME special centering */
+#startScreen {
+  justify-content: center;
+}
+
+/* ================= CARD ================= */
+
 .card {
   background: white;
   padding: 25px;
@@ -31,73 +44,102 @@ body {
   width: 85%;
   max-width: 340px;
 
-  box-shadow: 
+  box-shadow:
     0 10px 30px rgba(180, 120, 255, 0.15),
     0 2px 8px rgba(0,0,0,0.05);
 
   text-align: center;
 }
 
-/* TITLES */
+/* ================= TYPO ================= */
+
 h1, h2 {
-  margin-bottom: 20px;
+  margin: 10px 0 20px;
 }
 
-/* BUTTONS PREMIUM */
+/* ================= BUTTON SYSTEM ================= */
+
 button {
+  border: none;
+  border-radius: 14px;
+  font-weight: 600;
+  transition: 0.15s ease;
+  cursor: pointer;
+}
+
+/* main buttons */
+.card button,
+#theoryMenu button,
+#answers button {
   width: 100%;
   padding: 14px;
   margin: 8px 0;
-
-  border: none;
-  border-radius: 14px;
 
   background: linear-gradient(135deg, #e9d5ff, #fbcfe8);
   color: #4b0082;
 
   font-size: 16px;
-  font-weight: 600;
 
-  box-shadow: 
-    0 6px 12px rgba(200, 150, 255, 0.3),
+  box-shadow:
+    0 6px 12px rgba(200, 150, 255, 0.25),
     inset 0 1px 0 rgba(255,255,255,0.6);
-
-  transition: all 0.15s ease;
 }
 
-/* HOVER / TAP */
+/* click effect */
 button:active {
   transform: scale(0.96);
-  box-shadow: 0 3px 6px rgba(200, 150, 255, 0.2);
 }
 
-/* LANGUAGE BUTTONS kleiner */
-.lang-buttons button {
+/* small buttons (lang + nav) */
+.lang-buttons button,
+.nav button {
   width: auto;
   padding: 10px 14px;
   font-size: 14px;
 }
 
-/* ANSWERS FULL WIDTH */
-#answers {
-  width: 100%;
+/* ================= QUIZ ================= */
+
+#quizScreen {
+  justify-content: flex-start;
 }
 
-/* NAV BAR (unten) */
+#question {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#answers {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress {
+  width: 100%;
+  max-width: 400px;
+  height: 10px;
+  background: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+#progressBar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #c084fc, #f472b6);
+  transition: width 0.3s ease;
+}
+
+/* ================= NAV ================= */
+
 .nav {
   display: flex;
   justify-content: space-around;
   padding: 12px;
   background: white;
-
   border-top: 1px solid #eee;
-
   box-shadow: 0 -3px 10px rgba(0,0,0,0.05);
-}
-
-/* NAV BUTTONS */
-.nav button {
-  width: auto;
-  padding: 10px 16px;
-  font-size: 18px;
 }
