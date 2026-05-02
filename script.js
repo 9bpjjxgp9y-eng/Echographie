@@ -180,13 +180,11 @@ function updateUI() {
 /* ================= NAV ================= */
 
 function resetScreens() {
-  const screens = [
-    "startScreen",
-    "theoryScreen",
-    "theoryDetailScreen",
-    "quizScreen",
-    "resultScreen"
-  ];
+  ["startScreen","theoryScreen","theoryDetailScreen","quizScreen","resultScreen"]
+    .forEach(id => {
+      document.getElementById(id).style.display = "none";
+    });
+}
 
   screens.forEach(id => {
     document.getElementById(id).style.display = "none";
@@ -238,13 +236,12 @@ function startQuiz() {
 
   document.getElementById("quizScreen").style.display = "flex";
 
-  document.getElementById("restartBtn").style.display = "block";
-
   score = 0;
   index = 0;
   results = [];
   quizQuestions = shuffle([...questions]);
 
+  updateNav("quiz");
   showQuestion();
 }
 
@@ -287,8 +284,6 @@ function showResult() {
 
   document.getElementById("resultScreen").style.display = "flex";
 
-  document.getElementById("restartBtn").style.display = "block";
-
   document.getElementById("scoreText").innerText =
     `${texts[lang].result} ${score}/${quizQuestions.length}`;
 
@@ -304,6 +299,8 @@ function showResult() {
         </div>
       `;
     }).join("");
+
+  updateNav("result");
 }
 function restartQuiz() {
   score = 0;
@@ -327,7 +324,13 @@ function shuffle(arr) {
   }
   return a;
 }
+function goHome() {
+  resetScreens();
 
+  document.getElementById("startScreen").style.display = "flex";
+
+  updateNav("home");
+}
 /* ================= INIT ================= */
 
 updateUI();
