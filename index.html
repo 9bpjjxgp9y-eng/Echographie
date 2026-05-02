@@ -14,39 +14,54 @@
 
   <!-- HOME -->
   <div id="startScreen" class="screen">
-  <div class="card">
-    <button onclick="showTheory()">Theorie</button>
-    <button onclick="startQuiz()">Quiz</button>
+    <div class="card">
+      <button id="btnTheory" onclick="showTheory()"></button>
+      <button id="btnQuiz" onclick="startQuiz()"></button>
+    </div>
+
+    <!-- LANGUAGE -->
+    <div class="card">
+      <button onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+      <button onclick="setLanguage('fr')">🇫🇷 Français</button>
+    </div>
   </div>
-</div>
 
   <!-- THEORY -->
   <div id="theoryScreen" class="screen" style="display:none;">
-    <div id="theoryMenu"></div>
+    <div class="card">
+      <div id="theoryMenu"></div>
+    </div>
   </div>
 
+  <!-- THEORY DETAIL -->
   <div id="theoryDetailScreen" class="screen" style="display:none;"></div>
 
   <!-- QUIZ -->
   <div id="quizScreen" class="screen" style="display:none;">
-    <div id="progressContainer">
-      <div id="progressBar"></div>
-    </div>
+    <div class="card">
 
-    <h2 id="question"></h2>
-    <div id="answers"></div>
+      <div id="progressContainer">
+        <div id="progressBar"></div>
+      </div>
+
+      <h2 id="question"></h2>
+      <div id="answers"></div>
+
+    </div>
   </div>
 
   <!-- RESULT -->
   <div id="resultScreen" class="screen" style="display:none;">
-    <h2 id="scoreText"></h2>
-    <div id="resultList"></div>
+    <div class="card">
+      <h2 id="scoreText"></h2>
+      <div id="resultList"></div>
+    </div>
   </div>
 
   <!-- NAV -->
   <div class="nav">
     <button onclick="goHome()">🏠</button>
-    <button onclick="restartQuiz()">🔄</button>
+    <button id="restartBtn" onclick="restartQuiz()">🔄</button>
   </div>
 
 </div>
