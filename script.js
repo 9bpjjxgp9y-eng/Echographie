@@ -6,7 +6,7 @@ let index = 0;
 let quizQuestions = [];
 let results = [];
 
-/* ================= UI TEXT ================= */
+/* ================= DATA ================= */
 
 const texts = {
   de: {
@@ -29,7 +29,8 @@ const texts = {
   }
 };
 
-/* ================= QUIZ DATA ================= */
+/* ================= QUIZ ================= */
+
 const questions = [
   {
     de: { q: "Was nutzt Echographie?", options: ["Ultraschall", "Licht"] },
@@ -116,15 +117,15 @@ const theoryContent = [
     id: "kompression",
     title: { de: "Kompression", fr: "Compression" },
     content: {
-      de: "Wechsel von Kompression und Rarefaktion erzeugt die Welle.",
-      fr: "Compression et raréfaction créent l’onde."
+      de: "Kompression + Rarefaktion erzeugen die Welle.",
+      fr: "Compression + raréfaction créent l’onde."
     }
   },
   {
     id: "impedanz",
     title: { de: "Impedanz", fr: "Impédance" },
     content: {
-      de: "Reflexion, Brechung, Streuung und Absorption bestimmen das Bild.",
+      de: "Reflexion, Brechung, Streuung und Absorption formen das Bild.",
       fr: "Réflexion, réfraction, diffusion et absorption forment l’image."
     }
   },
@@ -146,7 +147,7 @@ const theoryContent = [
   }
 ];
 
-/* ================= CORE FUNCTIONS ================= */
+/* ================= UI ================= */
 
 function setLanguage(l) {
   lang = l;
@@ -156,18 +157,37 @@ function setLanguage(l) {
 }
 
 function updateUI() {
-  document.getElementById("btnTheory").innerText = texts[lang].theory;
-  document.getElementById("btnQuiz").innerText = texts[lang].quiz;
-  document.getElementById("btnHome1").innerText = texts[lang].home;
-  document.getElementById("btnHome2").innerText = texts[lang].home;
-  document.getElementById("btnHome3").innerText = texts[lang].home;
-  document.getElementById("btnRestart").innerText = texts[lang].restart;
-  document.getElementById("theoryTitle").innerText = texts[lang].title;
+  const t = texts[lang];
+
+  const set = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.innerText = val;
+  };
+
+  set("btnTheory", t.theory);
+  set("btnQuiz", t.quiz);
+  set("btnHome1", t.home);
+  set("btnHome2", t.home);
+  set("btnHome3", t.home);
+  set("btnRestart", t.restart);
+  set("theoryTitle", t.title);
 }
 
+/* ================= NAV ================= */
+
 function resetScreens() {
-  ["startScreen", "theoryScreen", "theoryDetailScreen", "quizScreen", "resultScreen"]
-    .forEach(id => document.getElementById(id).style.display = "none");
+  const screens = [
+    "startScreen",
+    "theoryScreen",
+    "theoryDetailScreen",
+    "quizScreen",
+    "resultScreen"
+  ];
+
+  screens.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = "none";
+  });
 }
 
 function goHome() {
@@ -182,13 +202,14 @@ function showTheory() {
   document.getElementById("theoryScreen").style.display = "block";
 
   document.getElementById("theoryMenu").innerHTML =
-    theoryContent.map(t =>
-      `<button onclick="openTheory('${t.id}')">${t.title[lang]}</button>`
-    ).join("<br>");
+    theoryContent
+      .map(t => `<button onclick="openTheory('${t.id}')">${t.title[lang]}</button>`)
+      .join("<br>");
 }
 
 function openTheory(id) {
   const item = theoryContent.find(t => t.id === id);
+  if (!item) return;
 
   resetScreens();
   document.getElementById("theoryDetailScreen").style.display = "block";
@@ -203,15 +224,14 @@ function openTheory(id) {
 /* ================= QUIZ ================= */
 
 function startQuiz() {
-  resetScreens(); // FIX
-
+  resetScreens();
   document.getElementById("quizScreen").style.display = "block";
 
   score = 0;
   index = 0;
   results = [];
-  quizQuestions = shuffle([...questions]);
 
+  quizQuestions = shuffle([...questions]);
   showQuestion();
 }
 
@@ -223,7 +243,9 @@ function showQuestion() {
   document.getElementById("question").innerText = q.q;
 
   document.getElementById("answers").innerHTML =
-    q.options.map((o,i) => `<button onclick="answer(${i})">${o}</button>`).join("");
+    q.options
+      .map((o, i) => `<button onclick="answer(${i})">${o}</button>`)
+      .join("");
 }
 
 function answer(selected) {
@@ -243,13 +265,13 @@ function answer(selected) {
   showQuestion();
 }
 
+/* ================= RESULT ================= */
+
 function showResult() {
   resetScreens();
   document.getElementById("resultScreen").style.display = "block";
 
-  let html = `
-    <h2>${texts[lang].result} ${score}/${quizQuestions.length}</h2>
-  `;
+  let html = `<h2>${texts[lang].result} ${score}/${quizQuestions.length}</h2>`;
 
   results.forEach(r => {
     html += `
