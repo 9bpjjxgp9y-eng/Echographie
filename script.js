@@ -6,8 +6,16 @@ let results = [];
 
 /* TEXT */
 const T = {
-  de: { your: "Deine Antwort:", correct: "Richtige Antwort:" },
-  fr: { your: "Ta réponse :", correct: "Bonne réponse :" }
+  de: { 
+    your: "Deine Antwort:", 
+    correct: "Richtige Antwort:",
+    qa: "🙋‍♀️ Fragen & Antworten"
+  },
+  fr: { 
+    your: "Ta réponse :", 
+    correct: "Bonne réponse :",
+    qa: "🙋‍♀️ Questions & Réponses"
+  }
 };
 const qa = [
   {
