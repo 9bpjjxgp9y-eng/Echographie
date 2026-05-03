@@ -1,17 +1,14 @@
-/* =========================
+/* =====================
    STATE
-========================= */
+===================== */
 
 let lang = localStorage.getItem("lang") || "de";
-
 let index = 0;
 let score = 0;
 let quiz = [];
 let results = [];
-
-let currentScreen = "home";
-let screenHistory = [];
-
+let history = [];
+let current = "home";
 let startX = 0;
 let startY = 0;
 
@@ -46,27 +43,35 @@ function goBack() {
   setScreen(last, false);
 }
 
+/* =====================
+
+   HOME
+
+===================== */
+
 function goHome() {
-  screenHistory = [];
-  setScreen("home", false);
+
+  history = [];
+
+  setScreen("home");
+
 }
 
 /* =========================
    NAV
 ========================= */
 
-function updateNav() {
-  const nav = document.getElementById("nav");
-  if (!nav) return;
+function setScreen(id) {
 
-  const backBtn = document.getElementById("backBtn");
-  const restartBtn = document.getElementById("restartBtn");
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
 
-  nav.classList.toggle("hidden", currentScreen === "home");
+  document.getElementById(id).classList.add("active");
 
-  if (backBtn) backBtn.style.display = currentScreen === "home" ? "none" : "inline-block";
-  if (restartBtn) restartBtn.style.display = currentScreen === "quiz" ? "inline-block" : "none";
+  current = id;
+
 }
+
+
 
 /* =========================
    TEXT
@@ -83,10 +88,6 @@ const T = {
     correct: "Bonne réponse :",
     qa: "🙋‍♀️ Questions & Réponses",
   }
-};
-const langData = {
-  de: { qaTitle: "Fragen & Antworten" },
-  fr: { qaTitle: "Questions & Réponses" }
 };
 /* =========================
    THEORY
@@ -204,159 +205,222 @@ const questions = [
   }
 ];
 
-/* =========================
-   QUIZ LOGIC
-========================= */
+/* =====================
+
+   QUIZ
+
+===================== */
 
 function startQuiz() {
+
   index = 0;
+
   score = 0;
+
   results = [];
 
   quiz = questions.map(q => ({
+
     q: q[lang].q,
+
     o: q[lang].o,
-    a: q.a
+
+    a: q[lang].a
+
   }));
 
   setScreen("quiz");
+
   showQuestion();
+
 }
 
 function showQuestion() {
+
   if (index >= quiz.length) return showResult();
 
   const q = quiz[index];
 
   document.getElementById("question").innerText = q.q;
-document.getElementById("fill").style.width =
-  (index / quiz.length * 100) + "%";
+
+  document.getElementById("fill").style.width = (index / quiz.length * 100) + "%";
+
   document.getElementById("answers").innerHTML =
-    q.o.map((t, i) =>
-      `<button onclick="answer(${i})">${t}</button>`
+
+    q.o.map((o, i) =>
+
+      `<button onclick="answer(${i})">${o}</button>`
+
     ).join("");
+
 }
 
 function answer(i) {
+
   const q = quiz[index];
 
   if (i === q.a) score++;
 
-  results.push({
-    q: q.q,
-    o: q.o,
-    u: i,
-    c: q.a
-  });
+  results.push(q);
 
   index++;
+
   showQuestion();
+
 }
 
-/* =========================
+/* =====================
+
    RESULT
-========================= */
+
+===================== */
 
 function showResult() {
+
   setScreen("result");
 
   document.getElementById("score").innerText =
+
     `Score: ${score}/${quiz.length}`;
 
-  document.getElementById("results").innerHTML =
-    results.map(r => `
-      <div>
-        <b>${r.q}</b><br>
-        ${T[lang].your} ${r.o[r.u]}<br>
-        ${T[lang].correct} ${r.o[r.c]}
-      </div>
-    `).join("");
 }
 
-/* =========================
-   THEORY UI
-========================= */
+
+
+/* =====================
+
+   THEORY
+
+===================== */
 
 function showTheory() {
+
   setScreen("theory");
 
   document.getElementById("theoryMenu").innerHTML =
+
     theory.map((t, i) => `
-      <button onclick="openTheory(${i})">${t[lang].title}</button>
+
+      <div class="card">
+
+        <button onclick="openTheory(${i})">${t[lang].title}</button>
+
+      </div>
+
     `).join("");
+
 }
 
 function openTheory(i) {
+
   setScreen("theoryDetail");
 
   const t = theory[i][lang];
 
   document.getElementById("theoryDetail").innerHTML = `
-    <h2>${t.title}</h2>
-    <p>${t.text}</p>
-    <button onclick="showTheory()">Back</button>
-  `;
-}
 
-/* =========================
-   QA UI
-========================= */
+    <div class="card">
+
+      <h2>${t.title}</h2>
+
+      <p>${t.text}</p>
+
+      <button onclick="showTheory()">Back</button>
+
+    </div>
+
+  `;
+
+}
+/* =====================
+
+   QA UI (FIXED TRANSLATION)
+
+===================== */
 
 function showQA() {
+
   setScreen("qa");
 
   document.getElementById("qaMenu").innerHTML =
-    qa.map((item, i) => `
-      <button onclick="openQA(${i})">${item[lang].q}</button>
+
+    qa.map((q, i) => `
+
+      <div class="card">
+
+        <button onclick="openQA(${i})">${q[lang].q}</button>
+
+      </div>
+
     `).join("");
+
 }
 
 function openQA(i) {
+
   setScreen("qaDetail");
 
   const item = qa[i][lang];
 
   document.getElementById("qaDetail").innerHTML = `
-    <h2>${item.q}</h2>
-    <p>${item.a}</p>
-    <button onclick="showQA()">Back</button>
-  `;
-}
 
-/* =========================
-   LANG
-========================= */
+    <div class="card">
+
+      <h2>${item.q}</h2>
+
+      <p>${item.a}</p>
+
+      <button onclick="showQA()">Back</button>
+
+    </div>
+
+  `;
+
+}
+/* =====================
+
+   LANGUAGE
+
+===================== */
 
 function setLang(l) {
+
   lang = l;
+
   localStorage.setItem("lang", l);
 
-  updateLanguageUI(); 
-
   goHome();
+
 }
 
-/* =========================
+/* =====================
+
    SWIPE BACK
-========================= */
+
+===================== */
 
 document.addEventListener("touchstart", e => {
+
   startX = e.touches[0].clientX;
+
   startY = e.touches[0].clientY;
+
 });
 
 document.addEventListener("touchend", e => {
+
   let dx = e.changedTouches[0].clientX - startX;
+
   let dy = e.changedTouches[0].clientY - startY;
 
-  if (dx > 80 && Math.abs(dy) < 50) {
-    goBack();
-  }
+  if (dx > 80 && Math.abs(dy) < 50) goHome();
+
 });
 
-/* =========================
+/* =====================
+
    INIT
-========================= */
-updateLanguageUI();
+
+===================== */
+
 goHome();
-updateNav();
