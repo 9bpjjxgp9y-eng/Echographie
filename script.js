@@ -183,14 +183,17 @@ const questions = [
 function showNav(mode) {
   const nav = document.getElementById("nav");
   const restart = document.getElementById("restartBtn");
+  const back = document.getElementById("backBtn");
 
   if (mode === "home") {
     nav.classList.add("hidden");
-  } else {
-    nav.classList.remove("hidden");
+    return;
   }
 
+  nav.classList.remove("hidden");
+
   restart.style.display = (mode === "quiz") ? "inline-block" : "none";
+  back.style.display = "inline-block";
 }
 
 /* ---------- SCREEN CONTROL (IMPORTANT FIX) ---------- */
@@ -210,10 +213,16 @@ function showScreen(id){
 
 /* ---------- HOME ---------- */
 function goHome() {
-  showScreen("home");
+  screenHistory = []; 
+
+  document.querySelectorAll(".screen").forEach(s => {
+    s.classList.add("hidden");
+  });
+
+  document.getElementById("home").classList.remove("hidden");
+
   showNav("home");
 }
-
 /* ---------- LANG ---------- */
 function setLang(l) {
   lang = l;
