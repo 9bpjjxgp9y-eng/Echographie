@@ -77,13 +77,11 @@ const T = {
     your: "Deine Antwort:",
     correct: "Richtige Antwort:",
     qa: "🙋‍♀️ Fragen & Antworten",
-    qaBtn: "🙋‍♀️ Fragen & Antworten"
   },
   fr: {
     your: "Ta réponse :",
     correct: "Bonne réponse :",
     qa: "🙋‍♀️ Questions & Réponses",
-    qaBtn: "🙋‍♀️ Questions & Réponses"
   }
 };
 function updateLanguageUI() {
@@ -97,24 +95,34 @@ const theory = [
   {
     de: {
       title: "Einführung",
-      text: "Echographie ist eine sichere Echtzeit-Ultraschallmethode ohne Strahlung. Sie nutzt reflektierte Schallwellen, um Organe sichtbar zu machen."
+      text: "Echographie ist eine sichere Echtzeit-Ultraschallmethode zur medizinischen Bildgebung. Sie arbeitet ohne ionisierende Strahlung und nutzt Reflexionen von Schallwellen, um innere Strukturen sichtbar zu machen. Besonders wichtig ist sie, weil sie nicht invasiv ist, keine Schmerzen verursacht und sofort Ergebnisse liefert. Ärzte können damit Organe in Bewegung beobachten, etwa das Herz oder ein ungeborenes Kind. Dadurch ist sie ein zentrales Werkzeug in der modernen Diagnostik."
     },
     fr: {
       title: "Introduction",
-      text: "L’échographie est une méthode en temps réel sans radiation. Elle utilise la réflexion des ultrasons pour visualiser les organes."
+      text: "L’échographie est une méthode d’imagerie en temps réel utilisant les ultrasons. Elle est non invasive, sans radiation ionisante et permet d’observer les structures internes du corps. Elle est essentielle en médecine moderne car elle fournit des résultats immédiats et permet d’analyser le mouvement des organes comme le cœur ou le fœtus."
     }
   },
   {
     de: {
       title: "Ultraschall",
-      text: "Ultraschall sind mechanische Wellen über 20 kHz. In der Medizin nutzt man 1–15 MHz für hohe Auflösung."
+      text: "Ultraschall sind mechanische Schallwellen mit Frequenzen über 20 kHz. In der Medizin werden meist 1–15 MHz verwendet, um eine hohe Bildauflösung zu erreichen. Die Wellen breiten sich longitudinal aus und werden unterschiedlich stark an Gewebegrenzen reflektiert. Dadurch entstehen die Bilder in der Echographie."
     },
     fr: {
       title: "Ultrasons",
-      text: "Les ultrasons sont des ondes mécaniques >20 kHz. En médecine : 1–15 MHz pour une bonne résolution."
+      text: "Les ultrasons sont des ondes mécaniques de fréquence supérieure à 20 kHz. En médecine, on utilise souvent 1 à 15 MHz pour obtenir une bonne résolution. Ils se propagent de manière longitudinale et sont réfléchis différemment selon les tissus, ce qui permet de créer les images."
     }
   },
   {
+    de: {
+      title: "Compression & Rarefaktion",
+      text: "Eine Ultraschallwelle besteht aus abwechselnden Zonen von Kompression und Rarefaktion. Bei der Kompression werden Teilchen zusammengedrückt, bei der Rarefaktion wieder auseinandergezogen. Dieser Wechsel erzeugt die Druckschwankungen, die vom Gerät gemessen werden und die Bildinformation liefern."
+    },
+    fr: {
+      title: "Compression & raréfaction",
+      text: "Une onde ultrasonore est composée d’alternances de compression et de raréfaction. Les particules sont comprimées puis relâchées. Ces variations de pression sont détectées par la sonde et permettent de créer l’image."
+    }
+  },
+     {
     de: {
       title: "Impedanz",
       text: "Die akustische Impedanz bestimmt, wie viel Schall reflektiert wird. Große Unterschiede erzeugen starke Echos."
@@ -126,12 +134,22 @@ const theory = [
   },
   {
     de: {
-      title: "Typen",
-      text: "2D = Schnittbild, 3D = Volumen, 4D = Bewegung, Doppler = Blutfluss."
+      title: "Typen der Echographie",
+      text: "2D zeigt Schnittbilder, 3D erzeugt räumliche Rekonstruktionen und 4D zeigt Bewegungen in Echtzeit. Der Doppler misst zusätzlich den Blutfluss durch den Doppler-Effekt. In der Kardiologie analysiert man Herzklappen, in der Abdominaldiagnostik Organe und in der Schwangerschaft die Entwicklung des Fötus."
     },
     fr: {
-      title: "Types",
-      text: "2D = coupe, 3D = volume, 4D = mouvement, Doppler = flux sanguin."
+      title: "Types d’échographie",
+      text: "La 2D montre des coupes, la 3D reconstruit des volumes et la 4D montre le mouvement en temps réel. Le Doppler mesure le flux sanguin grâce à l’effet Doppler. Il est utilisé en cardiologie, en imagerie abdominale et en obstétrique."
+    }
+  },
+        {
+    de: {
+      title: "Fazit",
+      text: "Die Echographie ist eine der wichtigsten Methoden der modernen Medizin. Sie ist sicher, schnell und vielseitig einsetzbar. Trotz ihrer Abhängigkeit vom Bediener bleibt sie unverzichtbar für Diagnose und Überwachung."
+    },
+    fr: {
+      title: "Conclusion",
+      text: "L’échographie est une technique essentielle en médecine moderne. Elle est rapide, sûre et très polyvalente, malgré une dépendance à l’opérateur."
     }
   }
 ];
@@ -143,22 +161,22 @@ const theory = [
 const qa = [
   {
     de: {
-      q: "Was ist Impedanz?",
-      a: "Produkt aus Dichte und Schallgeschwindigkeit. Bestimmt Reflexion."
+      q: "Was ist die akustische Impedanz? 🥸",
+      a: "Die akustische Impedanz ist das Produkt aus Dichte des Mediums und Schallgeschwindigkeit. Sie bestimmt, wie Ultraschall an Grenzflächen reagiert. Unterschiedliche Impedanzen führen zu Reflexion, Brechung sowie Absorption und Streuung der Welle."
     },
     fr: {
-      q: "Qu’est-ce que l’impédance ?",
-      a: "Produit densité × vitesse du son. Détermine la réflexion."
+      q: "Qu’est-ce que l’impédance acoustique ? 🥸",
+      a: "L’impédance acoustique est définie comme le produit de la densité du milieu et de la vitesse du son. Elle détermine le comportement des ultrasons à une interface et entraîne réflexion, réfraction, absorption et diffusion."
     }
   },
   {
     de: {
-      q: "Warum Gel?",
-      a: "Entfernt Luft → bessere Übertragung."
+      q: "Warum gibt es verschiedene Ultraschallmodi (2D, 3D, 4D, Doppler)? 🤷‍♀️",
+      a: "Es gibt verschiedene Modi, weil sie unterschiedliche Informationen liefern. 2D zeigt Schnittbilder der Organe, 3D rekonstruiert Volumenstrukturen und 4D zeigt diese in Echtzeit mit Bewegung. Der Doppler-Modus analysiert dagegen den Blutfluss mithilfe des Doppler-Effekts, wobei Farben nur die Geschwindigkeit darstellen."
     },
     fr: {
-      q: "Pourquoi gel ?",
-      a: "Élimine l’air → meilleure transmission."
+      q: "Pourquoi existe-t-il différents modes (2D, 3D, 4D, Doppler) ? 🤷‍♀️",
+      a: "Les différents modes permettent d’obtenir des informations différentes : le 2D montre des coupes, le 3D reconstruit des volumes et le 4D montre le mouvement en temps réel. Le mode Doppler analyse le flux sanguin grâce à l’effet Doppler, les couleurs représentant la vitesse."
     }
   }
 ];
