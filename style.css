@@ -66,14 +66,17 @@ button:hover {
 
 #progressContainer {
   width: 100%;
-  height: 10px;
-  background: #eee;
+  height: 14px;
+  background: #f0e6e1;
   border-radius: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
 }
 
 #fill {
-  height: 10px;
-  background: #d8b4a0;
+  height: 100%;
   width: 0%;
+  background: linear-gradient(90deg, #d8b4a0, #eac7b7);
   border-radius: 20px;
+  transition: width 0.3s ease;
 }
