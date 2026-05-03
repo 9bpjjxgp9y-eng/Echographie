@@ -164,59 +164,57 @@ const questions = [
   }
 ];
 
-/* NAV */
+/* ---------- NAV ---------- */
 function showNav(mode) {
   const nav = document.getElementById("nav");
   const restart = document.getElementById("restartBtn");
 
-  nav.classList.toggle("hidden", mode === "home");
+  if (mode === "home") {
+    nav.classList.add("hidden");
+  } else {
+    nav.classList.remove("hidden");
+  }
+
   restart.style.display = (mode === "quiz") ? "inline-block" : "none";
 }
-function showScreen(id){
-  document.querySelectorAll(".screen").forEach(s => s.classList.add("hidden"));
-  document.getElementById(id).classList.remove("hidden");
-}
-/* RESET */
-function reset(){
+
+/* ---------- SCREEN CONTROL (IMPORTANT FIX) ---------- */
+function showScreen(id) {
   document.querySelectorAll(".screen").forEach(s => {
     s.classList.add("hidden");
-    s.style.display = "";
   });
+  document.getElementById(id).classList.remove("hidden");
 }
 
-/* HOME */
+/* ---------- HOME ---------- */
 function goHome() {
-  document.querySelectorAll(".screen").forEach(s => s.classList.add("hidden"));
-  document.getElementById("home").classList.remove("hidden");
+  showScreen("home");
   showNav("home");
 }
 
-/* LANG */
+/* ---------- LANG ---------- */
 function setLang(l) {
   lang = l;
   localStorage.setItem("lang", l);
   updateUI();
   goHome();
-  showTheory();
-  showQA();
 }
 
-/* THEORY */
+/* ---------- THEORY ---------- */
 function showTheory() {
-  reset();
-  document.getElementById("theory").classList.remove("hidden");
+  showScreen("theory");
+  showNav("theory");
 
   document.getElementById("theoryMenu").innerHTML =
     theory.map((t, i) =>
-      `<div class="card"><button onclick="openTheory(${i})">${t[lang][0]}</button></div>`
+      `<div class="card">
+        <button onclick="openTheory(${i})">${t[lang][0]}</button>
+      </div>`
     ).join("");
-
-  showNav("theory");
 }
 
 function openTheory(i) {
-  document.querySelectorAll(".screen").forEach(s => s.classList.add("hidden"));
-document.getElementById("theory").classList.remove("hidden");
+  showScreen("theoryDetail");
 
   const t = theory[i][lang];
 
@@ -224,14 +222,15 @@ document.getElementById("theory").classList.remove("hidden");
     <div class="card">
       <h2>${t[0]}</h2>
       <p>${t[1]}</p>
-      <button onclick="showTheory()">🔙</button>
+      <button onclick="showTheory()">🔙 Back</button>
     </div>
   `;
 }
-/* QA */
+
+/* ---------- QA ---------- */
 function showQA() {
-  reset();
-  document.getElementById("qa").classList.remove("hidden");
+  showScreen("qa");
+  showNav("qa");
 
   document.getElementById("qaMenu").innerHTML =
     qa.map((item, i) => `
@@ -239,13 +238,10 @@ function showQA() {
         <button onclick="openQA(${i})">${item[lang].q}</button>
       </div>
     `).join("");
-
-  showNav("qa");
 }
 
 function openQA(i) {
-  reset();
-  document.getElementById("qaDetail").classList.remove("hidden");
+  showScreen("qaDetail");
 
   const item = qa[i][lang];
 
@@ -255,16 +251,13 @@ function openQA(i) {
       <p style="font-size:20px; line-height:1.6;">
         ${item.a}
       </p>
-
       <button onclick="showQA()">⬅️ Back</button>
     </div>
   `;
 }
 
-/* QUIZ */
+/* ---------- QUIZ ---------- */
 function startQuiz() {
-  reset();
-
   score = 0;
   index = 0;
   results = [];
@@ -277,29 +270,25 @@ function startQuiz() {
       a: q.a
     }));
 
-  document.getElementById("quiz").classList.remove("hidden");
+  showScreen("quiz");
   showNav("quiz");
 
   showQ();
 }
 
-function shuffle(arr){
-  return [...arr].sort(() => Math.random() - 0.5);
-}
-
-function showQ(){
-  if(index >= quiz.length) return showResult();
+function showQ() {
+  if (index >= quiz.length) return showResult();
 
   const q = quiz[index];
 
   document.getElementById("question").innerText = q.q;
 
-  const shuffledAnswers = q.o
+  const shuffled = q.o
     .map((text, i) => ({ text, i }))
     .sort(() => Math.random() - 0.5);
 
   document.getElementById("answers").innerHTML =
-    shuffledAnswers.map(a =>
+    shuffled.map(a =>
       `<button onclick="answer(${a.i})">${a.text}</button>`
     ).join("");
 
@@ -323,13 +312,13 @@ function answer(i) {
   showQ();
 }
 
-/* RESULT */
+/* ---------- RESULT ---------- */
 function showResult() {
-  reset();
-  document.getElementById("result").classList.remove("hidden");
+  showScreen("result");
+  showNav("result");
 
   document.getElementById("score").innerText =
-    `🏆Score: ${score}/${quiz.length}`;
+    `🏆 Score: ${score}/${quiz.length}`;
 
   document.getElementById("results").innerHTML =
     results.map(r => `
@@ -339,23 +328,18 @@ function showResult() {
         ${T[lang].correct} ${r.o[r.c]}
       </div>
     `).join("");
-
-  showNav("result");
 }
 
-/* RESTART */
+/* ---------- RESTART ---------- */
 function restartQuiz() {
   startQuiz();
 }
-function updateUI(){
-  document.getElementById("qaBtn").innerText = T[lang].qa;
 
-  // optional später erweitern:
-  // document.getElementById("title").innerText = ...
+/* ---------- UI ---------- */
+function updateUI() {
+  document.getElementById("qaBtn").innerText = T[lang].qa;
 }
 
-/* INIT */
-document.addEventListener("DOMContentLoaded", () => {
-  updateUI();
-  goHome();
-});
+/* ---------- INIT ---------- */
+updateUI();
+goHome();
