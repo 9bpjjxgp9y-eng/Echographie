@@ -75,14 +75,20 @@ function updateNav() {
 const T = {
   de: {
     your: "Deine Antwort:",
-    correct: "Richtige Antwort:"
+    correct: "Richtige Antwort:",
+    qa: "🙋‍♀️ Fragen & Antworten",
+    qaBtn: "🙋‍♀️ Fragen & Antworten"
   },
   fr: {
     your: "Ta réponse :",
-    correct: "Bonne réponse :"
+    correct: "Bonne réponse :",
+    qa: "🙋‍♀️ Questions & Réponses",
+    qaBtn: "🙋‍♀️ Questions & Réponses"
   }
 };
-
+function updateLanguageUI() {
+  document.getElementById("qaBtn").innerText = T[lang].qaBtn;
+}
 /* =========================
    THEORY
 ========================= */
@@ -305,6 +311,9 @@ function openQA(i) {
 function setLang(l) {
   lang = l;
   localStorage.setItem("lang", l);
+
+  updateLanguageUI(); 
+
   goHome();
 }
 
@@ -329,6 +338,6 @@ document.addEventListener("touchend", e => {
 /* =========================
    INIT
 ========================= */
-
+updateLanguageUI();
 goHome();
 updateNav();
