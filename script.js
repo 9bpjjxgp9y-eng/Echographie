@@ -688,7 +688,40 @@ function openTheory(i) {
     </div>
   `;
 }
+function setLang(l) {
+  lang = l;
+  localStorage.setItem("lang", l);
+  goHome();
+}
 
+function restartQuiz() {
+  startQuiz();
+}
+
+function showQA() {
+  setScreen("qa");
+
+  document.getElementById("qaMenu").innerHTML =
+    qa.map((item, i) => `
+      <div class="card">
+        <button onclick="openQA(${i})">${item[lang].q}</button>
+      </div>
+    `).join("");
+}
+
+function openQA(i) {
+  setScreen("qaDetail");
+
+  const item = qa[i][lang];
+
+  document.getElementById("qaDetail").innerHTML = `
+    <div class="card">
+      <h2>${item.q}</h2>
+      <p>${item.a}</p>
+      <button onclick="showQA()">Back</button>
+    </div>
+  `;
+}
 /* =========================
    SWIPE BACK
 ========================= */
