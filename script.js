@@ -106,50 +106,58 @@ const qa = [
 /* =========================
    THEORY SECTION (FILL HERE)
 ========================= */
-
 const theory = [
   {
-    de: ["Einführung",
-      "Echographie ist eine sichere Echtzeit-Ultraschallmethode zur medizinischen Bildgebung. Sie arbeitet ohne ionisierende Strahlung und nutzt Reflexionen von Schallwellen, um innere Strukturen sichtbar zu machen. Besonders wichtig ist sie, weil sie nicht invasiv ist, keine Schmerzen verursacht und sofort Ergebnisse liefert. Ärzte können damit Organe in Bewegung beobachten, etwa das Herz oder ein ungeborenes Kind. Dadurch ist sie ein zentrales Werkzeug in der modernen Diagnostik."
-    ],
-    fr: ["Introduction",
-      "L’échographie est une méthode d’imagerie en temps réel utilisant les ultrasons. Elle est non invasive, sans radiation ionisante et permet d’observer les structures internes du corps. Elle est essentielle en médecine moderne car elle fournit des résultats immédiats et permet d’analyser le mouvement des organes comme le cœur ou le fœtus."
-    ]
+    de: {
+      title: "Einführung",
+      text: "Echographie ist eine sichere Echtzeit-Ultraschallmethode zur medizinischen Bildgebung. Sie arbeitet ohne ionisierende Strahlung und nutzt Reflexionen von Schallwellen, um innere Strukturen sichtbar zu machen. Besonders wichtig ist sie, weil sie nicht invasiv ist, keine Schmerzen verursacht und sofort Ergebnisse liefert. Ärzte können damit Organe in Bewegung beobachten, etwa das Herz oder ein ungeborenes Kind. Dadurch ist sie ein zentrales Werkzeug in der modernen"
+    },
+    fr: {
+      title: "Introduction",
+      text: "L’échographie est une méthode d’imagerie en temps réel utilisant les ultrasons. Elle est non invasive, sans radiation ionisante et permet d’observer les structures internes du corps. Elle est essentielle en médecine moderne car elle fournit des résultats immédiats et permet d’analyser le mouvement des organes comme le cœur ou le fœtus."
+    }
   },
   {
-    de: ["Ultraschall",
-      "Ultraschall sind mechanische Schallwellen mit Frequenzen über 20 kHz. In der Medizin werden meist 1–15 MHz verwendet, um eine hohe Bildauflösung zu erreichen. Die Wellen breiten sich longitudinal aus und werden unterschiedlich stark an Gewebegrenzen reflektiert. Dadurch entstehen die Bilder in der Echographie."
-    ],
-    fr: ["Ultrasons",
-      "Les ultrasons sont des ondes mécaniques de fréquence supérieure à 20 kHz. En médecine, on utilise souvent 1 à 15 MHz pour obtenir une bonne résolution. Ils se propagent de manière longitudinale et sont réfléchis différemment selon les tissus, ce qui permet de créer les images."
-    ]
+    de: {
+      title: "Ultraschall",
+      text: "Ultraschall sind mechanische Schallwellen mit Frequenzen über 20 kHz. In der Medizin werden meist 1–15 MHz verwendet, um eine hohe Bildauflösung zu erreichen. Die Wellen breiten sich longitudinal aus und werden unterschiedlich stark an Gewebegrenzen reflektiert. Dadurch entstehen die Bilder in der Echographie."
+    },
+    fr: {
+      title: "Ultrasons",
+      text: "Les ultrasons sont des ondes mécaniques de fréquence supérieure à 20 kHz. En médecine, on utilise souvent 1 à 15 MHz pour obtenir une bonne résolution. Ils se propagent de manière longitudinale et sont réfléchis différemment selon les tissus, ce qui permet de créer les images."
+    }
   },
   {
-    de: ["Compression & Rarefaktion",
-      "Eine Ultraschallwelle besteht aus abwechselnden Zonen von Kompression und Rarefaktion. Bei der Kompression werden Teilchen zusammengedrückt, bei der Rarefaktion wieder auseinandergezogen. Dieser Wechsel erzeugt die Druckschwankungen, die vom Gerät gemessen werden und die Bildinformation liefern."
-    ],
-    fr: ["Compression & raréfaction",
-      "Une onde ultrasonore est composée d’alternances de compression et de raréfaction. Les particules sont comprimées puis relâchées. Ces variations de pression sont détectées par la sonde et permettent de créer l’image."
-    ]
+    de: {
+      title: "Compression & Rarefaktion",
+      text: "Eine Ultraschallwelle besteht aus abwechselnden Zonen von Kompression und Rarefaktion. Bei der Kompression werden Teilchen zusammengedrückt, bei der Rarefaktion wieder auseinandergezogen. Dieser Wechsel erzeugt die Druckschwankungen, die vom Gerät gemessen werden und die Bildinformation liefern."
+    },
+    fr: {
+      title: "Compression & raréfaction",
+      text: "Une onde ultrasonore est composée d’alternances de compression et de raréfaction. Les particules sont comprimées puis relâchées. Ces variations de pression sont détectées par la sonde et permettent de créer l’image."
+    }
   },
   {
-    de: ["Typen der Echographie",
-      "2D zeigt Schnittbilder, 3D erzeugt räumliche Rekonstruktionen und 4D zeigt Bewegungen in Echtzeit. Der Doppler misst zusätzlich den Blutfluss durch den Doppler-Effekt. In der Kardiologie analysiert man Herzklappen, in der Abdominaldiagnostik Organe und in der Schwangerschaft die Entwicklung des Fötus."
-    ],
-    fr: ["Types d’échographie",
-      "La 2D montre des coupes, la 3D reconstruit des volumes et la 4D montre le mouvement en temps réel. Le Doppler mesure le flux sanguin grâce à l’effet Doppler. Il est utilisé en cardiologie, en imagerie abdominale et en obstétrique."
-    ]
+    de: {
+      title: "Typen der Echographie",
+      text: "2D zeigt Schnittbilder, 3D erzeugt räumliche Rekonstruktionen und 4D zeigt Bewegungen in Echtzeit. Der Doppler misst zusätzlich den Blutfluss durch den Doppler-Effekt. In der Kardiologie analysiert man Herzklappen, in der Abdominaldiagnostik Organe und in der Schwangerschaft die Entwicklung des Fötus."
+    },
+    fr: {
+      title: "Types d’échographie",
+      text: "La 2D montre des coupes, la 3D reconstruit des volumes et la 4D montre le mouvement en temps réel. Le Doppler mesure le flux sanguin grâce à l’effet Doppler. Il est utilisé en cardiologie, en imagerie abdominale et en obstétrique."
+    }
   },
   {
-    de: ["Fazit",
-      "Die Echographie ist eine der wichtigsten Methoden der modernen Medizin. Sie ist sicher, schnell und vielseitig einsetzbar. Trotz ihrer Abhängigkeit vom Bediener bleibt sie unverzichtbar für Diagnose und Überwachung."
-    ],
-    fr: ["Conclusion",
-      "L’échographie est une technique essentielle en médecine moderne. Elle est rapide, sûre et très polyvalente, malgré une dépendance à l’opérateur."
-    ]
+    de: {
+      title: "Fazit",
+      text: "Die Echographie ist eine der wichtigsten Methoden der modernen Medizin. Sie ist sicher, schnell und vielseitig einsetzbar. Trotz ihrer Abhängigkeit vom Bediener bleibt sie unverzichtbar für Diagnose und Überwachung."
+    },
+    fr: {
+      title: "Conclusion",
+      text: "L’échographie est une technique essentielle en médecine moderne. Elle est rapide, sûre et très polyvalente, malgré une dépendance à l’opérateur."
+    }
   }
 ];
-
 
 
 /* =========================
