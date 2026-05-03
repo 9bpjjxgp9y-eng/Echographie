@@ -169,17 +169,8 @@ function showNav(mode) {
   const nav = document.getElementById("nav");
   const restart = document.getElementById("restartBtn");
 
-  if (mode === "home") {
-    nav.classList.add("hidden");
-  } else {
-    nav.classList.remove("hidden");
-  }
-
-  if (mode === "quiz") {
-    restart.style.display = "inline-block";
-  } else {
-    restart.style.display = "none";
-  }
+  nav.classList.toggle("hidden", mode === "home");
+  restart.style.display = (mode === "quiz") ? "inline-block" : "none";
 }
 
 /* RESET */
@@ -199,8 +190,10 @@ function goHome() {
 function setLang(l) {
   lang = l;
   localStorage.setItem("lang", l);
-  updateUI();   
+  updateUI();
   goHome();
+  showTheory();
+  showQA();
 }
 
 /* THEORY */
@@ -270,7 +263,14 @@ function startQuiz() {
   score = 0;
   index = 0;
   results = [];
-  quiz = [...questions].sort(() => Math.random() - 0.5);
+
+  quiz = [...questions]
+    .sort(() => Math.random() - 0.5)
+    .map(q => ({
+      q: q[lang].q,
+      o: q[lang].o,
+      a: q.a
+    }));
 
   document.getElementById("quiz").classList.remove("hidden");
   showNav("quiz");
@@ -285,13 +285,12 @@ function shuffle(arr){
 function showQ(){
   if(index >= quiz.length) return showResult();
 
-  const q = quiz[index][lang];
+  const q = quiz[index];
 
   document.getElementById("question").innerText = q.q;
 
-  // 👉 WICHTIG: Antworten JEDES MAL neu mischen
   const shuffledAnswers = q.o
-    .map((text, i) => ({ text, i })) // Originalindex behalten
+    .map((text, i) => ({ text, i }))
     .sort(() => Math.random() - 0.5);
 
   document.getElementById("answers").innerHTML =
@@ -309,8 +308,8 @@ function answer(i) {
   if (i === q.a) score++;
 
   results.push({
-    q: q[lang].q,
-    o: q[lang].o,
+    q: q.q,
+    o: q.o,
     u: i,
     c: q.a
   });
