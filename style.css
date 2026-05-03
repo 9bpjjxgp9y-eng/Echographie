@@ -1,122 +1,61 @@
 body {
-
   font-family: Arial, sans-serif;
-
   margin: 0;
-
-  background: #f5f5f5;
-
+  background: #f7f1ec; /* soft beige */
+  color: #2b2b2b;
+  font-size: 18px;
 }
-
-.app {
-
-  max-width: 500px;
-
-  margin: auto;
-
-  padding: 20px;
-
-}
-
 
 h1 {
   text-align: center;
-  font-size: 38px;
-}
-h2 {
-  font-size: 26px;
+  color: #5a3e36;
 }
 
-.hidden {
-  display: none;
-}
-
-
-.card {
-
-  background: white;
-
-  padding: 15px;
-
-  margin-bottom: 15px;
-
-  border-radius: 10px;
-
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-
-button {
-
-  width: 100%;
-
-  padding: 12px;
-
-  margin: 5px 0;
-
-  border: none;
-
-  border-radius: 8px;
-
-  background: #007bff;
-
-  color: white;
-
-  font-size: 16px;
-
-}
-
-
-#progressContainer {
-
-  width: 100%;
-
-  height: 8px;
-
-  background: #ddd;
-
-  border-radius: 5px;
-
-  margin-bottom: 20px;
-
-}
-#fill {
-
-  height: 100%;
-
-  width: 0%;
-
-  background: #4caf50;
-
-  border-radius: 5px;
-
-  transition: width 0.3s;
-
-}
-
-.nav {
-
-  position: fixed;
-
-  bottom: 10px;
-
-  left: 0;
-
-  right: 0;
-
-  display: flex;
-
-  justify-content: space-around;
-
-}
-
-.theory-title {
-  font-size: 24px;
-}
-
-.theory-text {
-  font-size: 19px;
-  line-height: 1.6;
+.app {
+  max-width: 520px;
+  margin: auto;
+  padding: 20px;
 }
 
 .screen {
-  padding: 20px;
+  padding: 10px;
+}
+
+.card {
+  background: #fffaf7;
+  padding: 18px;
+  margin-bottom: 15px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(90, 62, 54, 0.1);
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  margin: 6px 0;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  background: #d8a7b1; /* soft pink */
+  color: white;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #c98a98;
+}
+
+.nav {
+  position: fixed;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav button {
+  width: 70px;
+  border-radius: 50%;
+  font-size: 20px;
 }
