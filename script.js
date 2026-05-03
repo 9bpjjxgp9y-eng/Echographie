@@ -5,6 +5,27 @@ let quiz = [];
 let results = [];
 let currentScreen = "home";
 let screenHistory = [];
+function setScreen(id, addHistory = true) {
+
+  const current = document.querySelector(".screen:not(.hidden)");
+
+  if (current && addHistory && current.id !== id) {
+
+    screenHistory.push(current.id);
+
+  }
+
+  document.querySelectorAll(".screen").forEach(s => {
+
+    s.classList.add("hidden");
+
+  });
+
+  document.getElementById(id).classList.remove("hidden");
+
+  updateNav(id);
+
+}
 let startX = 0;
 
 document.addEventListener("touchstart", e => {
@@ -180,22 +201,16 @@ const questions = [
 ];
 
 /* ---------- NAV ---------- */
-function showNav(mode) {
+function updateNav(screen) {
   const nav = document.getElementById("nav");
   const restart = document.getElementById("restartBtn");
   const back = document.getElementById("backBtn");
 
-  if (mode === "home") {
-    nav.classList.add("hidden");
-    return;
-  }
+  nav.classList.toggle("hidden", screen === "home");
 
-  nav.classList.remove("hidden");
-
-  restart.style.display = (mode === "quiz") ? "inline-block" : "none";
-  back.style.display = "inline-block";
+  back.style.display = screen === "home" ? "none" : "inline-block";
+  restart.style.display = screen === "quiz" ? "inline-block" : "none";
 }
-
 /* ---------- SCREEN CONTROL (IMPORTANT FIX) ---------- */
 function showScreen(id){
   const current = document.querySelector(".screen:not(.hidden)");
@@ -213,15 +228,18 @@ function showScreen(id){
 
 /* ---------- HOME ---------- */
 function goHome() {
-  screenHistory = []; 
+  screenHistory = [];
+  setScreen("home", false);
+}
 
-  document.querySelectorAll(".screen").forEach(s => {
-    s.classList.add("hidden");
-  });
+function goBack() {
+  const last = screenHistory.pop();
+  if (!last) return goHome();
+  setScreen(last, false);
+}
 
-  document.getElementById("home").classList.remove("hidden");
-
-  showNav("home");
+function restartQuiz() {
+  startQuiz();
 }
 /* ---------- LANG ---------- */
 function setLang(l) {
