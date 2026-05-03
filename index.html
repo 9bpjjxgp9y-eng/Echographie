@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
-<head:
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Ultraschall LernApp - Perfekt</title>
@@ -21,21 +21,18 @@
             padding: 20px;
         }
 
-        /* App Container */
         #app {
             max-width: 1300px;
             width: 100%;
             background: white;
             border-radius: 64px;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
             overflow: hidden;
-            transition: all 0.2s ease;
         }
 
-        /* Seiten (jede Seite ist ein screen) */
         .screen {
             display: none;
-            padding: 2rem 2rem 2rem 2rem;
+            padding: 2rem;
             animation: fadeIn 0.25s ease;
         }
 
@@ -48,7 +45,6 @@
             to { opacity: 1; transform: translateY(0);}
         }
 
-        /* Header mit Home & Zurück */
         .nav-bar {
             display: flex;
             justify-content: space-between;
@@ -63,6 +59,7 @@
         .nav-group {
             display: flex;
             gap: 16px;
+            flex-wrap: wrap;
         }
 
         button {
@@ -81,41 +78,33 @@
             gap: 8px;
         }
 
-        button i { font-style: normal; font-weight: bold; font-size: 1.2rem; }
-
         button:active { transform: scale(0.96); background: #0f172a;}
 
-        .btn-primary {
-            background: #0f3b5c;
-            box-shadow: 0 8px 18px rgba(0, 60, 90, 0.3);
-        }
-        .btn-primary:hover { background: #1e4a76;}
-
+        .btn-primary { background: #0f3b5c; }
         .btn-quiz { background: #2c3e66; }
         .btn-theory { background: #2b5e3b; }
         .btn-qa { background: #9b4a1f; }
+        .btn-history { background: #6b21a5; }
 
-        /* Hauptmenü Buttons */
         .main-buttons {
             display: flex;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 20px;
             justify-content: center;
-            margin: 60px 0 50px;
+            margin: 40px 0 30px;
         }
         .main-btn {
             flex: 1;
-            min-width: 200px;
-            padding: 28px 20px;
-            font-size: 1.8rem;
+            min-width: 180px;
+            padding: 24px 16px;
+            font-size: 1.4rem;
             font-weight: bold;
-            border-radius: 56px;
+            border-radius: 48px;
             justify-content: center;
-            background: #2d3e50;
         }
 
         .sprache-block {
-            margin-top: 50px;
+            margin-top: 40px;
             text-align: center;
             background: #eef2ff;
             padding: 20px;
@@ -124,46 +113,30 @@
             justify-content: center;
             gap: 30px;
         }
-        .lang-btn {
-            background: #334155;
-            padding: 12px 28px;
-            font-size: 1.2rem;
-        }
 
-        /* Theorie styling */
         .theory-card {
             background: #f8fafc;
             border-radius: 42px;
             padding: 1.8rem;
             margin-bottom: 24px;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
             border-left: 8px solid #2b5e3b;
         }
-        .theory-card h3 {
-            color: #1e3a2f;
-            margin-bottom: 12px;
-            font-size: 1.6rem;
-        }
-        .theory-card p {
-            line-height: 1.5;
-            color: #1e293b;
-            font-size: 1rem;
-        }
+        .theory-card h3 { color: #1e3a2f; margin-bottom: 12px; font-size: 1.5rem; }
+        .theory-card p { line-height: 1.5; color: #1e293b; }
 
-        /* Quiz */
         .quiz-question {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             font-weight: 700;
             background: #eef2ff;
             padding: 24px;
             border-radius: 48px;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
         }
         .answers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 18px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 25px;
         }
         .answer-btn {
             background: white;
@@ -171,132 +144,101 @@
             color: #0f172a;
             justify-content: flex-start;
             text-align: left;
-            padding: 16px 20px;
+            padding: 14px 20px;
             border-radius: 50px;
-            font-weight: 500;
-            box-shadow: none;
         }
-        .answer-btn:hover:not(:disabled) {
-            background: #d9e6f5;
-            border-color: #2c3e66;
+        .answer-btn.selected { background: #b9d8ff; border-color: #1e4a76; }
+
+        .progress-bar-container {
+            background: #e2e8f0;
+            border-radius: 30px;
+            height: 12px;
+            margin: 20px 0;
+            overflow: hidden;
         }
-        .disabled-ans {
-            opacity: 0.7;
-            pointer-events: none;
+        .progress-bar {
+            background: #2b5e3b;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 30px;
         }
-        .quiz-footer {
+
+        .fill-blank-input {
+            width: 200px;
+            padding: 12px 16px;
+            font-size: 1rem;
+            border: 2px solid #cbd5e1;
+            border-radius: 50px;
+            margin: 10px 0;
+        }
+        .difficulty-buttons {
             display: flex;
-            gap: 20px;
-            margin-top: 25px;
-            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+            justify-content: center;
         }
+        .difficulty-btn { background: #475569; padding: 8px 20px; font-size: 0.9rem; }
+        .difficulty-btn.active { background: #2b5e3b; }
+
         .scoreboard {
             background: #1e293b;
             color: white;
-            border-radius: 60px;
+            border-radius: 48px;
             padding: 28px;
             margin-top: 20px;
         }
-        .feedback-list {
-            margin-top: 24px;
-            background: #ffffffdb;
-            padding: 20px;
-            border-radius: 38px;
-        }
-        .feedback-item {
-            border-bottom: 1px solid #ccc;
-            padding: 12px;
-            font-size: 0.95rem;
-        }
+        .feedback-list { margin-top: 24px; background: #f1f5f9; padding: 20px; border-radius: 32px; }
+        .feedback-item { border-bottom: 1px solid #ccc; padding: 12px; }
 
-        /* QA Bereich */
-        .qa-container {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-        .qa-item {
-            background: #fff7ed;
-            border-radius: 48px;
-            padding: 28px;
-            border: 1px solid #fed7aa;
-        }
-        .qa-question {
-            font-size: 1.6rem;
-            font-weight: bold;
-            margin-bottom: 16px;
-            color: #9b4a1f;
-        }
-        .qa-answer {
-            font-size: 1.2rem;
-            background: white;
-            padding: 18px;
-            border-radius: 40px;
-            color: #2d3e50;
-        }
+        .qa-container { display: flex; flex-direction: column; gap: 32px; }
+        .qa-item { background: #fff7ed; border-radius: 48px; padding: 28px; }
+        .qa-question { font-size: 1.4rem; font-weight: bold; margin-bottom: 16px; color: #9b4a1f; }
+        .qa-answer { font-size: 1.1rem; background: white; padding: 18px; border-radius: 40px; }
 
-        h1 {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #1e3c72, #2b5876);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 10px;
-        }
-
+        h1 { font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, #1e3c72, #2b5876); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        
         @media (max-width: 680px) {
             .screen { padding: 1.2rem; }
-            .main-btn { font-size: 1.3rem; padding: 18px; }
-            .quiz-question { font-size: 1.3rem; }
-        }
-        hr {
-            margin: 15px 0;
+            .quiz-question { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 <div id="app">
-    <!-- ============================================= -->
-    <!-- HOMESCREEN (Start) -->
-    <!-- ============================================= -->
+    <!-- HOMESCREEN -->
     <div id="home-screen" class="screen active">
-        <div style="text-align: center; margin-top: 20px;">
+        <div style="text-align: center;">
             <h1 id="home-title">📘 SonoMaster</h1>
-            <p id="home-subtitle" style="font-size: 1.2rem; margin-bottom: 15px;">Echographie – Lernen mit System</p>
+            <p id="home-subtitle" style="font-size: 1.1rem; margin: 10px 0;">Echographie – Lernen mit System</p>
         </div>
         <div class="main-buttons">
             <button class="main-btn btn-theory" id="goto-theory-home">📖 THEORIE</button>
-            <button class="main-btn btn-quiz" id="goto-quiz-home">❓ QUIZ</button>
-            <button class="main-btn btn-qa" id="goto-qa-home">💬 FRAGE & ANTWORT</button>
+            <button class="main-btn btn-quiz" id="goto-quiz-home">❓ QUIZ MC</button>
+            <button class="main-btn btn-primary" id="goto-fillblank-home">✏️ LÜCKENTEXT</button>
+            <button class="main-btn btn-qa" id="goto-qa-home">💬 Q&A</button>
+            <button class="main-btn btn-history" id="goto-history-home">📜 GESCHICHTE</button>
         </div>
         <div class="sprache-block">
-            <span style="font-weight: 500; align-self: center;" id="lang-label">🌐 Sprache / Langue :</span>
+            <span id="lang-label">🌐 Sprache / Langue :</span>
             <button class="lang-btn" id="lang-de">DEUTSCH</button>
             <button class="lang-btn" id="lang-fr">FRANÇAIS</button>
         </div>
-        <div style="text-align: center; margin-top: 30px; opacity: 0.7; font-size: 0.8rem;" id="home-footer">
-            ⬅️ Navigation: Home & Zurück jederzeit verfügbar
-        </div>
     </div>
 
-    <!-- ============================================= -->
-    <!-- THEORIE SEITE (umfangreiche texte) -->
-    <!-- ============================================= -->
+    <!-- THEORIE SEITE -->
     <div id="theory-screen" class="screen">
         <div class="nav-bar">
             <div class="nav-group">
                 <button id="theory-home-btn">🏠 HOME</button>
                 <button id="theory-back-btn">◀ ZURÜCK</button>
             </div>
-            <div><span style="font-weight: bold;" id="theory-header-label">📖 Theorie-Kapitel</span></div>
+            <div id="theory-header">📖 Theorie</div>
         </div>
         <div id="theory-content"></div>
     </div>
 
-    <!-- ============================================= -->
-    <!-- QUIZ SEITE (15 Fragen, zufällige Antwortreihenfolge, Restart, Score) -->
-    <!-- ============================================= -->
+    <!-- QUIZ MC SEITE -->
     <div id="quiz-screen" class="screen">
         <div class="nav-bar">
             <div class="nav-group">
@@ -306,352 +248,374 @@
             </div>
             <div><span id="quiz-progress">Frage 1 / 15</span></div>
         </div>
-        <div id="quiz-panel">
-            <!-- dynamisch: frage + antworten -->
-        </div>
+        <div class="progress-bar-container"><div class="progress-bar" id="quiz-progress-bar"></div></div>
+        <div id="quiz-panel"></div>
     </div>
 
-    <!-- ============================================= -->
-    <!-- FRAGE & ANTWORT SEITE (QA) -->
-    <!-- ============================================= -->
+    <!-- LÜCKENTEXT SEITE -->
+    <div id="fillblank-screen" class="screen">
+        <div class="nav-bar">
+            <div class="nav-group">
+                <button id="fillblank-home-btn">🏠 HOME</button>
+                <button id="fillblank-back-btn">◀ ZURÜCK</button>
+                <button id="fillblank-restart-btn">🔄 NEUSTART</button>
+            </div>
+            <div id="fb-difficulty-label">Schwierigkeit: Leicht</div>
+        </div>
+        <div class="difficulty-buttons">
+            <button class="difficulty-btn" data-diff="easy">⭐ Leicht</button>
+            <button class="difficulty-btn" data-diff="medium">⭐⭐ Mittel</button>
+            <button class="difficulty-btn" data-diff="hard">⭐⭐⭐ Schwer</button>
+        </div>
+        <div class="progress-bar-container"><div class="progress-bar" id="fb-progress-bar"></div></div>
+        <div id="fillblank-panel"></div>
+    </div>
+
+    <!-- Q&A SEITE -->
     <div id="qa-screen" class="screen">
         <div class="nav-bar">
             <div class="nav-group">
                 <button id="qa-home-btn">🏠 HOME</button>
                 <button id="qa-back-btn">◀ ZURÜCK</button>
             </div>
-            <div id="qa-header-label">❓ Q&A Bereich</div>
+            <div>❓ Q&A</div>
         </div>
         <div class="qa-container" id="qa-container"></div>
     </div>
 
+    <!-- GESCHICHTE SEITE -->
+    <div id="history-screen" class="screen">
+        <div class="nav-bar">
+            <div class="nav-group">
+                <button id="history-home-btn">🏠 HOME</button>
+                <button id="history-back-btn">◀ ZURÜCK</button>
+            </div>
+            <div>📜 Geschichte der Echographie</div>
+        </div>
+        <div id="history-content" class="theory-card" style="font-size:1.05rem; line-height:1.6;"></div>
+    </div>
 </div>
 
 <script>
-    // ---------- Sprachtexte für die gesamte App: Home, Theorie, QA, UI ----------
-    let currentLang = 'de';   // 'de' oder 'fr'
+    let currentLang = 'de';
+    let screenStack = ["home"];
 
-    // ===================== THEORIE TEXTE (DEINE EXAKTEN VORGABEN) =====================
+    // ==================== THEORIE TEXTE (wie vorher) ====================
     const theoryChapters = [
-        { // 1. Einführung
-            de: { title: "📘 Einführung", text: "Echographie ist eine sichere Echtzeit-Ultraschallmethode zur medizinischen Bildgebung. Sie arbeitet ohne ionisierende Strahlung und nutzt Reflexionen von Schallwellen, um innere Strukturen sichtbar zu machen. Besonders wichtig ist sie, weil sie nicht invasiv ist, keine Schmerzen verursacht und sofort Ergebnisse liefert. Ärzte können damit Organe in Bewegung beobachten, etwa das Herz oder ein ungeborenes Kind. Dadurch ist sie ein zentrales Werkzeug in der modernen Diagnostik." },
-            fr: { title: "📘 Introduction", text: "L'échographie est une méthode d'imagerie en temps réel utilisant les ultrasons. Elle est non invasive, sans radiation ionisante et permet d'observer les structures internes du corps. Elle est essentielle en médecine moderne car elle fournit des résultats immédiats et permet d'analyser le mouvement des organes comme le cœur ou le fœtus." }
-        },
-        { // 2. Ultraschall
-            de: { title: "🌊 Ultraschall", text: "Ultraschall sind mechanische Schallwellen mit Frequenzen über 20 kHz. In der Medizin werden meist 1–15 MHz verwendet, um eine hohe Bildauflösung zu erreichen. Die Wellen breiten sich longitudinal aus und werden unterschiedlich stark an Gewebegrenzen reflektiert. Dadurch entstehen die Bilder in der Echographie." },
-            fr: { title: "🌊 Ultrasons", text: "Les ultrasons sont des ondes mécaniques de fréquence supérieure à 20 kHz. En médecine, on utilise souvent 1 à 15 MHz pour obtenir une bonne résolution. Ils se propagent de manière longitudinale et sont réfléchis différemment selon les tissus, ce qui permet de créer les images." }
-        },
-        { // 3. Kompression & Rarefaktion
-            de: { title: "🔊 Kompression & Rarefaktion", text: "Eine Ultraschallwelle besteht aus abwechselnden Zonen von Kompression und Rarefaktion. Bei der Kompression werden Teilchen zusammengedrückt, bei der Rarefaktion wieder auseinandergezogen. Dieser Wechsel erzeugt die Druckschwankungen, die vom Gerät gemessen werden und die Bildinformation liefern." },
-            fr: { title: "🔊 Compression & raréfaction", text: "Une onde ultrasonore est composée d'alternances de compression et de raréfaction. Les particules sont comprimées puis relâchées. Ces variations de pression sont détectées par la sonde et permettent de créer l'image." }
-        },
-        { // 4. Typen der Echographie
-            de: { title: "🖥️ Typen der Echographie", text: "2D zeigt Schnittbilder, 3D erzeugt räumliche Rekonstruktionen und 4D zeigt Bewegungen in Echtzeit. Der Doppler misst zusätzlich den Blutfluss durch den Doppler-Effekt. In der Kardiologie analysiert man Herzklappen, in der Abdominaldiagnostik Organe und in der Schwangerschaft die Entwicklung des Fötus." },
-            fr: { title: "🖥️ Types d'échographie", text: "La 2D montre des coupes, la 3D reconstruit des volumes et la 4D montre le mouvement en temps réel. Le Doppler mesure le flux sanguin grâce à l'effet Doppler. Il est utilisé en cardiologie, en imagerie abdominale et en obstétrique." }
-        },
-        { // 5. Fazit
-            de: { title: "🎯 Fazit", text: "Die Echographie ist eine der wichtigsten Methoden der modernen Medizin. Sie ist sicher, schnell und vielseitig einsetzbar. Trotz ihrer Abhängigkeit vom Bediener bleibt sie unverzichtbar für Diagnose und Überwachung." },
-            fr: { title: "🎯 Conclusion", text: "L'échographie est une technique essentielle en médecine moderne. Elle est rapide, sûre et très polyvalente, malgré une dépendance à l'opérateur." }
-        }
+        { de: { title: "📘 Einführung", text: "Echographie ist eine sichere Echtzeit-Ultraschallmethode zur medizinischen Bildgebung. Sie arbeitet ohne ionisierende Strahlung und nutzt Reflexionen von Schallwellen, um innere Strukturen sichtbar zu machen. Besonders wichtig ist sie, weil sie nicht invasiv ist, keine Schmerzen verursacht und sofort Ergebnisse liefert. Ärzte können damit Organe in Bewegung beobachten, etwa das Herz oder ein ungeborenes Kind. Dadurch ist sie ein zentrales Werkzeug in der modernen Diagnostik." },
+          fr: { title: "📘 Introduction", text: "L'échographie est une méthode d'imagerie en temps réel utilisant les ultrasons. Elle est non invasive, sans radiation ionisante et permet d'observer les structures internes du corps. Elle est essentielle en médecine moderne car elle fournit des résultats immédiats et permet d'analyser le mouvement des organes comme le cœur ou le fœtus." } },
+        { de: { title: "🌊 Ultraschall", text: "Ultraschall sind mechanische Schallwellen mit Frequenzen über 20 kHz. In der Medizin werden meist 1–15 MHz verwendet, um eine hohe Bildauflösung zu erreichen. Die Wellen breiten sich longitudinal aus und werden unterschiedlich stark an Gewebegrenzen reflektiert." },
+          fr: { title: "🌊 Ultrasons", text: "Les ultrasons sont des ondes mécaniques de fréquence supérieure à 20 kHz. En médecine, on utilise souvent 1 à 15 MHz pour obtenir une bonne résolution. Ils se propagent de manière longitudinale." } },
+        { de: { title: "🔊 Kompression & Rarefaktion", text: "Eine Ultraschallwelle besteht aus abwechselnden Zonen von Kompression und Rarefaktion. Bei der Kompression werden Teilchen zusammengedrückt, bei der Rarefaktion auseinandergezogen." },
+          fr: { title: "🔊 Compression & raréfaction", text: "Une onde ultrasonore est composée d'alternances de compression et de raréfaction. Les particules sont comprimées puis relâchées." } },
+        { de: { title: "🖥️ Typen der Echographie", text: "2D zeigt Schnittbilder, 3D erzeugt räumliche Rekonstruktionen und 4D zeigt Bewegungen in Echtzeit. Der Doppler misst zusätzlich den Blutfluss." },
+          fr: { title: "🖥️ Types d'échographie", text: "La 2D montre des coupes, la 3D reconstruit des volumes et la 4D montre le mouvement en temps réel. Le Doppler mesure le flux sanguin." } },
+        { de: { title: "🎯 Fazit", text: "Die Echographie ist eine der wichtigsten Methoden der modernen Medizin. Sie ist sicher, schnell und vielseitig einsetzbar." },
+          fr: { title: "🎯 Conclusion", text: "L'échographie est une technique essentielle en médecine moderne. Elle est rapide, sûre et très polyvalente." } }
     ];
 
-    // Texts for the UI elements (Home and navigation bits)
-    const homeTexts = {
-        de: { title: "📘 SonoMaster", subtitle: "Echographie – Lernen mit System", theorieBtn: "📖 THEORIE", quizBtn: "❓ QUIZ", qaBtn: "💬 FRAGE & ANTWORT", langLabel: "🌐 Sprache / Langue :", footer: "⬅️ Navigation: Home & Zurück jederzeit verfügbar" },
-        fr: { title: "📘 SonoMaster", subtitle: "Échographie – Apprendre systématiquement", theorieBtn: "📖 THÉORIE", quizBtn: "❓ QUIZ", qaBtn: "💬 QUESTIONS & RÉPONSES", langLabel: "🌐 Langue :", footer: "⬅️ Navigation: Accueil & Retour toujours disponibles" }
+    // ==================== GESCHICHTE (200+ Wörter) ====================
+    const historyTexts = {
+        de: `📜 **Geschichte der Echographie (Ultraschall)**
+
+Die Anfänge der Ultraschalltechnologie reichen bis ins 19. Jahrhundert zurück. 1880 entdeckten Pierre und Jacques Curie den piezoelektrischen Effekt – die Grundlage für moderne Ultraschallwandler. Während des Ersten Weltkriegs nutzte Paul Langevin den piezoelektrischen Effekt zur Ortung von U-Booten (Sonar).
+
+In den 1940er Jahren begann der Arzt Karl Dussik in Österreich, Ultraschall erstmals für medizinische Zwecke einzusetzen, um Hirntumore zu lokalisieren. Er gilt als Pionier der medizinischen Ultraschalldiagnostik. In den 1950er Jahren entwickelten Douglas Howry und Joseph Holmes in den USA die ersten B-Mode-Geräte, die zweidimensionale Schnittbilder erzeugten.
+
+Ein Durchbruch gelang 1958 Ian Donald in Schottland, der Ultraschall zur Untersuchung von Schwangeren einsetzte und damit die fetale Medizin revolutionierte. Seine Arbeiten führten zur ersten kommerziellen Ultraschallmaschine "Diasonograph".
+
+In den 1970er und 1980er Jahren kamen Echtzeit-Techniken, Doppler-Ultraschall (zur Blutflussmessung) und verbesserte Bildqualität auf. Heute ist die Echographie aus der Medizin nicht mehr wegzudenken – sie ist strahlungsfrei, kostengünstig und liefert sofortige Bilder. Moderne Entwicklungen umfassen 3D/4D-Ultraschall, kontrastmittelverstärkte Sonographie und die Elastographie zur Gewebesteifigkeitsmessung. Die Echographie rettet täglich Leben und ist ein Paradebeispiel dafür, wie physikalische Grundlagen zur medizinischen Revolution führen.`,
+        fr: `📜 **Histoire de l'échographie**
+
+Les débuts de la technologie ultrasonore remontent au 19ème siècle. En 1880, Pierre et Jacques Curie découvrent l'effet piézoélectrique – la base des transducteurs à ultrasons modernes. Pendant la Première Guerre mondiale, Paul Langevin utilise cet effet pour localiser les sous-marins (sonar).
+
+Dans les années 1940, le médecin autrichien Karl Dussik utilise les ultrasons à des fins médicales pour localiser des tumeurs cérébrales. Il est considéré comme un pionnier du diagnostic médical par ultrasons. Dans les années 1950, Douglas Howry et Joseph Holmes développent aux États-Unis les premiers appareils en mode B, produisant des images en coupe bidimensionnelles.
+
+Une percée majeure a lieu en 1958 quand Ian Donald en Écosse utilise les ultrasons pour examiner les femmes enceintes, révolutionnant la médecine fœtale. Ses travaux aboutissent au premier échographe commercial "Diasonograph".
+
+Dans les années 1970 et 1980 apparaissent les techniques en temps réel, l'échographie Doppler (mesure du flux sanguin) et une meilleure qualité d'image. Aujourd'hui, l'échographie est indispensable en médecine – sans rayonnement, peu coûteuse et fournissant des images immédiates. Les développements modernes incluent l'échographie 3D/4D, l'échographie de contraste et l'élastographie. L'échographie sauve des vies quotidiennement et illustre parfaitement comment la physique fondamentale peut révolutionner la médecine.`
     };
 
-    // QA Texte (zwei Fragen/Antworten zu Echographie)
+    // ==================== Q&A (deine beiden Fragen) ====================
     const qaData = {
         de: [
-            { frage: "Was ist der physikalische Unterschied zwischen Kompression und Rarefaktion?", antwort: "Kompression = Druckmaximum, Rarefaktion = Druckminimum; gemeinsam bilden sie eine Longitudinalwelle. Die Kompression schiebt Teilchen zusammen, die Rarefaktion zieht sie auseinander – das ist der Mechanismus der Wellenausbreitung." },
-            { frage: "Warum limitiert Luft die Ultraschalluntersuchung?", antwort: "Luft hat eine sehr niedrige akustische Impedanz im Vergleich zu Gewebe. Das führt zu einer extrem starken Reflexion (ca. 99 % der Schallenergie), sodass kaum Ultraschall ins Gewebe eindringt und kein brauchbares Bild entsteht." }
+            { q: "Was ist die akustische Impedanz? 🥸", a: "Die akustische Impedanz ist das Produkt aus Dichte des Mediums und Schallgeschwindigkeit. Sie bestimmt, wie Ultraschall an Grenzflächen reagiert. Unterschiedliche Impedanzen führen zu Reflexion, Brechung sowie Absorption und Streuung der Welle." },
+            { q: "Warum gibt es verschiedene Ultraschallmodi (2D, 3D, 4D, Doppler)? 🤷‍♀️", a: "Es gibt verschiedene Modi, weil sie unterschiedliche Informationen liefern. 2D zeigt Schnittbilder der Organe, 3D rekonstruiert Volumenstrukturen und 4D zeigt diese in Echtzeit mit Bewegung. Der Doppler-Modus analysiert dagegen den Blutfluss mithilfe des Doppler-Effekts." }
         ],
         fr: [
-            { frage: "Quelle est la différence physique entre compression et raréfaction en échographie?", reponse: "Compression = pression maximale, raréfaction = pression minimale ; ensemble elles forment une onde longitudinale. La compression rapproche les particules, la raréfaction les écarte – c'est le mécanisme de propagation des ondes." },
-            { frage: "Pourquoi l'air limite-t-il l'examen échographique?", reponse: "L'air a une impédance acoustique très faible par rapport aux tissus. Cela provoque une réflexion extrêmement forte (environ 99 % de l'énergie ultrasonore), empêchant la pénétration des ondes et la formation d'une image exploitable." }
+            { q: "Qu'est-ce que l'impédance acoustique ? 🥸", a: "L'impédance acoustique est définie comme le produit de la densité du milieu et de la vitesse du son. Elle détermine le comportement des ultrasons à une interface et entraîne réflexion, réfraction, absorption et diffusion." },
+            { q: "Pourquoi existe-t-il différents modes (2D, 3D, 4D, Doppler) ? 🤷‍♀️", a: "Les différents modes permettent d'obtenir des informations différentes : le 2D montre des coupes, le 3D reconstruit des volumes et le 4D montre le mouvement en temps réel. Le mode Doppler analyse le flux sanguin grâce à l'effet Doppler." }
         ]
     };
 
-    // ----- 15 Quizfragen (vier Antworten, immer zufällige Reihenfolge zur Laufzeit) -----
-    const quizQuestions = {
+    // ==================== QUIZ MC (15 Fragen) ====================
+    const mcQuestions = {
         de: [
-            { text: "Welche Frequenzbereiche werden typisch für Abdomensonographie genutzt?", answers: ["2-5 MHz", "10-15 MHz", "20-30 MHz", "<1 MHz"], correct: 0 },
-            { text: "Was bedeutet Hyperechogen?", answers: ["dunkel / schwarz", "hell / starke Reflexion", "schallfrei", "schwach reflektierend"], correct: 1 },
-            { text: "Akustische Impedanz ist abhängig von:", answers: ["Dichte & Schallgeschwindigkeit", "nur der Dichte", "Frequenz", "Amplitude"], correct: 0 },
-            { text: "Welche Schallkopfart eignet sich für Schilddrüsenuntersuchungen?", answers: ["Linear", "Konvex", "Phased Array", "Sektor"], correct: 0 },
-            { text: "Was versteht man unter Rarefaktion?", answers: ["Verdichtung", "Druckabnahme / Ausdehnung", "Reflexion", "Absorption"], correct: 1 },
-            { text: "Welcher Effekt ermöglicht die Blutflussdarstellung?", answers: ["Doppler-Effekt", "Kompressions-Effekt", "Rayleigh Streuung", "Kavitation"], correct: 0 },
-            { text: "Echographie ist besonders gut geeignet für:", answers: ["Knochen", "Lunge (belüftet)", "Weichteile / Parenchym", "Dickdarm mit Luft"], correct: 2 },
-            { text: "Was bedeutet Anechogen?", answers: ["keine Echos (flüssigkeitsgefüllt)", "sehr hell", "gemischt", "niedrige Frequenz"], correct: 0 },
-            { text: "Die Auflösung wird mit höherer Frequenz ...", answers: ["besser", "schlechter", "unverändert", "unberechenbar"], correct: 0 },
-            { text: "Welches Medium lässt Ultraschall kaum passieren?", answers: ["Luft", "Wasser", "Weichteil", "Muskel"], correct: 0 },
-            { text: "Was misst die Elastographie?", answers: ["Gewebesteifigkeit", "Flussgeschwindigkeit", "Temperatur", "Dichte"], correct: 0 },
-            { text: "Wie nennt man die Rauschunterdrückung im Bild?", answers: ["Compound", "Harmonic Imaging", "Gain", "Tiefenausgleich"], correct: 1 },
-            { text: "Welche Art von Welle ist Ultraschall?", answers: ["Longitudinalwelle", "Transversalwelle", "Oberflächenwelle", "elektromagnetisch"], correct: 0 },
-            { text: "Für Schwangerschaftsuntersuchungen wird Frequenz meist zwischen:", answers: ["3-7 MHz", "12-18 MHz", "20 MHz", "<1 MHz"], correct: 0 },
-            { text: "Was ist die Rolle des Gels?", answers: ["Luftausschluss / Impedanzanpassung", "Kühlung", "Schalldämpfung", "Fokussierung"], correct: 0 }
+            { q: "Was nutzt Echographie?", o: ["Ultraschall", "Röntgen", "Licht", "Magnetfeld"], correct: 0 },
+            { q: "Welche Frequenz wird in der Echographie benutzt?", o: ["1–15 MHz", "20 Hz", "1 kHz", "100 Hz"], correct: 0 },
+            { q: "Warum Gel zwischen Apparat und Körper?", o: ["Luft entfernen", "Kühlen", "Farbe", "Schutz"], correct: 0 },
+            { q: "Was ist Reflexion?", o: ["Zurück", "Verschwindet", "Wird zerstört", "Bleibt"], correct: 0 },
+            { q: "Welche Struktur ist schwarz auf dem Bild?", o: ["Flüssigkeit", "Knochen", "Luft", "Metall"], correct: 0 },
+            { q: "Bedeutung: Hyperechogen?", o: ["Hell", "Dunkel", "Unsichtbar", "Rot"], correct: 0 },
+            { q: "Welche Sonde für das Herz?", o: ["Phased Array", "Linear", "Konvex", "Mini"], correct: 0 },
+            { q: "Ultraschall ist?", o: ["Longitudinal", "Quer", "Statisch", "Optisch"], correct: 0 },
+            { q: "Bedeutung: Absorption?", o: ["Wärme", "Licht", "Ton", "Druck"], correct: 0 },
+            { q: "Bedeutung: Impedanz?", o: ["Materialunterschied", "Farbe", "Zeit", "Größe"], correct: 0 },
+            { q: "Bedeutung: Echo?", o: ["Reflexion", "Absorption", "Brechung", "Stop"], correct: 0 },
+            { q: "Tiefe messen, wie?", o: ["Zeit", "Farbe", "Licht", "Masse"], correct: 0 },
+            { q: "3D?", o: ["Raum", "Ton", "Licht", "Hitze"], correct: 0 },
+            { q: "Doppler misst?", o: ["Blutfluss", "Temperatur", "Licht", "Druck"], correct: 0 },
+            { q: "Ultraschall Vorteil?", o: ["Sicher", "Gefährlich", "Langsam", "Teuer"], correct: 0 }
         ],
         fr: [
-            { text: "Plage de fréquences typique pour l'échographie abdominale ?", answers: ["2-5 MHz", "10-15 MHz", "20-30 MHz", "<1 MHz"], correct: 0 },
-            { text: "Que signifie hyperéchogène ?", answers: ["foncé / noir", "brillant / forte réflexion", "anéchogène", "faible réflexion"], correct: 1 },
-            { text: "L'impédance acoustique dépend de :", answers: ["densité & vitesse du son", "densité uniquement", "fréquence", "amplitude"], correct: 0 },
-            { text: "Quel type de sonde pour la thyroïde ?", answers: ["Linéaire", "Convexe", "Phased-array", "Sectoriel"], correct: 0 },
-            { text: "Qu'est-ce que la raréfaction ?", answers: ["Compression", "Diminution de pression", "Réflexion", "Absorption"], correct: 1 },
-            { text: "Quel effet permet d'imager le flux sanguin ?", answers: ["Doppler", "Compression", "Rayleigh", "Cavitation"], correct: 0 },
-            { text: "L'échographie est adaptée pour :", answers: ["Os", "Poumon aéré", "Tissus mous", "Colon rempli d'air"], correct: 2 },
-            { text: "Anéchogène signifie :", answers: ["sans écho (liquide)", "très brillant", "mixte", "basse fréquence"], correct: 0 },
-            { text: "La résolution avec une fréquence plus élevée devient :", answers: ["meilleure", "pire", "identique", "instable"], correct: 0 },
-            { text: "Quel milieu bloque presque les ultrasons ?", answers: ["Air", "Eau", "Tissus mous", "Muscle"], correct: 0 },
-            { text: "Que mesure l'élastographie ?", answers: ["Dureté tissulaire", "Vitesse sanguine", "Température", "Densité"], correct: 0 },
-            { text: "Nom d'une technique de réduction d'artefacts ?", answers: ["Compound", "Harmonic Imaging", "Gain", "TGC"], correct: 1 },
-            { text: "Type d'onde ultrasonore :", answers: ["Longitudinale", "Transversale", "Ondes de surface", "Électromagnétique"], correct: 0 },
-            { text: "Échographie obstétricale utilise généralement :", answers: ["3-7 MHz", "12-18 MHz", "20 MHz", "<1 MHz"], correct: 0 },
-            { text: "Rôle du gel échographique :", answers: ["Éviter l'air / adaptation d'impédance", "Refroidir", "Atténuer", "Focaliser"], correct: 0 }
+            { q: "Que utilise l'échographie ?", o: ["Ultrasons", "Rayons X", "Lumière", "Champ magnétique"], correct: 0 },
+            { q: "Quelle fréquence est utilisée en échographie?", o: ["1–15 MHz", "20 Hz", "1 kHz", "100 Hz"], correct: 0 },
+            { q: "Pourquoi mettre du gel entre l'appareil et le corps ?", o: ["Enlever l'air", "Refroidir", "Couleur", "Protection"], correct: 0 },
+            { q: "Réflexion, c'est quoi ?", o: ["Retour", "Disparaît", "Détruit", "Reste"], correct: 0 },
+            { q: "Quelle structure est noire sur l'image ?", o: ["Liquide", "Os", "Air", "Métal"], correct: 0 },
+            { q: "Hyperéchogène, c'est quoi ?", o: ["Clair", "Sombre", "Invisible", "Rouge"], correct: 0 },
+            { q: "Quelle sonde pour le cœur ?", o: ["Phased array", "Linéaire", "Convexe", "Mini"], correct: 0 },
+            { q: "Les ultrasons sont?", o: ["Longitudinaux", "Transversaux", "Statiques", "Optiques"], correct: 0 },
+            { q: "Absorption, c'est quoi?", o: ["Chaleur", "Lumière", "Son", "Pression"], correct: 0 },
+            { q: "Impédance, c'est quoi?", o: ["Différence matière", "Couleur", "Temps", "Taille"], correct: 0 },
+            { q: "Écho, c'est quoi?", o: ["Réflexion", "Absorption", "Réfraction", "Stop"], correct: 0 },
+            { q: "Mesurer la profondeur, comment?", o: ["Temps", "Couleur", "Lumière", "Masse"], correct: 0 },
+            { q: "3D?", o: ["Volume", "Son", "Lumière", "Chaleur"], correct: 0 },
+            { q: "Doppler mesure ?", o: ["Flux sanguin", "Température", "Lumière", "Pression"], correct: 0 },
+            { q: "Avantage de l'échographie?", o: ["Sûr", "Dangereux", "Lent", "Cher"], correct: 0 }
         ]
     };
 
-    function getCurrentQuizBank() {
-        return currentLang === 'de' ? [...quizQuestions.de] : [...quizQuestions.fr];
-    }
-
-    // Globale Quiz-Zustände
-    let currentQuizQuestions = [];
-    let quizIndex = 0;
-    let userAnswers = new Array(15).fill(null);
-    let quizFinished = false;
-    let currentAnswersOrder = [];
-
-    function shuffleArray(arr) {
-        for (let i = arr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
+    // ==================== LÜCKENTEXT Fragen (3 Schwierigkeitsgrade) ====================
+    const fillBlankQuestions = {
+        de: {
+            easy: [
+                { text: "Die Echographie nutzt _____ zur Bildgebung.", answer: "Ultraschall" },
+                { text: "Zwischen Schallkopf und Haut wird _____ aufgetragen, um Luft auszuschließen.", answer: "Gel" },
+                { text: "Der _____-Effekt wird zur Blutflussmessung genutzt.", answer: "Doppler" }
+            ],
+            medium: [
+                { text: "Die akustische _____ ist das Produkt aus Dichte und Schallgeschwindigkeit.", answer: "Impedanz" },
+                { text: "Bei der _____ werden Teilchen zusammengedrückt, bei der Rarefaktion auseinandergezogen.", answer: "Kompression" },
+                { text: "Ein _____ Schallkopf eignet sich für oberflächliche Strukturen wie die Schilddrüse.", answer: "linearer" }
+            ],
+            hard: [
+                { text: "Der piezoelektrische _____ wandelt elektrische Spannung in mechanische Schwingungen um.", answer: "Effekt" },
+                { text: "Die _____ beschreibt die Fähigkeit von Gewebe, Ultraschallwellen in Wärme umzuwandeln.", answer: "Absorption" },
+                { text: "Bei der _____-Echographie wird die Steifigkeit von Gewebe gemessen.", answer: "Elastographie" }
+            ]
+        },
+        fr: {
+            easy: [
+                { text: "L'échographie utilise les _____ pour l'imagerie.", answer: "ultrasons" },
+                { text: "On applique du _____ entre la sonde et la peau pour exclure l'air.", answer: "gel" },
+                { text: "L'effet _____ est utilisé pour mesurer le flux sanguin.", answer: "Doppler" }
+            ],
+            medium: [
+                { text: "L'_____ acoustique est le produit de la densité et de la vitesse du son.", answer: "impédance" },
+                { text: "Lors de la _____, les particules sont comprimées.", answer: "compression" },
+                { text: "Une sonde _____ convient pour les structures superficielles comme la thyroïde.", answer: "linéaire" }
+            ],
+            hard: [
+                { text: "L'effet _____ convertit la tension électrique en vibrations mécaniques.", answer: "piézoélectrique" },
+                { text: "L'_____ décrit la transformation des ondes ultrasonores en chaleur.", answer: "absorption" },
+                { text: "L'_____ mesure la rigidité des tissus.", answer: "élastographie" }
+            ]
         }
-        return arr;
+    };
+
+    // Quiz MC State
+    let currentMcQuestions = [];
+    let mcIndex = 0, mcAnswers = [], mcFinished = false;
+
+    // FillBlank State
+    let currentDifficulty = "easy";
+    let fbQuestions = [], fbIndex = 0, fbAnswers = [], fbFinished = false;
+
+    function initMC() {
+        currentMcQuestions = JSON.parse(JSON.stringify(currentLang === 'de' ? mcQuestions.de : mcQuestions.fr));
+        mcAnswers = new Array(currentMcQuestions.length).fill(null);
+        mcIndex = 0;
+        mcFinished = false;
+        renderMCQuestion();
     }
 
-    function initQuizOrder() {
-        const qCount = currentQuizQuestions.length;
-        currentAnswersOrder = [];
-        for (let i = 0; i < qCount; i++) {
-            let indices = [0,1,2,3];
-            shuffleArray(indices);
-            currentAnswersOrder.push(indices);
-        }
-    }
-
-    function renderCurrentQuestion() {
+    function renderMCQuestion() {
         const container = document.getElementById("quiz-panel");
-        if (!container) return;
-        if (quizFinished) {
-            showScoreScreen();
-            return;
-        }
-        const q = currentQuizQuestions[quizIndex];
-        const order = currentAnswersOrder[quizIndex];
-        const shuffledAnswers = order.map(idx => q.answers[idx]);
-        const progressSpan = document.getElementById("quiz-progress");
-        if(progressSpan) progressSpan.innerText = `${currentLang === 'de' ? 'Frage' : 'Question'} ${quizIndex+1} / ${currentQuizQuestions.length}`;
-
-        let html = `<div class="quiz-question">${quizIndex+1}. ${q.text}</div>`;
-        html += `<div class="answers-grid" id="answers-grid">`;
-        shuffledAnswers.forEach((ans, idx) => {
-            html += `<button class="answer-btn" data-answer-idx="${idx}" data-answer-text="${ans.replace(/"/g, '&quot;')}">${ans}</button>`;
+        if (mcFinished) { showMCScore(); return; }
+        const q = currentMcQuestions[mcIndex];
+        document.getElementById("quiz-progress").innerText = `${currentLang === 'de' ? 'Frage' : 'Question'} ${mcIndex+1}/${currentMcQuestions.length}`;
+        const progress = ((mcIndex) / currentMcQuestions.length) * 100;
+        document.getElementById("quiz-progress-bar").style.width = `${progress}%`;
+        
+        let html = `<div class="quiz-question">${mcIndex+1}. ${q.q}</div><div class="answers-grid">`;
+        q.o.forEach((opt, idx) => {
+            const isSelected = (mcAnswers[mcIndex] === idx);
+            html += `<button class="answer-btn ${isSelected ? 'selected' : ''}" data-ans="${idx}">${opt}</button>`;
         });
-        html += `</div><div class="quiz-footer"><button id="next-quiz-btn" style="background:#2c3e66;">${currentLang === 'de' ? '➡ Nächste Frage' : '➡ Question suivante'}</button></div>`;
+        html += `</div><div class="quiz-footer"><button id="next-mc-btn">${currentLang === 'de' ? 'Nächste Frage' : 'Question suivante'}</button></div>`;
         container.innerHTML = html;
-
-        const ansBtns = document.querySelectorAll('.answer-btn');
-        ansBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                if(quizFinished) return;
-                const selectedText = btn.getAttribute('data-answer-text');
-                userAnswers[quizIndex] = selectedText;
-                ansBtns.forEach(b => b.style.background = "#f1f5f9");
-                btn.style.background = "#b9d8ff";
-                btn.style.borderColor = "#1e4a76";
+        document.querySelectorAll(".answer-btn").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const ans = parseInt(btn.dataset.ans);
+                mcAnswers[mcIndex] = ans;
+                renderMCQuestion();
             });
         });
-
-        const nextBtn = document.getElementById("next-quiz-btn");
-        if(nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                if(userAnswers[quizIndex] === null) {
-                    alert(currentLang === 'de' ? "Bitte beantworte die Frage!" : "Veuillez répondre à la question!");
-                    return;
-                }
-                if(quizIndex + 1 < currentQuizQuestions.length) {
-                    quizIndex++;
-                    renderCurrentQuestion();
-                } else {
-                    quizFinished = true;
-                    renderCurrentQuestion();
-                }
-            });
-        }
+        document.getElementById("next-mc-btn")?.addEventListener("click", () => {
+            if (mcAnswers[mcIndex] === null) { alert(currentLang === 'de' ? "Bitte antworten!" : "Veuillez répondre!"); return; }
+            if (mcIndex + 1 < currentMcQuestions.length) { mcIndex++; renderMCQuestion(); }
+            else { mcFinished = true; renderMCQuestion(); }
+        });
     }
 
-    function showScoreScreen() {
-        let score = 0;
-        let feedback = [];
-        for(let i=0; i<currentQuizQuestions.length; i++) {
-            const q = currentQuizQuestions[i];
-            const userAnsText = userAnswers[i];
-            const correctText = q.answers[q.correct];
-            const isCorrect = (userAnsText === correctText);
-            if(isCorrect) score++;
-            feedback.push({
-                question: q.text,
-                user: userAnsText || (currentLang === 'de' ? "(keine Antwort)" : "(pas de réponse)"),
-                correct: correctText,
-                isCorrect: isCorrect
-            });
+    function showMCScore() {
+        let score = 0, feedback = [];
+        for (let i = 0; i < currentMcQuestions.length; i++) {
+            const isCorrect = (mcAnswers[i] === currentMcQuestions[i].correct);
+            if (isCorrect) score++;
+            feedback.push({ q: currentMcQuestions[i].q, user: currentMcQuestions[i].o[mcAnswers[i]], correct: currentMcQuestions[i].o[currentMcQuestions[i].correct], correctBool: isCorrect });
         }
-
         const container = document.getElementById("quiz-panel");
-        let resultHtml = `<div class="scoreboard"><h2>📊 Score: ${score} / ${currentQuizQuestions.length}</h2>
-        <p>${currentLang === 'de' ? 'Auswertung der Antworten:' : 'Résultats détaillés:'}</p></div>
-        <div class="feedback-list">`;
-        feedback.forEach((fb, idx) => {
-            const icon = fb.isCorrect ? "✅" : "❌";
-            resultHtml += `<div class="feedback-item"><strong>${idx+1}. ${fb.question}</strong><br>
-            ${currentLang === 'de' ? 'Deine Antwort:' : 'Votre réponse:'} ${fb.user} <br>
-            ✔ ${currentLang === 'de' ? 'Richtig:' : 'Correcte:'} ${fb.correct} ${icon}</div>`;
+        let html = `<div class="scoreboard"><h2>Score: ${score}/${currentMcQuestions.length}</h2></div><div class="feedback-list">`;
+        feedback.forEach(f => { html += `<div class="feedback-item">${f.q}<br>${currentLang === 'de' ? 'Deine Antwort:' : 'Votre réponse:'} ${f.user} | ✔ ${f.correct} ${f.correctBool ? '✅' : '❌'}</div>`; });
+        html += `</div><button id="mc-restart-btn">🔄 ${currentLang === 'de' ? 'Neustart' : 'Recommencer'}</button>`;
+        container.innerHTML = html;
+        document.getElementById("mc-restart-btn")?.addEventListener("click", () => initMC());
+    }
+
+    function initFillBlank() {
+        fbQuestions = [...fillBlankQuestions[currentLang][currentDifficulty]];
+        fbAnswers = new Array(fbQuestions.length).fill("");
+        fbIndex = 0;
+        fbFinished = false;
+        renderFillBlank();
+    }
+
+    function renderFillBlank() {
+        const container = document.getElementById("fillblank-panel");
+        if (fbFinished) { showFBScore(); return; }
+        const q = fbQuestions[fbIndex];
+        const progress = ((fbIndex) / fbQuestions.length) * 100;
+        document.getElementById("fb-progress-bar").style.width = `${progress}%`;
+        document.getElementById("fb-difficulty-label").innerText = `${currentLang === 'de' ? 'Schwierigkeit' : 'Difficulté'}: ${currentDifficulty === 'easy' ? (currentLang === 'de' ? 'Leicht' : 'Facile') : currentDifficulty === 'medium' ? (currentLang === 'de' ? 'Mittel' : 'Moyen') : (currentLang === 'de' ? 'Schwer' : 'Difficile')}`;
+        
+        let html = `<div class="quiz-question">${fbIndex+1}. ${q.text.replace("_____", `<input type="text" id="fb-input" class="fill-blank-input" placeholder="${currentLang === 'de' ? 'Antwort' : 'Réponse'}" value="${fbAnswers[fbIndex]}">`)}</div>`;
+        html += `<div class="quiz-footer"><button id="check-fb-btn">${currentLang === 'de' ? 'Prüfen & Weiter' : 'Vérifier & Continuer'}</button></div>`;
+        container.innerHTML = html;
+        document.getElementById("check-fb-btn")?.addEventListener("click", () => {
+            const input = document.getElementById("fb-input");
+            const userAnswer = input.value.trim().toLowerCase();
+            const correctAnswer = q.answer.toLowerCase();
+            if (userAnswer === correctAnswer || (correctAnswer.includes(userAnswer) && userAnswer.length > 2) || userAnswer === correctAnswer) {
+                fbAnswers[fbIndex] = input.value;
+                if (fbIndex + 1 < fbQuestions.length) { fbIndex++; renderFillBlank(); }
+                else { fbFinished = true; renderFillBlank(); }
+            } else { alert(currentLang === 'de' ? `Falsch! Richtige Antwort: ${q.answer}` : `Incorrect! Réponse correcte: ${q.answer}`); }
         });
-        resultHtml += `</div><div class="quiz-footer" style="margin-top:25px;"><button id="score-restart-btn">🔄 ${currentLang === 'de' ? 'QUIZ NEUSTART' : 'RECOMMENCER'}</button>
-        <button id="score-home-btn">🏠 ${currentLang === 'de' ? 'HOME' : 'ACCUEIL'}</button></div>`;
-        container.innerHTML = resultHtml;
-        document.getElementById("score-restart-btn")?.addEventListener("click", () => restartQuiz());
-        document.getElementById("score-home-btn")?.addEventListener("click", () => goToHome());
     }
 
-    function restartQuiz() {
-        currentQuizQuestions = getCurrentQuizBank();
-        userAnswers.fill(null);
-        quizIndex = 0;
-        quizFinished = false;
-        initQuizOrder();
-        renderCurrentQuestion();
-        const progress = document.getElementById("quiz-progress");
-        if(progress) progress.innerText = `${currentLang === 'de' ? 'Frage' : 'Question'} 1 / ${currentQuizQuestions.length}`;
+    function showFBScore() {
+        let correctCount = 0;
+        fbQuestions.forEach((q, i) => { if (fbAnswers[i].toLowerCase() === q.answer.toLowerCase()) correctCount++; });
+        const container = document.getElementById("fillblank-panel");
+        let html = `<div class="scoreboard"><h2>${currentLang === 'de' ? 'Ergebnis' : 'Résultat'}: ${correctCount}/${fbQuestions.length}</h2></div><div class="feedback-list">`;
+        fbQuestions.forEach((q, i) => { html += `<div class="feedback-item">${q.text}<br>${currentLang === 'de' ? 'Deine Antwort:' : 'Votre réponse:'} ${fbAnswers[i] || "—"} | ✔ ${q.answer}</div>`; });
+        html += `</div><button id="fb-restart-btn">🔄 ${currentLang === 'de' ? 'Neustart' : 'Recommencer'}</button>`;
+        container.innerHTML = html;
+        document.getElementById("fb-restart-btn")?.addEventListener("click", () => initFillBlank());
     }
 
-    // Theorie rendern (exakt deine Texte)
     function renderTheory() {
         const container = document.getElementById("theory-content");
-        if(!container) return;
         let html = "";
-        theoryChapters.forEach(ch => {
-            const data = currentLang === 'de' ? ch.de : ch.fr;
-            html += `<div class="theory-card"><h3>${data.title}</h3><p>${data.text}</p></div>`;
-        });
+        theoryChapters.forEach(ch => { const data = ch[currentLang]; html += `<div class="theory-card"><h3>${data.title}</h3><p>${data.text}</p></div>`; });
         container.innerHTML = html;
-        const headerLabel = document.getElementById("theory-header-label");
-        if(headerLabel) headerLabel.innerText = currentLang === 'de' ? "📖 Theorie-Kapitel" : "📖 Chapitres de théorie";
     }
 
-    // QA rendern
     function renderQA() {
         const container = document.getElementById("qa-container");
-        if(!container) return;
-        const data = currentLang === 'de' ? qaData.de : qaData.fr;
         let html = "";
-        data.forEach(item => {
-            const questionText = currentLang === 'de' ? item.frage : item.frage;
-            const answerText = currentLang === 'de' ? item.antwort : item.reponse;
-            html += `<div class="qa-item"><div class="qa-question">❓ ${questionText}</div><div class="qa-answer">📌 ${answerText}</div></div>`;
-        });
+        qaData[currentLang].forEach(item => { html += `<div class="qa-item"><div class="qa-question">❓ ${item.q}</div><div class="qa-answer">📌 ${item.a}</div></div>`; });
         container.innerHTML = html;
-        const qaHeader = document.getElementById("qa-header-label");
-        if(qaHeader) qaHeader.innerText = currentLang === 'de' ? "❓ Q&A Bereich" : "❓ Section Questions/Réponses";
     }
 
-    // Home Texte übersetzen
+    function renderHistory() {
+        document.getElementById("history-content").innerHTML = historyTexts[currentLang];
+    }
+
     function updateHomeTexts() {
-        const texts = homeTexts[currentLang];
-        document.getElementById("home-title").innerText = texts.title;
-        document.getElementById("home-subtitle").innerText = texts.subtitle;
-        document.getElementById("goto-theory-home").innerHTML = texts.theorieBtn;
-        document.getElementById("goto-quiz-home").innerHTML = texts.quizBtn;
-        document.getElementById("goto-qa-home").innerHTML = texts.qaBtn;
-        document.getElementById("lang-label").innerHTML = texts.langLabel;
-        document.getElementById("home-footer").innerHTML = texts.footer;
+        document.getElementById("home-title").innerText = currentLang === 'de' ? "📘 SonoMaster" : "📘 SonoMaster";
+        document.getElementById("home-subtitle").innerText = currentLang === 'de' ? "Echographie – Lernen mit System" : "Échographie – Apprendre systématiquement";
+        document.getElementById("lang-label").innerHTML = currentLang === 'de' ? "🌐 Sprache / Langue :" : "🌐 Langue :";
+        document.getElementById("goto-theory-home").innerHTML = currentLang === 'de' ? "📖 THEORIE" : "📖 THÉORIE";
+        document.getElementById("goto-quiz-home").innerHTML = currentLang === 'de' ? "❓ QUIZ MC" : "❓ QUIZ MC";
+        document.getElementById("goto-fillblank-home").innerHTML = currentLang === 'de' ? "✏️ LÜCKENTEXT" : "✏️ TEXTE À TROUS";
+        document.getElementById("goto-qa-home").innerHTML = currentLang === 'de' ? "💬 Q&A" : "💬 Q&R";
+        document.getElementById("goto-history-home").innerHTML = currentLang === 'de' ? "📜 GESCHICHTE" : "📜 HISTOIRE";
     }
 
-    // Sprachumschaltung komplett
     function setLanguage(lang) {
         currentLang = lang;
         updateHomeTexts();
         renderTheory();
         renderQA();
-        // Wenn Quiz gerade offen ist, Neustart mit frischen Fragen
-        const quizScreen = document.getElementById("quiz-screen");
-        if(quizScreen.classList.contains("active")) {
-            currentQuizQuestions = getCurrentQuizBank();
-            userAnswers.fill(null);
-            quizIndex = 0;
-            quizFinished = false;
-            initQuizOrder();
-            renderCurrentQuestion();
-        }
+        renderHistory();
+        if (document.getElementById("quiz-screen").classList.contains("active")) initMC();
+        if (document.getElementById("fillblank-screen").classList.contains("active")) initFillBlank();
     }
 
-    // Navigation & history stack
-    let screenStack = ["home"];
     function showScreen(screenId, addToStack = true) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById(`${screenId}-screen`).classList.add('active');
-        if(addToStack && screenStack[screenStack.length-1] !== screenId) screenStack.push(screenId);
-        if(screenId === "theory") renderTheory();
-        if(screenId === "quiz") {
-            if(!currentQuizQuestions.length || currentQuizQuestions.length !== 15 || quizFinished) {
-                currentQuizQuestions = getCurrentQuizBank();
-                userAnswers.fill(null);
-                quizIndex = 0;
-                quizFinished = false;
-                initQuizOrder();
-                renderCurrentQuestion();
-            } else {
-                renderCurrentQuestion();
-            }
-        }
-        if(screenId === "qa") renderQA();
+        if (addToStack && screenStack[screenStack.length-1] !== screenId) screenStack.push(screenId);
+        if (screenId === "theory") renderTheory();
+        if (screenId === "quiz") { if (!currentMcQuestions.length) initMC(); else renderMCQuestion(); }
+        if (screenId === "fillblank") initFillBlank();
+        if (screenId === "qa") renderQA();
+        if (screenId === "history") renderHistory();
     }
 
     function goBack() {
-        if(screenStack.length > 1) {
-            screenStack.pop();
-            const prev = screenStack[screenStack.length-1];
-            showScreen(prev, false);
-        } else {
-            showScreen("home", false);
-        }
+        if (screenStack.length > 1) { screenStack.pop(); showScreen(screenStack[screenStack.length-1], false); }
+        else showScreen("home", false);
     }
-    function goToHome() {
-        while(screenStack.length > 1) screenStack.pop();
-        showScreen("home", false);
-    }
+    function goToHome() { while (screenStack.length > 1) screenStack.pop(); showScreen("home", false); }
 
-    // Event Listener
-    document.getElementById("goto-theory-home")?.addEventListener("click", ()=>showScreen("theory"));
-    document.getElementById("goto-quiz-home")?.addEventListener("click", ()=>showScreen("quiz"));
-    document.getElementById("goto-qa-home")?.addEventListener("click", ()=>showScreen("qa"));
+    // Event Listeners
+    document.getElementById("goto-theory-home")?.addEventListener("click", () => showScreen("theory"));
+    document.getElementById("goto-quiz-home")?.addEventListener("click", () => showScreen("quiz"));
+    document.getElementById("goto-fillblank-home")?.addEventListener("click", () => showScreen("fillblank"));
+    document.getElementById("goto-qa-home")?.addEventListener("click", () => showScreen("qa"));
+    document.getElementById("goto-history-home")?.addEventListener("click", () => showScreen("history"));
     document.getElementById("theory-home-btn")?.addEventListener("click", goToHome);
     document.getElementById("theory-back-btn")?.addEventListener("click", goBack);
     document.getElementById("quiz-home-btn")?.addEventListener("click", goToHome);
     document.getElementById("quiz-back-btn")?.addEventListener("click", goBack);
-    document.getElementById("quiz-restart-btn")?.addEventListener("click", ()=>{ restartQuiz(); });
+    document.getElementById("quiz-restart-btn")?.addEventListener("click", initMC);
+    document.getElementById("fillblank-home-btn")?.addEventListener("click", goToHome);
+    document.getElementById("fillblank-back-btn")?.addEventListener("click", goBack);
+    document.getElementById("fillblank-restart-btn")?.addEventListener("click", initFillBlank);
     document.getElementById("qa-home-btn")?.addEventListener("click", goToHome);
     document.getElementById("qa-back-btn")?.addEventListener("click", goBack);
-    document.getElementById("lang-de")?.addEventListener("click", ()=>{ setLanguage('de'); });
-    document.getElementById("lang-fr")?.addEventListener("click", ()=>{ setLanguage('fr'); });
+    document.getElementById("history-home-btn")?.addEventListener("click", goToHome);
+    document.getElementById("history-back-btn")?.addEventListener("click", goBack);
+    document.getElementById("lang-de")?.addEventListener("click", () => setLanguage('de'));
+    document.getElementById("lang-fr")?.addEventListener("click", () => setLanguage('fr'));
+    document.querySelectorAll(".difficulty-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            currentDifficulty = btn.dataset.diff;
+            document.querySelectorAll(".difficulty-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            initFillBlank();
+        });
+    });
 
-    // Initialisierung
-    currentQuizQuestions = getCurrentQuizBank();
-    initQuizOrder();
+    // Initial
     updateHomeTexts();
     renderTheory();
     renderQA();
+    renderHistory();
     showScreen("home", false);
 </script>
 </body>
