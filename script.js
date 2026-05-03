@@ -201,16 +201,7 @@ const questions = [
 ];
 
 /* ---------- NAV ---------- */
-function updateNav(screen) {
-  const nav = document.getElementById("nav");
-  const restart = document.getElementById("restartBtn");
-  const back = document.getElementById("backBtn");
 
-  nav.classList.toggle("hidden", screen === "home");
-
-  back.style.display = screen === "home" ? "none" : "inline-block";
-  restart.style.display = screen === "quiz" ? "inline-block" : "none";
-}
 /* ---------- SCREEN CONTROL (IMPORTANT FIX) ---------- */
 function setScreen(id){
   const current = document.querySelector(".screen:not(.hidden)");
@@ -218,13 +209,6 @@ function setScreen(id){
   if (current && current.id !== id) {
     screenHistory.push(current.id);
   }
-
-  document.querySelectorAll(".screen").forEach(s => {
-    s.classList.add("hidden");
-  });
-
-  document.getElementById(id).classList.remove("hidden");
-}
 
 /* ---------- HOME ---------- */
 function goHome() {
@@ -248,83 +232,6 @@ function setLang(l) {
   updateUI();
   goHome();
 }
-
-/* ---------- THEORY ---------- */
-function showTheory() {
-  setScreen("theory");
-  showNav("theory");
-
-  document.getElementById("theoryMenu").innerHTML =
-    theory.map((t, i) =>
-      `<div class="card">
-        <button onclick="openTheory(${i})">${t[lang][0]}</button>
-      </div>`
-    ).join("");
-}
-
-function openTheory(i) {
-  setScreen("theoryDetail");
-
-  const t = theory[i][lang];
-
-  document.getElementById("theoryDetail").innerHTML = `
-    <div class="card">
-      <h2>${t[0]}</h2>
-      <p>${t[1]}</p>
-      <button onclick="showTheory()">🔙 Back</button>
-    </div>
-  `;
-}
-
-/* ---------- QA ---------- */
-function showQA() {
-  setScreen("qa");
-  showNav("qa");
-
-  document.getElementById("qaMenu").innerHTML =
-    qa.map((item, i) => `
-      <div class="card">
-        <button onclick="openQA(${i})">${item[lang].q}</button>
-      </div>
-    `).join("");
-}
-
-function openQA(i) {
-  setScreen("qaDetail");
-
-  const item = qa[i][lang];
-
-  document.getElementById("qaDetail").innerHTML = `
-    <div class="card">
-      <h2>${item.q}</h2>
-      <p style="font-size:20px; line-height:1.6;">
-        ${item.a}
-      </p>
-      <button onclick="showQA()">⬅️ Back</button>
-    </div>
-  `;
-}
-
-/* ---------- QUIZ ---------- */
-function startQuiz() {
-  score = 0;
-  index = 0;
-  results = [];
-
-  quiz = [...questions]
-    .sort(() => Math.random() - 0.5)
-    .map(q => ({
-      q: q[lang].q,
-      o: q[lang].o,
-      a: q.a
-    }));
-
-  setScreen("quiz");
-  showNav("quiz");
-
-  showQ();
-}
-
 function showQ() {
   if (index >= quiz.length) return showResult();
 
@@ -362,22 +269,6 @@ function answer(i) {
 }
 
 /* ---------- RESULT ---------- */
-function showResult() {
-  setScreen("result");
-  showNav("result");
-
-  document.getElementById("score").innerText =
-    `🏆 Score: ${score}/${quiz.length}`;
-
-  document.getElementById("results").innerHTML =
-    results.map(r => `
-      <div class="card" style="background:${r.u === r.c ? '#d4edda' : '#f8d7da'}">
-        <b>${r.q}</b><br>
-        ${T[lang].your} ${r.o[r.u]}<br>
-        ${T[lang].correct} ${r.o[r.c]}
-      </div>
-    `).join("");
-}
 
 /* ---------- RESTART ---------- */
 function restartQuiz() {
@@ -408,9 +299,6 @@ function goBack(){
 
   const last = screenHistory.pop();
 
-  document.querySelectorAll(".screen").forEach(s => {
-    s.classList.add("hidden");
-  });
 
   const el = document.getElementById(last);
   if (el) el.classList.remove("hidden");
