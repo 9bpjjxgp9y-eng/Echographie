@@ -346,7 +346,22 @@ function goBack(){
 }
 /* ---------- RESTART ---------- */
 function restartQuiz() {
-  startQuiz();
+  score = 0;
+  index = 0;
+  results = [];
+
+  quiz = [...questions]
+    .sort(() => Math.random() - 0.5)
+    .map(q => ({
+      q: q[lang].q,
+      o: q[lang].o,
+      a: q.a
+    }));
+
+  showScreen("quiz");
+  showNav("quiz");
+
+  showQ();
 }
 
 /* ---------- UI ---------- */
