@@ -3,7 +3,7 @@ let index = 0;
 let score = 0;
 let quiz = [];
 let results = [];
-let screenHistory = [];
+
 
 /* TEXT */
 const T = {
@@ -180,15 +180,18 @@ function showNav(mode) {
 }
 
 /* ---------- SCREEN CONTROL (IMPORTANT FIX) ---------- */
-function showScreen(id){
-  const current = document.querySelector(".screen:not(.hidden)");
-  if (current) screenHistory.push(current.id);
-
+function showScreen(id) {
   document.querySelectorAll(".screen").forEach(s => {
     s.classList.add("hidden");
   });
 
-  document.getElementById(id).classList.remove("hidden");
+  const el = document.getElementById(id);
+  if (el) el.classList.remove("hidden");
+
+  // NAV automatisch sauber steuern
+  if (id === "home") showNav("home");
+  else if (id === "quiz") showNav("quiz");
+  else showNav("other");
 }
 
 /* ---------- HOME ---------- */
@@ -334,18 +337,10 @@ function showResult() {
       </div>
     `).join("");
 }
-function goBack(){
-  const last = screenHistory.pop();
-  if (!last) return goHome();
 
-  document.querySelectorAll(".screen").forEach(s => {
-    s.classList.add("hidden");
-  });
-
-  document.getElementById(last).classList.remove("hidden");
-}
 /* ---------- RESTART ---------- */
 function restartQuiz() {
+  startQuiz();
   score = 0;
   index = 0;
   results = [];
