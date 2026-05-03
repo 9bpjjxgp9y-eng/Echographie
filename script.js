@@ -175,15 +175,16 @@ function showNav(mode) {
 
 /* RESET */
 function reset(){
-  document.querySelectorAll(".screen").forEach(s => s.classList.add("hidden"));
+  document.querySelectorAll(".screen").forEach(s => {
+    s.classList.add("hidden");
+    s.style.display = "";
+  });
 }
 
 /* HOME */
-function goHome() {
-  reset();
-  document.getElementById("home").classList.remove("hidden");
-  showNav("home");
-}
+const home = document.getElementById("home");
+home.classList.remove("hidden");
+home.style.display = "block";
 
 /* LANG */
 function setLang(l) {
@@ -349,7 +350,7 @@ function updateUI(){
 }
 
 /* INIT */
-updateUI();
 document.addEventListener("DOMContentLoaded", () => {
+  updateUI();
   goHome();
 });
