@@ -3,7 +3,21 @@ let index = 0;
 let score = 0;
 let quiz = [];
 let results = [];
+let currentScreen = "home";
+let history = [];
+let startX = 0;
 
+document.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+document.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+
+  if (endX - startX > 80) {
+    goBack();
+  }
+});
 
 /* TEXT */
 const T = {
@@ -180,18 +194,18 @@ function showNav(mode) {
 }
 
 /* ---------- SCREEN CONTROL (IMPORTANT FIX) ---------- */
-function showScreen(id) {
+function showScreen(id){
+  if (currentScreen !== id) {
+    history.push(currentScreen);
+  }
+
+  currentScreen = id;
+
   document.querySelectorAll(".screen").forEach(s => {
     s.classList.add("hidden");
   });
 
-  const el = document.getElementById(id);
-  if (el) el.classList.remove("hidden");
-
-  // NAV automatisch sauber steuern
-  if (id === "home") showNav("home");
-  else if (id === "quiz") showNav("quiz");
-  else showNav("other");
+  document.getElementById(id).classList.remove("hidden");
 }
 
 /* ---------- HOME ---------- */
@@ -359,6 +373,12 @@ function restartQuiz() {
   showQ();
 }
 
+function goBack(){
+  const last = history.pop();
+  if (!last) return;
+
+  showScreen(last);
+}
 /* ---------- UI ---------- */
 function updateUI() {
   document.getElementById("qaBtn").innerText = T[lang].qa;
