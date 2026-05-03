@@ -166,15 +166,15 @@ function showNav(mode) {
 }
 
 /* RESET */
-function reset() {
-  ["home", "theory", "theoryDetail", "quiz", "result", "qa", "qaDetail"]
-    .forEach(id => document.getElementById(id).style.display = "none");
+function reset(){
+  ["home","theory","theoryDetail","qa","qaDetail","quiz","result"]
+  .forEach(id => document.getElementById(id).classList.add("hidden"));
 }
 
 /* HOME */
 function goHome() {
   reset();
-  document.getElementById("home").style.display = "block";
+  document.getElementById("home").classList.remove("hidden");
   showNav("home");
 }
 
