@@ -7,7 +7,7 @@ let index = 0;
 let score = 0;
 let quiz = [];
 let results = [];
-let history = [];
+let screenHistory = [];
 let current = "home";
 let startX = 0;
 let startY = 0;
@@ -16,31 +16,36 @@ let startY = 0;
    SCREEN SYSTEM
 ========================= */
 
-function setScreen(id, save = true) {
-  const current = document.querySelector(".screen:not(.hidden)");
+let screenHistory = [];
 
-  if (current && save && current.id !== id) {
-    screenHistory.push(current.id);
+function setScreen(id) {
+  if (currentScreen && currentScreen !== id) {
+    screenHistory.push(currentScreen);
   }
 
-  document.querySelectorAll(".screen").forEach(s => s.classList.add("hidden"));
+  document.querySelectorAll(".screen").forEach(s => {
+    s.style.display = "none";
+  });
 
-  const target = document.getElementById(id);
-  if (!target) {
-    console.error("Screen not found:", id);
-    return;
-  }
-
-  target.classList.remove("hidden");
+  document.getElementById(id).style.display = "block";
 
   currentScreen = id;
-  updateNav();
 }
 
 function goBack() {
   const last = screenHistory.pop();
-  if (!last) return goHome();
-  setScreen(last, false);
+
+  if (!last) {
+    goHome();
+    return;
+  }
+
+  setScreen(last);
+}
+
+function goHome() {
+  screenHistory = [];
+  setScreen("home");
 }
 
 /* =====================
@@ -212,27 +217,20 @@ const questions = [
 ===================== */
 
 function startQuiz() {
-
   index = 0;
-
   score = 0;
-
   results = [];
 
-  quiz = questions.map(q => ({
-
-    q: q[lang].q,
-
-    o: q[lang].o,
-
-    a: q[lang].a
-
-  }));
+  quiz = questions.map(q => {
+    return {
+      q: q[lang].q,
+      o: [...q[lang].o],
+      a: q.a
+    };
+  });
 
   setScreen("quiz");
-
   showQuestion();
-
 }
 
 function showQuestion() {
@@ -256,17 +254,20 @@ function showQuestion() {
 }
 
 function answer(i) {
-
   const q = quiz[index];
 
-  if (i === q.a) score++;
+  if (i === q.a) {
+    score++;
+  }
 
-  results.push(q);
+  results.push({
+    q: q.q,
+    correct: q.o[q.a],
+    chosen: q.o[i]
+  });
 
   index++;
-
   showQuestion();
-
 }
 
 /* =====================
@@ -276,13 +277,19 @@ function answer(i) {
 ===================== */
 
 function showResult() {
-
   setScreen("result");
 
   document.getElementById("score").innerText =
-
     `Score: ${score}/${quiz.length}`;
 
+  document.getElementById("results").innerHTML =
+    results.map(r => `
+      <div class="card">
+        <b>${r.q}</b><br>
+        ✔ ${r.correct}<br>
+        ❌ ${r.chosen}
+      </div>
+    `).join("");
 }
 
 
