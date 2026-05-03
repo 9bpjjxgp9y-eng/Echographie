@@ -3,6 +3,7 @@ let index = 0;
 let score = 0;
 let quiz = [];
 let results = [];
+let screenHistory = [];
 
 /* TEXT */
 const T = {
@@ -179,10 +180,14 @@ function showNav(mode) {
 }
 
 /* ---------- SCREEN CONTROL (IMPORTANT FIX) ---------- */
-function showScreen(id) {
+function showScreen(id){
+  const current = document.querySelector(".screen:not(.hidden)");
+  if (current) screenHistory.push(current.id);
+
   document.querySelectorAll(".screen").forEach(s => {
     s.classList.add("hidden");
   });
+
   document.getElementById(id).classList.remove("hidden");
 }
 
@@ -329,7 +334,16 @@ function showResult() {
       </div>
     `).join("");
 }
+function goBack(){
+  const last = screenHistory.pop();
+  if (!last) return goHome();
 
+  document.querySelectorAll(".screen").forEach(s => {
+    s.classList.add("hidden");
+  });
+
+  document.getElementById(last).classList.remove("hidden");
+}
 /* ---------- RESTART ---------- */
 function restartQuiz() {
   startQuiz();
