@@ -190,6 +190,7 @@ function goHome() {
 function setLang(l) {
   lang = l;
   localStorage.setItem("lang", l);
+  updateUI();   
   goHome();
 }
 
@@ -333,6 +334,10 @@ function showResult() {
 function restartQuiz() {
   startQuiz();
 }
+function updateUI(){
+  document.getElementById("qaBtn").innerText = T[lang].qa;
+}
 
 /* INIT */
+updateUI();
 goHome();
