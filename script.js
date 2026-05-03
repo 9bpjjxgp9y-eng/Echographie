@@ -7,7 +7,7 @@ let index = 0;
 let score = 0;
 let quiz = [];
 let results = [];
-let screenHistory = [];
+let history = [];
 let current = "home";
 let startX = 0;
 let startY = 0;
@@ -16,10 +16,11 @@ let startY = 0;
    SCREEN SYSTEM
 ========================= */
 
+let currentScreen = "home";
 let screenHistory = [];
 
 function setScreen(id) {
-  if (currentScreen && currentScreen !== id) {
+  if (currentScreen !== id) {
     screenHistory.push(currentScreen);
   }
 
@@ -27,19 +28,17 @@ function setScreen(id) {
     s.style.display = "none";
   });
 
-  document.getElementById(id).style.display = "block";
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  target.style.display = "block";
 
   currentScreen = id;
 }
 
 function goBack() {
   const last = screenHistory.pop();
-
-  if (!last) {
-    goHome();
-    return;
-  }
-
+  if (!last) return goHome();
   setScreen(last);
 }
 
@@ -241,7 +240,8 @@ function showQuestion() {
 
   document.getElementById("question").innerText = q.q;
 
-  document.getElementById("fill").style.width = (index / quiz.length * 100) + "%";
+  document.getElementById("fill").style.width =
+  ((index + 1) / quiz.length * 100) + "%";
 
   document.getElementById("answers").innerHTML =
 
@@ -256,9 +256,19 @@ function showQuestion() {
 function answer(i) {
   const q = quiz[index];
 
-  if (i === q.a) {
-    score++;
-  }
+  const correct = (i === q.a);
+
+  if (correct) score++;
+
+  results.push({
+    q: q.q,
+    correct: q.o[q.a],
+    chosen: q.o[i]
+  });
+
+  index++;
+  showQuestion();
+}
 
   results.push({
     q: q.q,
