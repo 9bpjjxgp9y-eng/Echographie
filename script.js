@@ -1,18 +1,4 @@
 /* =========================
-   STATE
-========================= */
-
-let lang = localStorage.getItem("lang") || "de";
-
-let index = 0;
-let score = 0;
-let quiz = [];
-let results = [];
-
-let currentScreen = "home";
-let screenHistory = [];
-
-/* =========================
    SCREEN SYSTEM
 ========================= */
 
@@ -110,7 +96,7 @@ const theory = [
   {
     de: {
       title: "Einführung",
-      text: "Echographie ist eine sichere Echtzeit-Ultraschallmethode zur medizinischen Bildgebung. Sie arbeitet ohne ionisierende Strahlung und nutzt Reflexionen von Schallwellen, um innere Strukturen sichtbar zu machen. Besonders wichtig ist sie, weil sie nicht invasiv ist, keine Schmerzen verursacht und sofort Ergebnisse liefert. Ärzte können damit Organe in Bewegung beobachten, etwa das Herz oder ein ungeborenes Kind. Dadurch ist sie ein zentrales Werkzeug in der modernen"
+      text: "Echographie ist eine sichere Echtzeit-Ultraschallmethode zur medizinischen Bildgebung. Sie arbeitet ohne ionisierende Strahlung und nutzt Reflexionen von Schallwellen, um innere Strukturen sichtbar zu machen. Besonders wichtig ist sie, weil sie nicht invasiv ist, keine Schmerzen verursacht und sofort Ergebnisse liefert. Ärzte können damit Organe in Bewegung beobachten, etwa das Herz oder ein ungeborenes Kind. Dadurch ist sie ein zentrales Werkzeug in der modernen Diagnostik."
     },
     fr: {
       title: "Introduction",
@@ -155,9 +141,10 @@ const theory = [
     fr: {
       title: "Conclusion",
       text: "L’échographie est une technique essentielle en médecine moderne. Elle est rapide, sûre et très polyvalente, malgré une dépendance à l’opérateur."
-    }
-  }
-];
+    },
+];     
+  
+ 
 
 
 /* =========================
@@ -726,16 +713,21 @@ function openQA(i) {
    SWIPE BACK
 ========================= */
 
-let startX = 0;
+let startY = 0;
 
 document.addEventListener("touchstart", e => {
   startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
 });
 
 document.addEventListener("touchend", e => {
   let endX = e.changedTouches[0].clientX;
+  let endY = e.changedTouches[0].clientY;
 
-  if (endX - startX > 80) {
+  let dx = endX - startX;
+  let dy = endY - startY;
+
+  if (dx > 80 && Math.abs(dy) < 50) {
     goBack();
   }
 });
