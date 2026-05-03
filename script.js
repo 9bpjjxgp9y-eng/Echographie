@@ -212,6 +212,38 @@ function openTheory(i) {
     </div>
   `;
 }
+/* QA */
+function showQA() {
+  reset();
+  document.getElementById("qa").style.display = "block";
+
+  document.getElementById("qaMenu").innerHTML =
+    qa.map((item, i) => `
+      <div class="card">
+        <button onclick="openQA(${i})">${item[lang].q}</button>
+      </div>
+    `).join("");
+
+  showNav("qa");
+}
+
+function openQA(i) {
+  reset();
+  document.getElementById("qaDetail").style.display = "block";
+
+  const item = qa[i][lang];
+
+  document.getElementById("qaDetail").innerHTML = `
+    <div class="card">
+      <h2>${item.q}</h2>
+      <p style="font-size:20px; line-height:1.6;">
+        ${item.a}
+      </p>
+
+      <button onclick="showQA()">⬅️ Back</button>
+    </div>
+  `;
+}
 
 /* QUIZ */
 function startQuiz() {
