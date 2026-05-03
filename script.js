@@ -172,7 +172,10 @@ function showNav(mode) {
   nav.classList.toggle("hidden", mode === "home");
   restart.style.display = (mode === "quiz") ? "inline-block" : "none";
 }
-
+function showScreen(id){
+  document.querySelectorAll(".screen").forEach(s => s.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+}
 /* RESET */
 function reset(){
   document.querySelectorAll(".screen").forEach(s => {
@@ -182,9 +185,11 @@ function reset(){
 }
 
 /* HOME */
-const home = document.getElementById("home");
-home.classList.remove("hidden");
-home.style.display = "block";
+function goHome() {
+  document.querySelectorAll(".screen").forEach(s => s.classList.add("hidden"));
+  document.getElementById("home").classList.remove("hidden");
+  showNav("home");
+}
 
 /* LANG */
 function setLang(l) {
@@ -210,8 +215,8 @@ function showTheory() {
 }
 
 function openTheory(i) {
-  reset();
-  document.getElementById("theoryDetail").classList.remove("hidden");
+  document.querySelectorAll(".screen").forEach(s => s.classList.add("hidden"));
+document.getElementById("theory").classList.remove("hidden");
 
   const t = theory[i][lang];
 
