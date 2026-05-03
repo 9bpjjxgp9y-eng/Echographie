@@ -84,7 +84,10 @@ const T = {
     qa: "🙋‍♀️ Questions & Réponses",
   }
 };
-
+const langData = {
+  de: { qaTitle: "Fragen & Antworten" },
+  fr: { qaTitle: "Questions & Réponses" }
+};
 /* =========================
    THEORY
 ========================= */
