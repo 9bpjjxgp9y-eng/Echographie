@@ -167,7 +167,7 @@ function showNav(mode) {
 
 /* RESET */
 function reset() {
-  ["home", "theory", "theoryDetail", "quiz", "result"]
+  ["home", "theory", "theoryDetail", "quiz", "result", "qa", "qaDetail"]
     .forEach(id => document.getElementById(id).style.display = "none");
 }
 
