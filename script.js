@@ -682,11 +682,22 @@ function openTheory(i) {
 }
 
 /* =========================
-   INIT
+   SWIPE BACK
 ========================= */
 
-goHome();
-updateNav();
+let startX = 0;
+
+document.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+document.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+
+  if (endX - startX > 80) {
+    goBack();
+  }
+});
 /* =========================
    INIT
 ========================= */
