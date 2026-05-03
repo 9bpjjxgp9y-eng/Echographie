@@ -19,11 +19,8 @@ h2 {
   font-size: 26px;
 }
 
-.screen {
+.hidden {
   display: none;
-}
-.screen.active {
-  display: block;
 }
 .card {
   background: rgba(255,255,255,0.92);
@@ -75,10 +72,6 @@ button:active {
   background: white;
   padding: 12px;
   box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
-}
-
-.hidden {
-  display: none;
 }
 
 .theory-title {
