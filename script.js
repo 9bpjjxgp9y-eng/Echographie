@@ -84,9 +84,7 @@ const T = {
     qa: "🙋‍♀️ Questions & Réponses",
   }
 };
-function updateLanguageUI() {
-  document.getElementById("qaBtn").innerText = T[lang].qaBtn;
-}
+
 /* =========================
    THEORY
 ========================= */
