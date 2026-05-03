@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
+<head:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Ultraschall LernApp - Perfekt</title>
@@ -262,8 +262,8 @@
     <!-- ============================================= -->
     <div id="home-screen" class="screen active">
         <div style="text-align: center; margin-top: 20px;">
-            <h1>📘 SonoMaster</h1>
-            <p style="font-size: 1.2rem; margin-bottom: 15px;">Echographie – Lernen mit System</p>
+            <h1 id="home-title">📘 SonoMaster</h1>
+            <p id="home-subtitle" style="font-size: 1.2rem; margin-bottom: 15px;">Echographie – Lernen mit System</p>
         </div>
         <div class="main-buttons">
             <button class="main-btn btn-theory" id="goto-theory-home">📖 THEORIE</button>
@@ -271,11 +271,11 @@
             <button class="main-btn btn-qa" id="goto-qa-home">💬 FRAGE & ANTWORT</button>
         </div>
         <div class="sprache-block">
-            <span style="font-weight: 500; align-self: center;">🌐 Sprache / Langue :</span>
+            <span style="font-weight: 500; align-self: center;" id="lang-label">🌐 Sprache / Langue :</span>
             <button class="lang-btn" id="lang-de">DEUTSCH</button>
             <button class="lang-btn" id="lang-fr">FRANÇAIS</button>
         </div>
-        <div style="text-align: center; margin-top: 30px; opacity: 0.7; font-size: 0.8rem;">
+        <div style="text-align: center; margin-top: 30px; opacity: 0.7; font-size: 0.8rem;" id="home-footer">
             ⬅️ Navigation: Home & Zurück jederzeit verfügbar
         </div>
     </div>
@@ -289,7 +289,7 @@
                 <button id="theory-home-btn">🏠 HOME</button>
                 <button id="theory-back-btn">◀ ZURÜCK</button>
             </div>
-            <div><span style="font-weight: bold;">📖 Theorie-Kapitel</span></div>
+            <div><span style="font-weight: bold;" id="theory-header-label">📖 Theorie-Kapitel</span></div>
         </div>
         <div id="theory-content"></div>
     </div>
@@ -320,7 +320,7 @@
                 <button id="qa-home-btn">🏠 HOME</button>
                 <button id="qa-back-btn">◀ ZURÜCK</button>
             </div>
-            <div>❓ Q&A Bereich</div>
+            <div id="qa-header-label">❓ Q&A Bereich</div>
         </div>
         <div class="qa-container" id="qa-container"></div>
     </div>
@@ -328,80 +328,100 @@
 </div>
 
 <script>
-    // ---------- Sprachtexte (Deutsch / Französisch) ----------
+    // ---------- Sprachtexte für die gesamte App: Home, Theorie, QA, UI ----------
     let currentLang = 'de';   // 'de' oder 'fr'
 
-    // Theorie: Vollständige Texte (Deutsch und Französisch)
-    const theoryDe = [
-        {title: "📘 1. Einleitung", content: "Die Echographie (Ultraschall) ist ein bildgebendes Verfahren, das hochfrequente Schallwellen nutzt. Es ist strahlungsfrei und zeigt Weichteile in Echtzeit."},
-        {title: "🌊 2. Ultraschallwellen", content: "Frequenzen über 20 kHz. In der Diagnostik verwendet man 2–18 MHz. Je höher die Frequenz, desto besser die Auflösung, aber geringere Eindringtiefe."},
-        {title: "🔊 3. Kompression & Rarefaktion", content: "Schallwellen bestehen aus Zonen erhöhten Drucks (Kompression) und verminderten Drucks (Rarefaktion). Diese mechanischen Wellen breiten sich im Gewebe aus."},
-        {title: "⚡ 4. Impedanz der Gewebe", content: "Die akustische Impedanz ist materialspezifisch. An Grenzflächen unterschiedlicher Impedanz kommt es zu Reflexionen – Grundlage der Bildgebung."},
-        {title: "📏 5. Messungen", content: "Man misst Längen, Flächen, Volumina (z.B. fetale Biometrie, Schilddrüsenvolumen). Doppler erlaubt Flussmessungen."},
-        {title: "🖥️ 6. Schallkopf-Typen", content: "Linear (oberflächliche Strukturen), Konvex (Abdominal), Phased-Array (Herz). Jeder Typ hat spezifische Frequenz- und Schallfeld-Eigenschaften."},
-        {title: "🎯 7. Fazit", content: "Ultraschall ist sicher, nicht-invasiv und vielseitig. Limitationen: Knochen/Luft stören. Ständige technische Weiterentwicklung (3D/4D, Elastographie)."}
+    // ===================== THEORIE TEXTE (DEINE EXAKTEN VORGABEN) =====================
+    const theoryChapters = [
+        { // 1. Einführung
+            de: { title: "📘 Einführung", text: "Echographie ist eine sichere Echtzeit-Ultraschallmethode zur medizinischen Bildgebung. Sie arbeitet ohne ionisierende Strahlung und nutzt Reflexionen von Schallwellen, um innere Strukturen sichtbar zu machen. Besonders wichtig ist sie, weil sie nicht invasiv ist, keine Schmerzen verursacht und sofort Ergebnisse liefert. Ärzte können damit Organe in Bewegung beobachten, etwa das Herz oder ein ungeborenes Kind. Dadurch ist sie ein zentrales Werkzeug in der modernen Diagnostik." },
+            fr: { title: "📘 Introduction", text: "L'échographie est une méthode d'imagerie en temps réel utilisant les ultrasons. Elle est non invasive, sans radiation ionisante et permet d'observer les structures internes du corps. Elle est essentielle en médecine moderne car elle fournit des résultats immédiats et permet d'analyser le mouvement des organes comme le cœur ou le fœtus." }
+        },
+        { // 2. Ultraschall
+            de: { title: "🌊 Ultraschall", text: "Ultraschall sind mechanische Schallwellen mit Frequenzen über 20 kHz. In der Medizin werden meist 1–15 MHz verwendet, um eine hohe Bildauflösung zu erreichen. Die Wellen breiten sich longitudinal aus und werden unterschiedlich stark an Gewebegrenzen reflektiert. Dadurch entstehen die Bilder in der Echographie." },
+            fr: { title: "🌊 Ultrasons", text: "Les ultrasons sont des ondes mécaniques de fréquence supérieure à 20 kHz. En médecine, on utilise souvent 1 à 15 MHz pour obtenir une bonne résolution. Ils se propagent de manière longitudinale et sont réfléchis différemment selon les tissus, ce qui permet de créer les images." }
+        },
+        { // 3. Kompression & Rarefaktion
+            de: { title: "🔊 Kompression & Rarefaktion", text: "Eine Ultraschallwelle besteht aus abwechselnden Zonen von Kompression und Rarefaktion. Bei der Kompression werden Teilchen zusammengedrückt, bei der Rarefaktion wieder auseinandergezogen. Dieser Wechsel erzeugt die Druckschwankungen, die vom Gerät gemessen werden und die Bildinformation liefern." },
+            fr: { title: "🔊 Compression & raréfaction", text: "Une onde ultrasonore est composée d'alternances de compression et de raréfaction. Les particules sont comprimées puis relâchées. Ces variations de pression sont détectées par la sonde et permettent de créer l'image." }
+        },
+        { // 4. Typen der Echographie
+            de: { title: "🖥️ Typen der Echographie", text: "2D zeigt Schnittbilder, 3D erzeugt räumliche Rekonstruktionen und 4D zeigt Bewegungen in Echtzeit. Der Doppler misst zusätzlich den Blutfluss durch den Doppler-Effekt. In der Kardiologie analysiert man Herzklappen, in der Abdominaldiagnostik Organe und in der Schwangerschaft die Entwicklung des Fötus." },
+            fr: { title: "🖥️ Types d'échographie", text: "La 2D montre des coupes, la 3D reconstruit des volumes et la 4D montre le mouvement en temps réel. Le Doppler mesure le flux sanguin grâce à l'effet Doppler. Il est utilisé en cardiologie, en imagerie abdominale et en obstétrique." }
+        },
+        { // 5. Fazit
+            de: { title: "🎯 Fazit", text: "Die Echographie ist eine der wichtigsten Methoden der modernen Medizin. Sie ist sicher, schnell und vielseitig einsetzbar. Trotz ihrer Abhängigkeit vom Bediener bleibt sie unverzichtbar für Diagnose und Überwachung." },
+            fr: { title: "🎯 Conclusion", text: "L'échographie est une technique essentielle en médecine moderne. Elle est rapide, sûre et très polyvalente, malgré une dépendance à l'opérateur." }
+        }
     ];
 
-    const theoryFr = [
-        {title: "📘 1. Introduction", content: "L'échographie utilise des ondes ultrasonores haute fréquence. Examen sans radiation, visualisation en temps réel des tissus mous."},
-        {title: "🌊 2. Ondes ultrasonores", content: "Fréquences >20 kHz. En diagnostic: 2–18 MHz. Fréquence élevée = meilleure résolution mais pénétration moindre."},
-        {title: "🔊 3. Compression & Raréfaction", content: "Ondes mécaniques alternant zones de haute pression (compression) et basse pression (raréfaction). Propagation dans les tissus."},
-        {title: "⚡ 4. Impédance acoustique", content: "Propre à chaque tissu. Aux interfaces, réflexion des ultrasons → formation de l'image échographique."},
-        {title: "📏 5. Mesures", content: "Longueurs, surfaces, volumes (biométrie fœtale, thyroïde). Doppler pour évaluer les flux."},
-        {title: "🖥️ 6. Types de sondes", content: "Linéaire (superficiel), Convexe (abdominal), Phased-Array (cardiaque). Chaque sonde a ses propriétés."},
-        {title: "🎯 7. Conclusion", content: "Échographie: sûre, non invasive, polyvalente. Limites: os/air. Évolutions 3D/4D, élastographie."}
-    ];
+    // Texts for the UI elements (Home and navigation bits)
+    const homeTexts = {
+        de: { title: "📘 SonoMaster", subtitle: "Echographie – Lernen mit System", theorieBtn: "📖 THEORIE", quizBtn: "❓ QUIZ", qaBtn: "💬 FRAGE & ANTWORT", langLabel: "🌐 Sprache / Langue :", footer: "⬅️ Navigation: Home & Zurück jederzeit verfügbar" },
+        fr: { title: "📘 SonoMaster", subtitle: "Échographie – Apprendre systématiquement", theorieBtn: "📖 THÉORIE", quizBtn: "❓ QUIZ", qaBtn: "💬 QUESTIONS & RÉPONSES", langLabel: "🌐 Langue :", footer: "⬅️ Navigation: Accueil & Retour toujours disponibles" }
+    };
 
-    // ----- 15 Quizfragen (vier Antworten, Index der korrekten 0-3) -----
-    const quizQuestions = [
-        {text: "Welche Frequenzbereiche werden typisch für Abdomensonographie genutzt?", answers: ["2-5 MHz", "10-15 MHz", "20-30 MHz", "<1 MHz"], correct: 0},
-        {text: "Was bedeutet Hyperechogen?", answers: ["dunkel / schwarz", "hell / starke Reflexion", "schallfrei", "schwach reflektierend"], correct: 1},
-        {text: "Akustische Impedanz ist abhängig von:", answers: ["Dichte & Schallgeschwindigkeit", "nur der Dichte", "Frequenz", "Amplitude"], correct: 0},
-        {text: "Welche Schallkopfart eignet sich für Schilddrüsenuntersuchungen?", answers: ["Linear", "Konvex", "Phased Array", "Sektor"], correct: 0},
-        {text: "Was versteht man unter Rarefaktion?", answers: ["Verdichtung", "Druckabnahme / Ausdehnung", "Reflexion", "Absorption"], correct: 1},
-        {text: "Welcher Effekt ermöglicht die Blutflussdarstellung?", answers: ["Doppler-Effekt", "Kompressions-Effekt", "Rayleigh Streuung", "Kavitation"], correct: 0},
-        {text: "Echographie ist besonders gut geeignet für:", answers: ["Knochen", "Lunge (belüftet)", "Weichteile / Parenchym", "Dickdarm mit Luft"], correct: 2},
-        {text: "Was bedeutet Anechogen?", answers: ["keine Echos (flüssigkeitsgefüllt)", "sehr hell", "gemischt", "niedrige Frequenz"], correct: 0},
-        {text: "Die Auflösung wird mit höherer Frequenz ...", answers: ["besser", "schlechter", "unverändert", "unberechenbar"], correct: 0},
-        {text: "Welches Medium lässt Ultraschall kaum passieren?", answers: ["Luft", "Wasser", "Weichteil", "Muskel"], correct: 0},
-        {text: "Was misst die Elastographie?", answers: ["Gewebesteifigkeit", "Flussgeschwindigkeit", "Temperatur", "Dichte"], correct: 0},
-        {text: "Wie nennt man die Rauschunterdrückung im Bild?", answers: ["Compound", "Harmonic Imaging", "Gain", "Tiefenausgleich"], correct: 1},
-        {text: "Welche Art von Welle ist Ultraschall?", answers: ["Longitudinalwelle", "Transversalwelle", "Oberflächenwelle", "elektromagnetisch"], correct: 0},
-        {text: "Für Schwangerschaftsuntersuchungen wird Frequenz meist zwischen:", answers: ["3-7 MHz", "12-18 MHz", "20 MHz", "<1 MHz"], correct: 0},
-        {text: "Was ist die Rolle des Gels?", answers: ["Luftausschluss / Impedanzanpassung", "Kühlung", "Schalldämpfung", "Fokussierung"], correct: 0}
-    ];
+    // QA Texte (zwei Fragen/Antworten zu Echographie)
+    const qaData = {
+        de: [
+            { frage: "Was ist der physikalische Unterschied zwischen Kompression und Rarefaktion?", antwort: "Kompression = Druckmaximum, Rarefaktion = Druckminimum; gemeinsam bilden sie eine Longitudinalwelle. Die Kompression schiebt Teilchen zusammen, die Rarefaktion zieht sie auseinander – das ist der Mechanismus der Wellenausbreitung." },
+            { frage: "Warum limitiert Luft die Ultraschalluntersuchung?", antwort: "Luft hat eine sehr niedrige akustische Impedanz im Vergleich zu Gewebe. Das führt zu einer extrem starken Reflexion (ca. 99 % der Schallenergie), sodass kaum Ultraschall ins Gewebe eindringt und kein brauchbares Bild entsteht." }
+        ],
+        fr: [
+            { frage: "Quelle est la différence physique entre compression et raréfaction en échographie?", reponse: "Compression = pression maximale, raréfaction = pression minimale ; ensemble elles forment une onde longitudinale. La compression rapproche les particules, la raréfaction les écarte – c'est le mécanisme de propagation des ondes." },
+            { frage: "Pourquoi l'air limite-t-il l'examen échographique?", reponse: "L'air a une impédance acoustique très faible par rapport aux tissus. Cela provoque une réflexion extrêmement forte (environ 99 % de l'énergie ultrasonore), empêchant la pénétration des ondes et la formation d'une image exploitable." }
+        ]
+    };
 
-    // Französische Version der Fragen
-    const quizFr = [
-        {text: "Plage de fréquences typique pour l'échographie abdominale ?", answers: ["2-5 MHz", "10-15 MHz", "20-30 MHz", "<1 MHz"], correct: 0},
-        {text: "Que signifie hyperéchogène ?", answers: ["foncé / noir", "brillant / forte réflexion", "anéchogène", "faible réflexion"], correct: 1},
-        {text: "L'impédance acoustique dépend de :", answers: ["densité & vitesse du son", "densité uniquement", "fréquence", "amplitude"], correct: 0},
-        {text: "Quel type de sonde pour la thyroïde ?", answers: ["Linéaire", "Convexe", "Phased-array", "Sectoriel"], correct: 0},
-        {text: "Qu'est-ce que la raréfaction ?", answers: ["Compression", "Diminution de pression", "Réflexion", "Absorption"], correct: 1},
-        {text: "Quel effet permet d'imager le flux sanguin ?", answers: ["Doppler", "Compression", "Rayleigh", "Cavitation"], correct: 0},
-        {text: "L'échographie est adaptée pour :", answers: ["Os", "Poumon aéré", "Tissus mous", "Colon rempli d'air"], correct: 2},
-        {text: "Anéchogène signifie :", answers: ["sans écho (liquide)", "très brillant", "mixte", "basse fréquence"], correct: 0},
-        {text: "La résolution avec une fréquence plus élevée devient :", answers: ["meilleure", "pire", "identique", "instable"], correct: 0},
-        {text: "Quel milieu bloque presque les ultrasons ?", answers: ["Air", "Eau", "Tissus mous", "Muscle"], correct: 0},
-        {text: "Que mesure l'élastographie ?", answers: ["Dureté tissulaire", "Vitesse sanguine", "Température", "Densité"], correct: 0},
-        {text: "Nom d'une technique de réduction d'artefacts ?", answers: ["Compound", "Harmonic Imaging", "Gain", "TGC"], correct: 1},
-        {text: "Type d'onde ultrasonore :", answers: ["Longitudinale", "Transversale", "Ondes de surface", "Électromagnétique"], correct: 0},
-        {text: "Échographie obstétricale utilise généralement :", answers: ["3-7 MHz", "12-18 MHz", "20 MHz", "<1 MHz"], correct: 0},
-        {text: "Rôle du gel échographique :", answers: ["Éviter l'air / adaptation d'impédance", "Refroidir", "Atténuer", "Focaliser"], correct: 0}
-    ];
+    // ----- 15 Quizfragen (vier Antworten, immer zufällige Reihenfolge zur Laufzeit) -----
+    const quizQuestions = {
+        de: [
+            { text: "Welche Frequenzbereiche werden typisch für Abdomensonographie genutzt?", answers: ["2-5 MHz", "10-15 MHz", "20-30 MHz", "<1 MHz"], correct: 0 },
+            { text: "Was bedeutet Hyperechogen?", answers: ["dunkel / schwarz", "hell / starke Reflexion", "schallfrei", "schwach reflektierend"], correct: 1 },
+            { text: "Akustische Impedanz ist abhängig von:", answers: ["Dichte & Schallgeschwindigkeit", "nur der Dichte", "Frequenz", "Amplitude"], correct: 0 },
+            { text: "Welche Schallkopfart eignet sich für Schilddrüsenuntersuchungen?", answers: ["Linear", "Konvex", "Phased Array", "Sektor"], correct: 0 },
+            { text: "Was versteht man unter Rarefaktion?", answers: ["Verdichtung", "Druckabnahme / Ausdehnung", "Reflexion", "Absorption"], correct: 1 },
+            { text: "Welcher Effekt ermöglicht die Blutflussdarstellung?", answers: ["Doppler-Effekt", "Kompressions-Effekt", "Rayleigh Streuung", "Kavitation"], correct: 0 },
+            { text: "Echographie ist besonders gut geeignet für:", answers: ["Knochen", "Lunge (belüftet)", "Weichteile / Parenchym", "Dickdarm mit Luft"], correct: 2 },
+            { text: "Was bedeutet Anechogen?", answers: ["keine Echos (flüssigkeitsgefüllt)", "sehr hell", "gemischt", "niedrige Frequenz"], correct: 0 },
+            { text: "Die Auflösung wird mit höherer Frequenz ...", answers: ["besser", "schlechter", "unverändert", "unberechenbar"], correct: 0 },
+            { text: "Welches Medium lässt Ultraschall kaum passieren?", answers: ["Luft", "Wasser", "Weichteil", "Muskel"], correct: 0 },
+            { text: "Was misst die Elastographie?", answers: ["Gewebesteifigkeit", "Flussgeschwindigkeit", "Temperatur", "Dichte"], correct: 0 },
+            { text: "Wie nennt man die Rauschunterdrückung im Bild?", answers: ["Compound", "Harmonic Imaging", "Gain", "Tiefenausgleich"], correct: 1 },
+            { text: "Welche Art von Welle ist Ultraschall?", answers: ["Longitudinalwelle", "Transversalwelle", "Oberflächenwelle", "elektromagnetisch"], correct: 0 },
+            { text: "Für Schwangerschaftsuntersuchungen wird Frequenz meist zwischen:", answers: ["3-7 MHz", "12-18 MHz", "20 MHz", "<1 MHz"], correct: 0 },
+            { text: "Was ist die Rolle des Gels?", answers: ["Luftausschluss / Impedanzanpassung", "Kühlung", "Schalldämpfung", "Fokussierung"], correct: 0 }
+        ],
+        fr: [
+            { text: "Plage de fréquences typique pour l'échographie abdominale ?", answers: ["2-5 MHz", "10-15 MHz", "20-30 MHz", "<1 MHz"], correct: 0 },
+            { text: "Que signifie hyperéchogène ?", answers: ["foncé / noir", "brillant / forte réflexion", "anéchogène", "faible réflexion"], correct: 1 },
+            { text: "L'impédance acoustique dépend de :", answers: ["densité & vitesse du son", "densité uniquement", "fréquence", "amplitude"], correct: 0 },
+            { text: "Quel type de sonde pour la thyroïde ?", answers: ["Linéaire", "Convexe", "Phased-array", "Sectoriel"], correct: 0 },
+            { text: "Qu'est-ce que la raréfaction ?", answers: ["Compression", "Diminution de pression", "Réflexion", "Absorption"], correct: 1 },
+            { text: "Quel effet permet d'imager le flux sanguin ?", answers: ["Doppler", "Compression", "Rayleigh", "Cavitation"], correct: 0 },
+            { text: "L'échographie est adaptée pour :", answers: ["Os", "Poumon aéré", "Tissus mous", "Colon rempli d'air"], correct: 2 },
+            { text: "Anéchogène signifie :", answers: ["sans écho (liquide)", "très brillant", "mixte", "basse fréquence"], correct: 0 },
+            { text: "La résolution avec une fréquence plus élevée devient :", answers: ["meilleure", "pire", "identique", "instable"], correct: 0 },
+            { text: "Quel milieu bloque presque les ultrasons ?", answers: ["Air", "Eau", "Tissus mous", "Muscle"], correct: 0 },
+            { text: "Que mesure l'élastographie ?", answers: ["Dureté tissulaire", "Vitesse sanguine", "Température", "Densité"], correct: 0 },
+            { text: "Nom d'une technique de réduction d'artefacts ?", answers: ["Compound", "Harmonic Imaging", "Gain", "TGC"], correct: 1 },
+            { text: "Type d'onde ultrasonore :", answers: ["Longitudinale", "Transversale", "Ondes de surface", "Électromagnétique"], correct: 0 },
+            { text: "Échographie obstétricale utilise généralement :", answers: ["3-7 MHz", "12-18 MHz", "20 MHz", "<1 MHz"], correct: 0 },
+            { text: "Rôle du gel échographique :", answers: ["Éviter l'air / adaptation d'impédance", "Refroidir", "Atténuer", "Focaliser"], correct: 0 }
+        ]
+    };
 
-    function getCurrentQuestions() {
-        return currentLang === 'de' ? [...quizQuestions] : [...quizFr];
+    function getCurrentQuizBank() {
+        return currentLang === 'de' ? [...quizQuestions.de] : [...quizQuestions.fr];
     }
 
     // Globale Quiz-Zustände
     let currentQuizQuestions = [];
-    let quizIndex = 0;          // 0-14 (aktuelle Frage)
-    let userAnswers = new Array(15).fill(null); // gespeicherte Antwort (text oder index)
+    let quizIndex = 0;
+    let userAnswers = new Array(15).fill(null);
     let quizFinished = false;
-    let currentAnswersOrder = []; // für jede Frage zufällige Reihenfolge der Antwort-Indizes
+    let currentAnswersOrder = [];
 
-    // Hilfsfunktionen Zufallsreihenfolge der Antworten pro Frage (initial)
     function shuffleArray(arr) {
         for (let i = arr.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -420,7 +440,6 @@
         }
     }
 
-    // Quiz anzeigen (Fragestellung + gemischte Antworten)
     function renderCurrentQuestion() {
         const container = document.getElementById("quiz-panel");
         if (!container) return;
@@ -431,29 +450,23 @@
         const q = currentQuizQuestions[quizIndex];
         const order = currentAnswersOrder[quizIndex];
         const shuffledAnswers = order.map(idx => q.answers[idx]);
-        const correctOrigIndex = q.correct;
-        // Finde aktuell den richtigen Button-index im gemischten Array (für Validierung)
-        // Aber wir speichern gewählte Antwort getrennt.
         const progressSpan = document.getElementById("quiz-progress");
-        if(progressSpan) progressSpan.innerText = `Frage ${quizIndex+1} / ${currentQuizQuestions.length}`;
+        if(progressSpan) progressSpan.innerText = `${currentLang === 'de' ? 'Frage' : 'Question'} ${quizIndex+1} / ${currentQuizQuestions.length}`;
 
         let html = `<div class="quiz-question">${quizIndex+1}. ${q.text}</div>`;
         html += `<div class="answers-grid" id="answers-grid">`;
         shuffledAnswers.forEach((ans, idx) => {
             html += `<button class="answer-btn" data-answer-idx="${idx}" data-answer-text="${ans.replace(/"/g, '&quot;')}">${ans}</button>`;
         });
-        html += `</div><div class="quiz-footer"><button id="next-quiz-btn" style="background:#2c3e66;">➡ Nächste Frage</button></div>`;
+        html += `</div><div class="quiz-footer"><button id="next-quiz-btn" style="background:#2c3e66;">${currentLang === 'de' ? '➡ Nächste Frage' : '➡ Question suivante'}</button></div>`;
         container.innerHTML = html;
 
-        // Eventlistener für Antworten
         const ansBtns = document.querySelectorAll('.answer-btn');
         ansBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 if(quizFinished) return;
                 const selectedText = btn.getAttribute('data-answer-text');
-                // Speichere antwort
                 userAnswers[quizIndex] = selectedText;
-                // visuell markieren
                 ansBtns.forEach(b => b.style.background = "#f1f5f9");
                 btn.style.background = "#b9d8ff";
                 btn.style.borderColor = "#1e4a76";
@@ -471,28 +484,25 @@
                     quizIndex++;
                     renderCurrentQuestion();
                 } else {
-                    // Quiz beenden und Score anzeigen
                     quizFinished = true;
-                    renderCurrentQuestion(); // zeigt score an
+                    renderCurrentQuestion();
                 }
             });
         }
     }
 
     function showScoreScreen() {
-        // Berechne Auswertung: jede Antwort mit richtiger Antwort vergleichen
         let score = 0;
         let feedback = [];
         for(let i=0; i<currentQuizQuestions.length; i++) {
             const q = currentQuizQuestions[i];
             const userAnsText = userAnswers[i];
-            // richtige Antwort als Text
             const correctText = q.answers[q.correct];
             const isCorrect = (userAnsText === correctText);
             if(isCorrect) score++;
             feedback.push({
                 question: q.text,
-                user: userAnsText || "(keine Antwort)",
+                user: userAnsText || (currentLang === 'de' ? "(keine Antwort)" : "(pas de réponse)"),
                 correct: correctText,
                 isCorrect: isCorrect
             });
@@ -508,48 +518,39 @@
             ${currentLang === 'de' ? 'Deine Antwort:' : 'Votre réponse:'} ${fb.user} <br>
             ✔ ${currentLang === 'de' ? 'Richtig:' : 'Correcte:'} ${fb.correct} ${icon}</div>`;
         });
-        resultHtml += `</div><div class="quiz-footer" style="margin-top:25px;"><button id="score-restart-btn">🔄 QUIZ NEUSTART</button>
-        <button id="score-home-btn">🏠 HOME</button></div>`;
+        resultHtml += `</div><div class="quiz-footer" style="margin-top:25px;"><button id="score-restart-btn">🔄 ${currentLang === 'de' ? 'QUIZ NEUSTART' : 'RECOMMENCER'}</button>
+        <button id="score-home-btn">🏠 ${currentLang === 'de' ? 'HOME' : 'ACCUEIL'}</button></div>`;
         container.innerHTML = resultHtml;
         document.getElementById("score-restart-btn")?.addEventListener("click", () => restartQuiz());
         document.getElementById("score-home-btn")?.addEventListener("click", () => goToHome());
     }
 
     function restartQuiz() {
-        // frisches quiz mit neu zufälligen Antwortreihenfolgen
-        currentQuizQuestions = getCurrentQuestions();
+        currentQuizQuestions = getCurrentQuizBank();
         userAnswers.fill(null);
         quizIndex = 0;
         quizFinished = false;
         initQuizOrder();
         renderCurrentQuestion();
         const progress = document.getElementById("quiz-progress");
-        if(progress) progress.innerText = `Frage 1 / ${currentQuizQuestions.length}`;
+        if(progress) progress.innerText = `${currentLang === 'de' ? 'Frage' : 'Question'} 1 / ${currentQuizQuestions.length}`;
     }
 
-    // Theorie dynamisch rendern
+    // Theorie rendern (exakt deine Texte)
     function renderTheory() {
-        const theoryData = currentLang === 'de' ? theoryDe : theoryFr;
         const container = document.getElementById("theory-content");
         if(!container) return;
         let html = "";
-        theoryData.forEach(section => {
-            html += `<div class="theory-card"><h3>${section.title}</h3><p>${section.content}</p></div>`;
+        theoryChapters.forEach(ch => {
+            const data = currentLang === 'de' ? ch.de : ch.fr;
+            html += `<div class="theory-card"><h3>${data.title}</h3><p>${data.text}</p></div>`;
         });
         container.innerHTML = html;
+        const headerLabel = document.getElementById("theory-header-label");
+        if(headerLabel) headerLabel.innerText = currentLang === 'de' ? "📖 Theorie-Kapitel" : "📖 Chapitres de théorie";
     }
 
-    // QA (zwei Fragen & Antworten) Bezug Echographie
-    const qaData = {
-        de: [
-            {frage: "Was ist der physikalische Unterschied zwischen Kompression und Rarefaktion?", antwort: "Kompression = Druckmaximum, Rarefaktion = Druckminimum; gemeinsam bilden sie eine Longitudinalwelle."},
-            {frage: "Warum limitiert Luft die Ultraschalluntersuchung?", antwort: "Luft hat eine sehr niedrige Impedanz → starke Reflexion (ca. 99%), daher kaum Transmission ins Gewebe."}
-        ],
-        fr: [
-            {frage: "Quelle est la différence entre compression et raréfaction en échographie?", reponse: "Compression: pression maximale, raréfaction: pression minimale; ensemble elles forment une onde longitudinale."},
-            {frage: "Pourquoi l'air limite-t-il l'examen échographique?", reponse: "L'air a une très faible impédance → réflexion quasi totale → pas de transmission."}
-        ]
-    };
+    // QA rendern
     function renderQA() {
         const container = document.getElementById("qa-container");
         if(!container) return;
@@ -561,9 +562,41 @@
             html += `<div class="qa-item"><div class="qa-question">❓ ${questionText}</div><div class="qa-answer">📌 ${answerText}</div></div>`;
         });
         container.innerHTML = html;
+        const qaHeader = document.getElementById("qa-header-label");
+        if(qaHeader) qaHeader.innerText = currentLang === 'de' ? "❓ Q&A Bereich" : "❓ Section Questions/Réponses";
     }
 
-    // Navigation & Sprachwechsel & Screen Steuerung mit history stack (für Zurück)
+    // Home Texte übersetzen
+    function updateHomeTexts() {
+        const texts = homeTexts[currentLang];
+        document.getElementById("home-title").innerText = texts.title;
+        document.getElementById("home-subtitle").innerText = texts.subtitle;
+        document.getElementById("goto-theory-home").innerHTML = texts.theorieBtn;
+        document.getElementById("goto-quiz-home").innerHTML = texts.quizBtn;
+        document.getElementById("goto-qa-home").innerHTML = texts.qaBtn;
+        document.getElementById("lang-label").innerHTML = texts.langLabel;
+        document.getElementById("home-footer").innerHTML = texts.footer;
+    }
+
+    // Sprachumschaltung komplett
+    function setLanguage(lang) {
+        currentLang = lang;
+        updateHomeTexts();
+        renderTheory();
+        renderQA();
+        // Wenn Quiz gerade offen ist, Neustart mit frischen Fragen
+        const quizScreen = document.getElementById("quiz-screen");
+        if(quizScreen.classList.contains("active")) {
+            currentQuizQuestions = getCurrentQuizBank();
+            userAnswers.fill(null);
+            quizIndex = 0;
+            quizFinished = false;
+            initQuizOrder();
+            renderCurrentQuestion();
+        }
+    }
+
+    // Navigation & history stack
     let screenStack = ["home"];
     function showScreen(screenId, addToStack = true) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -571,18 +604,13 @@
         if(addToStack && screenStack[screenStack.length-1] !== screenId) screenStack.push(screenId);
         if(screenId === "theory") renderTheory();
         if(screenId === "quiz") {
-            if(!currentQuizQuestions.length || currentQuizQuestions.length !== 15 || quizFinished === true && userAnswers.every(v=>v!==null)){
-                // nur bei erstem öffnen initialisieren falls nicht initialisiert
-                if(currentQuizQuestions.length === 0 || quizFinished) {
-                    currentQuizQuestions = getCurrentQuestions();
-                    userAnswers.fill(null);
-                    quizIndex = 0;
-                    quizFinished = false;
-                    initQuizOrder();
-                    renderCurrentQuestion();
-                } else {
-                    renderCurrentQuestion();
-                }
+            if(!currentQuizQuestions.length || currentQuizQuestions.length !== 15 || quizFinished) {
+                currentQuizQuestions = getCurrentQuizBank();
+                userAnswers.fill(null);
+                quizIndex = 0;
+                quizFinished = false;
+                initQuizOrder();
+                renderCurrentQuestion();
             } else {
                 renderCurrentQuestion();
             }
@@ -604,7 +632,7 @@
         showScreen("home", false);
     }
 
-    // Eventlistener binden
+    // Event Listener
     document.getElementById("goto-theory-home")?.addEventListener("click", ()=>showScreen("theory"));
     document.getElementById("goto-quiz-home")?.addEventListener("click", ()=>showScreen("quiz"));
     document.getElementById("goto-qa-home")?.addEventListener("click", ()=>showScreen("qa"));
@@ -615,13 +643,13 @@
     document.getElementById("quiz-restart-btn")?.addEventListener("click", ()=>{ restartQuiz(); });
     document.getElementById("qa-home-btn")?.addEventListener("click", goToHome);
     document.getElementById("qa-back-btn")?.addEventListener("click", goBack);
-    document.getElementById("lang-de")?.addEventListener("click", ()=>{ currentLang = 'de'; if(document.getElementById("home-screen").classList.contains("active")){} renderTheory(); renderQA(); if(document.getElementById("quiz-screen").classList.contains("active")){ restartQuiz(); } });
-    document.getElementById("lang-fr")?.addEventListener("click", ()=>{ currentLang = 'fr'; renderTheory(); renderQA(); if(document.getElementById("quiz-screen").classList.contains("active")){ restartQuiz(); } });
+    document.getElementById("lang-de")?.addEventListener("click", ()=>{ setLanguage('de'); });
+    document.getElementById("lang-fr")?.addEventListener("click", ()=>{ setLanguage('fr'); });
 
-    // initial
-    currentQuizQuestions = getCurrentQuestions();
-    userAnswers.fill(null);
+    // Initialisierung
+    currentQuizQuestions = getCurrentQuizBank();
     initQuizOrder();
+    updateHomeTexts();
     renderTheory();
     renderQA();
     showScreen("home", false);
