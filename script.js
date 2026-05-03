@@ -98,7 +98,7 @@ const questions = [
     a: 0
   },
   {
-    de: { q: "Warum Gel zwischen dem Aparat und Körper?", o: ["Luft entfernen", "Kühlen", "Farbe", "Schutz"] },
+    de: { q: "Warum Gel zwischen dem Apparat und Körper?", o: ["Luft entfernen", "Kühlen", "Farbe", "Schutz"] },
     fr: { q: "Pourquoi mettre du gel entre l'apareil et le corps ?", o: ["Enlever l’air", "Refroidir", "Couleur", "Protection"] },
     a: 0
   },
@@ -169,8 +169,17 @@ function showNav(mode) {
   const nav = document.getElementById("nav");
   const restart = document.getElementById("restartBtn");
 
-  nav.style.display = (mode === "home") ? "none" : "flex";
-  restart.style.display = (mode === "quiz") ? "inline-block" : "none";
+  if (mode === "home") {
+    nav.classList.add("hidden");
+  } else {
+    nav.classList.remove("hidden");
+  }
+
+  if (mode === "quiz") {
+    restart.style.display = "inline-block";
+  } else {
+    restart.style.display = "none";
+  }
 }
 
 /* RESET */
@@ -336,6 +345,9 @@ function restartQuiz() {
 }
 function updateUI(){
   document.getElementById("qaBtn").innerText = T[lang].qa;
+
+  // optional später erweitern:
+  // document.getElementById("title").innerText = ...
 }
 
 /* INIT */
