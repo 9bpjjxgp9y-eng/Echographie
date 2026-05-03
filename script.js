@@ -4,7 +4,7 @@ let score = 0;
 let quiz = [];
 let results = [];
 let currentScreen = "home";
-let history = [];
+let screenHistory = [];
 let startX = 0;
 
 document.addEventListener("touchstart", e => {
@@ -195,11 +195,11 @@ function showNav(mode) {
 
 /* ---------- SCREEN CONTROL (IMPORTANT FIX) ---------- */
 function showScreen(id){
-  if (currentScreen !== id) {
-    history.push(currentScreen);
-  }
+  const current = document.querySelector(".screen:not(.hidden)");
 
-  currentScreen = id;
+  if (current && current.id !== id) {
+    screenHistory.push(current.id);
+  }
 
   document.querySelectorAll(".screen").forEach(s => {
     s.classList.add("hidden");
@@ -374,10 +374,19 @@ function restartQuiz() {
 }
 
 function goBack(){
-  const last = history.pop();
-  if (!last) return;
+  if (screenHistory.length === 0) {
+    goHome();
+    return;
+  }
 
-  showScreen(last);
+  const last = screenHistory.pop();
+
+  document.querySelectorAll(".screen").forEach(s => {
+    s.classList.add("hidden");
+  });
+
+  const el = document.getElementById(last);
+  if (el) el.classList.remove("hidden");
 }
 /* ---------- UI ---------- */
 function updateUI() {
