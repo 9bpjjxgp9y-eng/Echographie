@@ -204,7 +204,8 @@ function showQuestion() {
   const q = quiz[index];
 
   document.getElementById("question").innerText = q.q;
-
+document.getElementById("fill").style.width =
+  (index / quiz.length * 100) + "%";
   document.getElementById("answers").innerHTML =
     q.o.map((t, i) =>
       `<button onclick="answer(${i})">${t}</button>`
