@@ -175,8 +175,7 @@ function showNav(mode) {
 
 /* RESET */
 function reset(){
-  ["home","theory","theoryDetail","qa","qaDetail","quiz","result"]
-  .forEach(id => document.getElementById(id).classList.add("hidden"));
+  document.querySelectorAll(".screen").forEach(s => s.classList.add("hidden"));
 }
 
 /* HOME */
@@ -351,4 +350,6 @@ function updateUI(){
 
 /* INIT */
 updateUI();
-goHome();
+document.addEventListener("DOMContentLoaded", () => {
+  goHome();
+});
