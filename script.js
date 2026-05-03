@@ -212,7 +212,7 @@ function updateNav(screen) {
   restart.style.display = screen === "quiz" ? "inline-block" : "none";
 }
 /* ---------- SCREEN CONTROL (IMPORTANT FIX) ---------- */
-function showScreen(id){
+function setScreen(id){
   const current = document.querySelector(".screen:not(.hidden)");
 
   if (current && current.id !== id) {
@@ -251,7 +251,7 @@ function setLang(l) {
 
 /* ---------- THEORY ---------- */
 function showTheory() {
-  showScreen("theory");
+  setScreen("theory");
   showNav("theory");
 
   document.getElementById("theoryMenu").innerHTML =
@@ -263,7 +263,7 @@ function showTheory() {
 }
 
 function openTheory(i) {
-  showScreen("theoryDetail");
+  setScreen("theoryDetail");
 
   const t = theory[i][lang];
 
@@ -278,7 +278,7 @@ function openTheory(i) {
 
 /* ---------- QA ---------- */
 function showQA() {
-  showScreen("qa");
+  setScreen("qa");
   showNav("qa");
 
   document.getElementById("qaMenu").innerHTML =
@@ -290,7 +290,7 @@ function showQA() {
 }
 
 function openQA(i) {
-  showScreen("qaDetail");
+  setScreen("qaDetail");
 
   const item = qa[i][lang];
 
@@ -319,7 +319,7 @@ function startQuiz() {
       a: q.a
     }));
 
-  showScreen("quiz");
+  setScreen("quiz");
   showNav("quiz");
 
   showQ();
@@ -363,7 +363,7 @@ function answer(i) {
 
 /* ---------- RESULT ---------- */
 function showResult() {
-  showScreen("result");
+  setScreen("result");
   showNav("result");
 
   document.getElementById("score").innerText =
@@ -394,7 +394,7 @@ function restartQuiz() {
       a: q.a
     }));
 
-  showScreen("quiz");
+  setScreen("quiz");
   showNav("quiz");
 
   showQ();
