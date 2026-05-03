@@ -197,7 +197,7 @@ function setLang(l) {
 /* THEORY */
 function showTheory() {
   reset();
-  document.getElementById("theory").style.display = "block";
+  document.getElementById("theory").classList.remove("hidden");
 
   document.getElementById("theoryMenu").innerHTML =
     theory.map((t, i) =>
@@ -209,7 +209,7 @@ function showTheory() {
 
 function openTheory(i) {
   reset();
-  document.getElementById("theoryDetail").style.display = "block";
+  document.getElementById("theoryDetail").classList.remove("hidden");
 
   const t = theory[i][lang];
 
@@ -217,14 +217,14 @@ function openTheory(i) {
     <div class="card">
       <h2>${t[0]}</h2>
       <p>${t[1]}</p>
-      <button onclick="showTheory()">Zurück</button>
+      <button onclick="showTheory()">🔙</button>
     </div>
   `;
 }
 /* QA */
 function showQA() {
   reset();
-  document.getElementById("qa").style.display = "block";
+  document.getElementById("qa").classList.remove("hidden");
 
   document.getElementById("qaMenu").innerHTML =
     qa.map((item, i) => `
@@ -238,7 +238,7 @@ function showQA() {
 
 function openQA(i) {
   reset();
-  document.getElementById("qaDetail").style.display = "block";
+  document.getElementById("qaDetail").classList.remove("hidden");
 
   const item = qa[i][lang];
 
@@ -263,7 +263,7 @@ function startQuiz() {
   results = [];
   quiz = [...questions].sort(() => Math.random() - 0.5);
 
-  document.getElementById("quiz").style.display = "block";
+  document.getElementById("quiz").classList.remove("hidden");
   showNav("quiz");
 
   showQ();
@@ -313,7 +313,7 @@ function answer(i) {
 /* RESULT */
 function showResult() {
   reset();
-  document.getElementById("result").style.display = "block";
+  document.getElementById("result").classList.remove("hidden");
 
   document.getElementById("score").innerText =
     `🏆Score: ${score}/${quiz.length}`;
