@@ -1,58 +1,84 @@
+/* =========================
+   STATE
+========================= */
+
 let lang = localStorage.getItem("lang") || "de";
+
 let index = 0;
 let score = 0;
 let quiz = [];
 let results = [];
+
 let currentScreen = "home";
 let screenHistory = [];
-function setScreen(id, addHistory = true) {
 
+/* =========================
+   SCREEN SYSTEM
+========================= */
+
+function setScreen(id, save = true) {
   const current = document.querySelector(".screen:not(.hidden)");
 
-  if (current && addHistory && current.id !== id) {
-
+  if (current && save && current.id !== id) {
     screenHistory.push(current.id);
-
   }
 
-  document.querySelectorAll(".screen").forEach(s => {
-
-    s.classList.add("hidden");
-
-  });
-
+  document.querySelectorAll(".screen").forEach(s => s.classList.add("hidden"));
   document.getElementById(id).classList.remove("hidden");
 
-  updateNav(id);
-
+  currentScreen = id;
+  updateNav();
 }
-let startX = 0;
 
-document.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-});
+function goBack() {
+  const last = screenHistory.pop();
+  if (!last) return goHome();
+  setScreen(last, false);
+}
 
-document.addEventListener("touchend", e => {
-  let endX = e.changedTouches[0].clientX;
+function goHome() {
+  screenHistory = [];
+  setScreen("home", false);
+}
 
-  if (endX - startX > 80) {
-    goBack();
-  }
-});
+/* =========================
+   NAVIGATION UI
+========================= */
 
-/* TEXT */
+function updateNav() {
+  const nav = document.getElementById("nav");
+  if (!nav) return;
+
+  const backBtn = document.getElementById("backBtn");
+  const restartBtn = document.getElementById("restartBtn");
+
+  nav.classList.toggle("hidden", currentScreen === "home");
+
+  if (backBtn) backBtn.style.display = currentScreen === "home" ? "none" : "inline-block";
+  if (restartBtn) restartBtn.style.display = currentScreen === "quiz" ? "inline-block" : "none";
+}
+
+/* =========================
+   TEXT (UI LABELS)
+========================= */
+
 const T = {
-  de: { 
-    your: "Deine Antwort:", 
+  de: {
+    your: "Deine Antwort:",
     correct: "Richtige Antwort:",
     qa: "🙋‍♀️ Fragen & Antworten"
   },
-  fr: { 
-    your: "Ta réponse :", 
+  fr: {
+    your: "Ta réponse :",
     correct: "Bonne réponse :",
     qa: "🙋‍♀️ Questions & Réponses"
   }
 };
+
+/* =========================
+   Q&A SECTION (FILL HERE)
+========================= */
+
 const qa = [
   {
     de: {
@@ -77,7 +103,10 @@ const qa = [
   }
 ];
 
-/* THEORY */
+/* =========================
+   THEORY SECTION (FILL HERE)
+========================= */
+
 const theory = [
   {
     de: ["Einführung",
@@ -121,7 +150,12 @@ const theory = [
   }
 ];
 
-/* 15 QUESTIONS FIXED */
+
+
+/* =========================
+   QUIZ QUESTIONS (FILL HERE)
+========================= */
+
 const questions = [
   {
     de: { q: "Was nutzt Echographie?", o: ["Ultraschall", "Röntgen", "Licht", "Magnetfeld"] },
@@ -200,39 +234,28 @@ const questions = [
   }
 ];
 
-/* ---------- NAV ---------- */
+/* =========================
+   QUIZ LOGIC
+========================= */
 
-/* ---------- SCREEN CONTROL (IMPORTANT FIX) ---------- */
-function setScreen(id){
-  const current = document.querySelector(".screen:not(.hidden)");
+function startQuiz() {
+  index = 0;
+  score = 0;
+  results = [];
 
-  if (current && current.id !== id) {
-    screenHistory.push(current.id);
-  }
+  quiz = [...questions]
+    .sort(() => Math.random() - 0.5)
+    .map(q => ({
+      q: q[lang].q,
+      o: q[lang].o,
+      a: q.a
+    }));
 
-/* ---------- HOME ---------- */
-function goHome() {
-  screenHistory = [];
-  setScreen("home", false);
+  setScreen("quiz");
+  showQuestion();
 }
 
-function goBack() {
-  const last = screenHistory.pop();
-  if (!last) return goHome();
-  setScreen(last, false);
-}
-
-function restartQuiz() {
-  startQuiz();
-}
-/* ---------- LANG ---------- */
-function setLang(l) {
-  lang = l;
-  localStorage.setItem("lang", l);
-  updateUI();
-  goHome();
-}
-function showQ() {
+function showQuestion() {
   if (index >= quiz.length) return showResult();
 
   const q = quiz[index];
@@ -240,12 +263,12 @@ function showQ() {
   document.getElementById("question").innerText = q.q;
 
   const shuffled = q.o
-    .map((text, i) => ({ text, i }))
+    .map((t, i) => ({ t, i }))
     .sort(() => Math.random() - 0.5);
 
   document.getElementById("answers").innerHTML =
     shuffled.map(a =>
-      `<button onclick="answer(${a.i})">${a.text}</button>`
+      `<button onclick="answer(${a.i})">${a.t}</button>`
     ).join("");
 
   document.getElementById("fill").style.width =
@@ -265,49 +288,61 @@ function answer(i) {
   });
 
   index++;
-  showQ();
+  showQuestion();
 }
 
-/* ---------- RESULT ---------- */
+/* =========================
+   RESULT SCREEN
+========================= */
 
-/* ---------- RESTART ---------- */
-function restartQuiz() {
-  startQuiz();
-  score = 0;
-  index = 0;
-  results = [];
+function showResult() {
+  setScreen("result");
 
-  quiz = [...questions]
-    .sort(() => Math.random() - 0.5)
-    .map(q => ({
-      q: q[lang].q,
-      o: q[lang].o,
-      a: q.a
-    }));
+  document.getElementById("score").innerText =
+    `Score: ${score}/${quiz.length}`;
 
-  setScreen("quiz");
-  showNav("quiz");
-
-  showQ();
+  document.getElementById("results").innerHTML =
+    results.map(r => `
+      <div class="card">
+        <b>${r.q}</b><br>
+        ${T[lang].your} ${r.o[r.u]}<br>
+        ${T[lang].correct} ${r.o[r.c]}
+      </div>
+    `).join("");
 }
 
-function goBack(){
-  if (screenHistory.length === 0) {
-    goHome();
-    return;
-  }
+/* =========================
+   THEORY UI
+========================= */
 
-  const last = screenHistory.pop();
+function showTheory() {
+  setScreen("theory");
 
-
-  const el = document.getElementById(last);
-  if (el) el.classList.remove("hidden");
-}
-/* ---------- UI ---------- */
-function updateUI() {
-  document.getElementById("qaBtn").innerText = T[lang].qa;
+  document.getElementById("theoryMenu").innerHTML =
+    theory.map((t, i) => `
+      <div class="card">
+        <button onclick="openTheory(${i})">${t[lang].title}</button>
+      </div>
+    `).join("");
 }
 
-/* ---------- INIT ---------- */
-updateUI();
+function openTheory(i) {
+  setScreen("theoryDetail");
+
+  const t = theory[i][lang];
+
+  document.getElementById("theoryDetail").innerHTML = `
+    <div class="card">
+      <h2>${t.title}</h2>
+      <p>${t.text}</p>
+      <button onclick="showTheory()">Back</button>
+    </div>
+  `;
+}
+
+/* =========================
+   INIT
+========================= */
+
 goHome();
+updateNav();
