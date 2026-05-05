@@ -22,7 +22,7 @@
         }
 
         #app {
-            max-width: 1300px;
+            max-width: 1400px;
             width: 100%;
             background: white;
             border-radius: 64px;
@@ -169,7 +169,7 @@
         .qa-container { display: flex; flex-direction: column; gap: 32px; }
         .qa-item { background: #faf5ff; border-radius: 48px; padding: 28px; border: 1px solid #d2b4de; }
         .qa-question { font-size: 1.4rem; font-weight: bold; margin-bottom: 16px; color: #8e44ad; }
-        .qa-answer { font-size: 1.1rem; background: white; padding: 18px; border-radius: 40px; }
+        .qa-answer { font-size: 1.1rem; background: white; padding: 18px; border-radius: 40px; line-height: 1.5; }
 
         h1 { font-size: 2.2rem; font-weight: 800; color: #6c3483; text-align: center; letter-spacing: 2px; }
         
@@ -188,7 +188,6 @@
             display: block;
             margin: 0 auto;
             box-shadow: 0 0 20px rgba(156, 39, 176, 0.3);
-            cursor: pointer;
         }
         .experiment-title {
             color: #f39c12;
@@ -222,8 +221,8 @@
         }
         .wave-btn {
             background: #2c3e50;
-            padding: 8px 20px;
-            font-size: 0.9rem;
+            padding: 10px 24px;
+            font-size: 1rem;
         }
         .wave-btn.active { background: #e67e22; }
 
@@ -297,19 +296,19 @@
         
         <!-- Expérience 1: Piézoélectrique -->
         <div class="experiment-container">
-            <div class="experiment-title">🔬 Expérience 1 : Effet Piézoélectrique</div>
-            <canvas id="piezoCanvas" width="800" height="300" style="width:100%; max-width:800px; height:auto;"></canvas>
-            <button class="experiment-btn" id="startEnergyBtn">⚡ ENERGIE ÉLECTRIQUE</button>
+            <div class="experiment-title">🔬 Expérience 1 : L'effet piézoélectrique</div>
+            <canvas id="piezoCanvas" width="900" height="320" style="width:100%; max-width:900px; height:auto;"></canvas>
+            <button class="experiment-btn" id="startEnergyBtn">⚡ APPLIQUER L'ÉNERGIE ÉLECTRIQUE</button>
             <div class="experiment-explanation">
-                💡 Cliquez sur "Énergie Électrique" – des éclairs bleus vont vers les cristaux (⭐️),<br>
-                les cristaux vibrent et génèrent des ondes ultrasonores (demi-cercles colorés) !
+                💡 Cliquez sur le bouton : des éclairs bleus (énergie électrique) se dirigent vers les cristaux (⭐️).<br>
+                Les cristaux vibrent et génèrent des ondes ultrasonores (demi-cercles verts/bleus) qui se propagent.
             </div>
         </div>
 
         <!-- Expérience 2: Comportement des ondes -->
         <div class="experiment-container">
-            <div class="experiment-title">🌊 Expérience 2 : Comportement des ondes ultrasonores</div>
-            <canvas id="waveCanvas" width="800" height="350" style="width:100%; max-width:800px; height:auto;"></canvas>
+            <div class="experiment-title">🌊 Expérience 2 : Comportement des ondes ultrasonores (sonde → tissus)</div>
+            <canvas id="waveCanvas" width="900" height="400" style="width:100%; max-width:900px; height:auto;"></canvas>
             <div class="wave-buttons">
                 <button class="wave-btn" data-effect="reflexion">🔄 RÉFLEXION</button>
                 <button class="wave-btn" data-effect="refraction">〰️ RÉFRACTION</button>
@@ -330,40 +329,40 @@
     // THÉORIE (chaque section 200+ mots)
     const theoryChapters = [
         { title: "📘 Introduction à l'échographie", content: "L'échographie est une technique d'imagerie médicale qui utilise des ondes ultrasonores pour visualiser l'intérieur du corps humain. Contrairement à la radiographie ou au scanner, elle n'utilise pas de rayonnements ionisants, ce qui la rend totalement sûre, même pour les femmes enceintes et les enfants. Le principe fondamental repose sur l'émission d'ondes sonores à haute fréquence (supérieures à 20 kHz, inaudibles pour l'oreille humaine) qui se propagent dans les tissus. Lorsque ces ondes rencontrent une interface entre deux tissus de densités différentes, une partie est réfléchie et retourne vers la sonde. L'appareil mesure le temps de vol aller-retour et calcule la profondeur. Cette méthode permet d'obtenir des images en temps réel, ce qui est essentiel pour observer les organes en mouvement comme le cœur ou un fœtus. L'échographie est devenue indispensable en médecine moderne : elle est non invasive, indolore, rapide et économique. Ses applications sont multiples : diagnostic abdominal, cardiologie, obstétrique, exploration vasculaire, musculo-squelettique, etc. La qualité de l'image dépend de la fréquence utilisée : plus la fréquence est élevée, meilleure est la résolution, mais la pénétration est moindre." },
-        { title: "🌊 Les ultrasons", content: "Les ultrasons sont des ondes mécaniques longitudinales dont la fréquence dépasse la limite d'audibilité humaine (20 kHz). En imagerie médicale, on utilise des fréquences comprises entre 1 et 15 MHz. Les ondes ultrasonores se propagent dans les tissus à une vitesse moyenne d'environ 1540 m/s (cette vitesse varie selon la densité du milieu : 1480 m/s dans l'eau, 3300 m/s dans l'os, 340 m/s dans l'air). Leur longueur d'onde est inversement proportionnelle à la fréquence : λ = v/f. Une fréquence élevée (15 MHz) donne une longueur d'onde courte, permettant une meilleure résolution spatiale (détection de petits détails) mais une pénétration limitée (quelques centimètres). Une fréquence basse (2-5 MHz) pénètre plus profondément (jusqu'à 20-30 cm) mais avec une résolution moindre. Les ultrasons sont produits par des transducteurs piézoélectriques qui convertissent l'énergie électrique en vibrations mécaniques. Ils sont réfléchis, réfractés, absorbés ou diffusés selon les propriétés acoustiques des tissus traversés. L'échographie exploite principalement les échos réfléchis (réflexion spéculaire) pour construire l'image. Les zones anéchogènes (comme les liquides) apparaissent noires, les zones hyperéchogènes (comme les os) apparaissent blanches." },
-        { title: "🔊 Compression & Raréfaction", content: "Une onde ultrasonore est une onde de pression qui se propage par alternance de compressions et de raréfactions. Lors d'une compression, les particules du milieu sont rapprochées, créant une zone de haute pression. Lors d'une raréfaction, les particules sont éloignées, créant une zone de basse pression. Cette alternance se déplace dans le milieu à la vitesse du son. La distance entre deux compressions successives est la longueur d'onde. L'amplitude de l'onde correspond à la variation maximale de pression. En échographie, c'est l'intensité des ondes réfléchies qui est mesurée. Le rapport entre l'amplitude de l'onde réfléchie et l'onde incidente dépend du coefficient de réflexion, lié à la différence d'impédance acoustique entre les deux milieux. La compression et la raréfaction sont également responsables des effets biologiques des ultrasons : la cavitation (formation de bulles gazeuses), les micro-courants et l'échauffement thermique. Cependant, aux intensités utilisées en diagnostic (ISPTA < 720 mW/cm²), ces effets sont négligeables et sans danger. La compréhension de ces phénomènes ondulatoires est fondamentale pour optimiser les réglages de l'échographe (gain, puissance, fréquence, focalisation) et pour interpréter correctement les images : un artefact peut parfois résulter d'une réflexion multiple ou d'une atténuation anormale." },
-        { title: "🖥️ Types d'échographie et applications", content: "Il existe plusieurs types d'échographie selon l'objectif clinique. L'échographie 2D (mode B) est la plus courante : elle produit une coupe bidimensionnelle en niveaux de gris. L'échographie 3D reconstruit un volume à partir de multiples coupes 2D, permettant une visualisation spatiale des structures (utile en obstétrique). L'échographie 4D ajoute la dimension temporelle, montrant les mouvements en temps réel (exemple : les mouvements du fœtus). L'échographie Doppler mesure la vitesse et la direction du flux sanguin grâce à l'effet Doppler (changement de fréquence des ondes réfléchies par les globules rouges). Le Doppler couleur code les flux en rouge et bleu selon leur direction. L'échographie de contraste utilise des microbulles injectables qui augmentent la réflexion des ultrasons, améliorant la visualisation de la vascularisation. L'échocardiographie est l'échographie du cœur : elle évalue la fonction systolique, les valves, les pressions intracardiaques. L'échographie abdominale examine le foie, la vésicule biliaire, les reins, le pancréas, la rate. Elle permet de détecter des calculs, tumeurs, kystes, épanchements. L'échographie obstétricale suit le développement fœtal : biométrie, anatomie, placenta, liquide amniotique. Elle permet de dépister des malformations congénitales. Chaque application nécessite des sondes spécifiques : linéaire (haute fréquence pour les structures superficielles), convexe (basse fréquence pour l'abdomen), phased-array (petite surface pour le cœur)." },
-        { title: "📏 Principe de mesure : la formule fondamentale", content: "La mesure de la profondeur en échographie repose sur une formule simple mais fondamentale : d = v × t / 2. d est la profondeur de l'interface réfléchissante (en mètres). v est la vitesse de propagation des ultrasons dans le tissu (environ 1540 m/s pour les tissus mous). t est le temps écoulé entre l'émission de l'impulsion ultrasonore et la réception de l'écho (en secondes). La division par 2 est essentielle car l'onde effectue un aller-retour. Exemple : si t = 26 microsecondes (26 × 10⁻⁶ s), alors d = 1540 × (26×10⁻⁶) / 2 = 0,020 m = 2 cm. Cette formule suppose que l'onde se propage en ligne droite et que la vitesse est constante. En réalité, la vitesse varie selon le tissu : 3300 m/s dans l'os, 1480 m/s dans l'eau, 1540 m/s dans les tissus mous, 340 m/s dans l'air. Les échographes modernes corrigent ces variations par des algorithmes de correction de vitesse. La résolution axiale (dans l'axe de propagation) dépend de la longueur d'onde : elle est d'environ λ/2. La résolution latérale (perpendiculaire) dépend de la largeur du faisceau. La fréquence d'échantillonnage détermine la profondeur maximale explorable. Cette formule permet également de calculer la fréquence de répétition des impulsions (PRF) nécessaire pour éviter les ambiguïtés de profondeur. La compréhension de ce principe est cruciale pour optimiser les réglages et interpréter correctement les mesures échographiques." }
+        { title: "🌊 Les ultrasons", content: "Les ultrasons sont des ondes mécaniques longitudinales dont la fréquence dépasse la limite d'audibilité humaine (20 kHz). En imagerie médicale, on utilise des fréquences comprises entre 1 et 15 MHz. Les ondes ultrasonores se propagent dans les tissus à une vitesse moyenne d'environ 1540 m/s (cette vitesse varie selon la densité du milieu : 1480 m/s dans l'eau, 3300 m/s dans l'os, 340 m/s dans l'air). Leur longueur d'onde est inversement proportionnelle à la fréquence : λ = v/f. Une fréquence élevée (15 MHz) donne une longueur d'onde courte, permettant une meilleure résolution spatiale (détection de petits détails) mais une pénétration limitée (quelques centimètres). Une fréquence basse (2-5 MHz) pénètre plus profondément (jusqu'à 20-30 cm) mais avec une résolution moindre. Les ultrasons sont produits par des transducteurs piézoélectriques qui convertissent l'énergie électrique en vibrations mécaniques." },
+        { title: "🔊 Compression & Raréfaction - Lien avec l'échographie", content: "Une onde ultrasonore est une onde de pression qui se propage par alternance de compressions et de raréfactions. Lors d'une compression, les particules du milieu sont rapprochées, créant une zone de haute pression. Lors d'une raréfaction, les particules sont éloignées, créant une zone de basse pression. Cette alternance se déplace dans le milieu à la vitesse du son. La distance entre deux compressions successives est la longueur d'onde. L'amplitude de l'onde correspond à la variation maximale de pression. En échographie, c'est l'intensité des ondes réfléchies qui est mesurée. Le rapport entre l'amplitude de l'onde réfléchie et l'onde incidente dépend du coefficient de réflexion, lié à la différence d'impédance acoustique entre les deux milieux. La compression et la raréfaction sont également responsables des effets biologiques des ultrasons : la cavitation (formation de bulles gazeuses), les micro-courants et l'échauffement thermique. Cependant, aux intensités utilisées en diagnostic (ISPTA < 720 mW/cm²), ces effets sont négligeables et sans danger. La compréhension de ces phénomènes ondulatoires est fondamentale pour optimiser les réglages de l'échographe (gain, puissance, fréquence, focalisation) et pour interpréter correctement les images." },
+        { title: "🖥️ Types d'échographie : échocardiographie, abdominale, obstétrique", content: "Il existe plusieurs types d'échographie selon l'objectif clinique. L'échocardiographie est l'échographie du cœur : elle évalue la fonction systolique, les valves cardiaques, les pressions intracardiaques et les anomalies de la paroi. Elle utilise des sondes phased-array qui ont une petite surface d'appui pour passer entre les côtes. L'échographie abdominale examine le foie, la vésicule biliaire, les reins, le pancréas, la rate et les gros vaisseaux. Elle permet de détecter des calculs biliaires ou rénaux, des tumeurs, des kystes, des épanchements ou des anomalies de taille des organes. Le patient doit être à jeun pour réduire les gaz intestinaux qui bloquent les ultrasons. L'échographie obstétricale suit le développement du fœtus tout au long de la grossesse : biométrie (mesures de la tête, de l'abdomen, du fémur), anatomie détaillée, localisation du placenta, quantité de liquide amniotique. Elle permet de dépister des malformations congénitales et de déterminer le sexe vers 20 semaines. Les trois échographies de routine sont recommandées au premier trimestre (datation), au deuxième trimestre (morphologique) et au troisième trimestre (croissance). Ces trois applications sont les plus courantes et utilisent des sondes convexes pour l'abdomen et l'obstétrique." },
+        { title: "📏 Formule de calcul de la profondeur", content: "La mesure de la profondeur en échographie repose sur une formule simple mais fondamentale : d = v × t / 2. d est la profondeur de l'interface réfléchissante (en mètres). v est la vitesse de propagation des ultrasons dans le tissu (environ 1540 m/s pour les tissus mous). t est le temps écoulé entre l'émission de l'impulsion ultrasonore et la réception de l'écho (en secondes). La division par 2 est essentielle car l'onde effectue un aller-retour. Exemple : si t = 26 microsecondes (26 × 10⁻⁶ s), alors d = 1540 × (26×10⁻⁶) / 2 = 0,020 m = 2 cm. Cette formule suppose que l'onde se propage en ligne droite et que la vitesse est constante. En réalité, la vitesse varie selon le tissu : 3300 m/s dans l'os, 1480 m/s dans l'eau. Les échographes modernes corrigent ces variations. La résolution axiale (dans l'axe de propagation) dépend de la longueur d'onde : elle est d'environ λ/2. Cette formule permet également de calculer la fréquence de répétition des impulsions (PRF) nécessaire pour éviter les ambiguïtés de profondeur." }
     ];
 
-    // HISTOIRE (200+ mots)
+    // HISTOIRE
     const historyContent = `📜 **Histoire de l'échographie médicale**
 
-L'histoire de l'échographie commence au XIXe siècle avec la découverte du principe physique fondamental. En 1880, les frères Pierre et Jacques Curie découvrent l'effet piézoélectrique : certains cristaux (comme le quartz) génèrent une tension électrique lorsqu'ils sont soumis à une pression mécanique, et inversement, ils se déforment lorsqu'on leur applique une tension. Cette découverte, qui valut le Prix Nobel aux Curies, est à l'origine des transducteurs ultrasonores modernes.
+L'histoire de l'échographie commence au XIXe siècle. En 1880, les frères Pierre et Jacques Curie découvrent l'effet piézoélectrique : certains cristaux (quartz) génèrent une tension électrique sous pression mécanique, et inversement. Cette découverte, qui valut le Prix Nobel aux Curies, est à l'origine des transducteurs ultrasonores modernes.
 
-Pendant la Première Guerre mondiale, le physicien français Paul Langevin applique l'effet piézoélectrique pour développer le sonar, utilisé pour détecter les sous-marins. C'est la première application pratique des ultrasons.
+Pendant la Première Guerre mondiale, Paul Langevin applique l'effet piézoélectrique pour développer le sonar, utilisé pour détecter les sous-marins.
 
-Les premières applications médicales apparaissent dans les années 1940. Le neurologue autrichien Karl Dussik tente de localiser des tumeurs cérébrales en mesurant la transmission des ultrasons à travers le crâne. En 1942, il publie les premiers résultats d'"hyperphonographie du cerveau". La même époque voit George Ludwig (USA) utiliser les ultrasons pour détecter des calculs biliaires.
+Les premières applications médicales apparaissent dans les années 1940. Karl Dussik (Autriche) tente de localiser des tumeurs cérébrales par ultrasons. En 1942, il publie les premiers résultats d'"hyperphonographie du cerveau".
 
-Les années 1950 marquent un tournant décisif. En Suède, Inge Edler et Carl Hellmuth Hertz développent l'échocardiographie (examen du cœur). En Écosse, Ian Donald, un obstétricien, utilise un échographe industriel pour examiner des tumeurs pelviennes. En 1958, il publie un article révolutionnaire sur l'utilisation des ultrasons en obstétrique et gynécologie. Donald développe ensuite le "Diasonograph", le premier échographe commercial.
+Les années 1950 marquent un tournant. En Écosse, Ian Donald, obstétricien, utilise un échographe industriel pour examiner des tumeurs pelviennes. En 1958, il publie un article révolutionnaire sur l'utilisation des ultrasons en obstétrique. Il développe le "Diasonograph", premier échographe commercial.
 
-Dans les années 1960 et 1970, l'échographie progresse rapidement : introduction du mode B (Brightness mode) qui donne des images en deux dimensions, amélioration des sondes, développement des premiers systèmes à balayage manuel puis automatique.
+Dans les années 1960-1970, l'échographie progresse : introduction du mode B (Brightness mode) donnant des images en deux dimensions, amélioration des sondes.
 
-Les années 1980 voient l'avènement du Doppler avec codage couleur (développé par des chercheurs japonais et américains), permettant de visualiser le flux sanguin. L'échographie devient indispensable en cardiologie et en obstétrique.
+Les années 1980 voient l'avènement du Doppler couleur, permettant de visualiser le flux sanguin.
 
-Depuis les années 1990, les progrès sont constants : échographie 3D, 4D temps réel, échographie de contraste, élastographie (mesure de la rigidité tissulaire), sondes miniaturisées, intelligence artificielle pour l'aide au diagnostic. Aujourd'hui, plus de 200 millions d'examens échographiques sont réalisés chaque année dans le monde. L'échographie est devenue un outil diagnostique incontournable, accessible, peu coûteux et absolument sûr.`;
+Depuis les années 1990 : échographie 3D, 4D, élastographie, intelligence artificielle. Aujourd'hui, plus de 200 millions d'examens échographiques sont réalisés chaque année dans le monde. L'échographie est devenue un outil diagnostique incontournable, accessible, peu coûteux et absolument sûr.`;
 
-    // Q&A
+    // Q&A (2 questions)
     const qaData = [
         { q: "Qu'est-ce que l'impédance acoustique ? 🥸", a: "L'impédance acoustique (Z) est le produit de la densité du milieu (ρ) et de la vitesse de propagation du son (v) : Z = ρ × v. Elle s'exprime en rayls (kg·m⁻²·s⁻¹). L'impédance détermine le comportement des ultrasons à l'interface entre deux milieux. Plus la différence d'impédance est grande, plus la réflexion est importante. C'est pourquoi l'os (Z élevée) réfléchit presque totalement les ultrasons, tandis que le passage eau-tissu (impédances proches) génère une faible réflexion. Le coefficient de réflexion est donné par R = (Z₂ - Z₁)²/(Z₂ + Z₁)². L'impédance explique aussi pourquoi on utilise du gel : l'air a une impédance très faible (400 rayls) contre 1,6 million rayls pour la peau, créant une réflexion quasi totale ; le gel a une impédance proche de celle des tissus, permettant la transmission." },
-        { q: "Pourquoi existe-t-il différents modes échographiques (2D, 3D, 4D, Doppler) ? 🤷‍♀️", a: "Chaque mode apporte des informations spécifiques. Le mode 2D (B-mode) est le standard : il montre une coupe anatomique en temps réel, idéal pour la morphologie et les mouvements grossiers. Le mode 3D reconstruit un volume à partir de multiples coupes 2D, permettant une visualisation spatiale (exemple : visage du fœtus, volumes tumoraux). Le mode 4D est la 3D en mouvement : on voit les structures en temps réel dans l'espace, précieux en cardiologie et obstétrique pour observer la dynamique. Le mode Doppler mesure la vitesse et la direction des flux : le Doppler couleur code les flux (rouge vers la sonde, bleu éloignement), le Doppler pulsé mesure la vitesse à un point précis, le Doppler continu mesure les flux rapides (cardiaques). Le mode M (pour mouvement) montre l'évolution temporelle d'une ligne unique d'exploration, utilisé en cardiologie pour analyser les valves. Le mode élastographie mesure la rigidité des tissus, utile pour caractériser les tumeurs (cancers plus durs). Chaque mode répond à une question clinique spécifique." }
+        { q: "Pourquoi existe-t-il différents modes échographiques (2D, 3D, 4D, Doppler) ? 🤷‍♀️", a: "Chaque mode apporte des informations spécifiques. Le mode 2D (B-mode) est le standard : il montre une coupe anatomique en temps réel, idéal pour la morphologie et les mouvements. Le mode 3D reconstruit un volume à partir de multiples coupes 2D, permettant une visualisation spatiale (exemple : visage du fœtus, volumes tumoraux). Le mode 4D est la 3D en mouvement : on voit les structures en temps réel dans l'espace, précieux en cardiologie et obstétrique. Le mode Doppler mesure la vitesse et la direction des flux : le Doppler couleur code les flux (rouge vers la sonde, bleu éloignement), le Doppler pulsé mesure la vitesse à un point précis, le Doppler continu mesure les flux rapides (cardiaques). Le mode M (mouvement) montre l'évolution temporelle d'une ligne unique d'exploration. L'élastographie mesure la rigidité des tissus, utile pour caractériser les tumeurs (cancers plus durs)." }
     ];
 
     // QUIZ (15 questions)
     const mcQuestions = [
         { q: "Que utilise l'échographie ?", o: ["Ultrasons", "Rayons X", "Lumière", "Champ magnétique"], correct: 0, explanation: "L'échographie utilise des ondes ultrasonores (fréquences > 20 kHz)." },
         { q: "Quelle fréquence est utilisée en échographie médicale ?", o: ["1–15 MHz", "20 Hz", "1 kHz", "100 Hz"], correct: 0, explanation: "Les fréquences médicales sont entre 1 et 15 MHz." },
-        { q: "Pourquoi met-on du gel entre la sonde et la peau ?", o: ["Éliminer l'air", "Refroidir", "Colorer l'image", "Protéger la peau"], correct: 0, explanation: "Le gel élimine l'air qui réfléchit presque totalement les ultrasons à cause de la différence d'impédance." },
+        { q: "Pourquoi met-on du gel entre la sonde et la peau ?", o: ["Éliminer l'air", "Refroidir", "Colorer l'image", "Protéger la peau"], correct: 0, explanation: "Le gel élimine l'air car l'air a une impédance très différente des tissus." },
         { q: "Qu'est-ce que la réflexion en échographie ?", o: ["Retour de l'onde vers la sonde", "L'onde disparaît", "L'onde est détruite", "L'onde est absorbée"], correct: 0, explanation: "La réflexion est le renvoi d'une partie de l'onde vers la sonde." },
         { q: "Quelle structure apparaît en noir sur une image échographique ?", o: ["Liquide", "Os", "Air", "Métal"], correct: 0, explanation: "Les liquides sont anéchogènes (noirs car ils réfléchissent peu les ultrasons)." },
         { q: "Que signifie hyperéchogène ?", o: ["Clair / brillant", "Sombre", "Invisible", "Rouge"], correct: 0, explanation: "Les structures hyperéchogènes (os, calculs) apparaissent brillantes." },
@@ -451,7 +450,6 @@ Depuis les années 1990, les progrès sont constants : échographie 3D, 4D temps
         document.getElementById("mc-restart-btn")?.addEventListener("click", () => initQuiz());
     }
 
-    // Rendu théorie
     function renderTheory() {
         let html = "";
         theoryChapters.forEach(ch => { html += `<div class="theory-card"><h3>${ch.title}</h3><p>${ch.content}</p></div>`; });
@@ -466,7 +464,7 @@ Depuis les années 1990, les progrès sont constants : échographie 3D, 4D temps
 
     document.getElementById("history-content").innerHTML = historyContent;
 
-    // ==================== EXPÉRIENCE 1 : PIEZO ====================
+    // ==================== EXPÉRIENCE 1 : PIEZOÉLECTRIQUE ====================
     let piezoAnimation = null;
     let energyActive = false;
     let waves = [];
@@ -483,62 +481,68 @@ Depuis les années 1990, les progrès sont constants : échographie 3D, 4D temps
         // Source d'énergie
         ctx.fillStyle = "#f39c12";
         ctx.font = "bold 18px system-ui";
-        ctx.fillText("⚡ ÉNERGIE", 30, 60);
+        ctx.fillText("⚡ SOURCE D'ÉNERGIE", 30, 60);
         ctx.fillStyle = "#e67e22";
         ctx.beginPath();
-        ctx.rect(20, 70, 80, 40);
+        ctx.rect(20, 70, 100, 45);
         ctx.fill();
+        ctx.fillStyle = "white";
+        ctx.font = "12px system-ui";
+        ctx.fillText("ÉLECTRICITÉ", 45, 98);
         
-        const crystalX = w - 180;
+        const crystalX = w - 200;
         const crystalY = h/2 - 40;
         
-        // Éclairs
+        // Éclairs (énergie électrique vers cristaux)
         if (energyActive) {
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < 8; i++) {
                 ctx.beginPath();
-                ctx.moveTo(100, 90 + Math.sin(Date.now() * 0.01 + i) * 5);
-                ctx.lineTo(crystalX - 20 + Math.random() * 20, crystalY + 30);
-                ctx.strokeStyle = `rgba(52, 152, 219, ${0.6 + Math.sin(Date.now() * 0.02) * 0.3})`;
+                ctx.moveTo(120, 92 + Math.sin(Date.now() * 0.01 + i) * 6);
+                ctx.lineTo(crystalX - 20 + Math.random() * 30, crystalY + 30 + Math.sin(Date.now() * 0.02 + i) * 10);
+                ctx.strokeStyle = `rgba(52, 152, 219, ${0.7 + Math.sin(Date.now() * 0.02) * 0.3})`;
                 ctx.lineWidth = 3;
                 ctx.stroke();
             }
         }
         
-        // Cristaux
-        const vibration = energyActive ? Math.sin(Date.now() * 0.02) * 4 : 0;
+        // Cristaux piézoélectriques (⭐️)
+        const vibration = energyActive ? Math.sin(Date.now() * 0.02) * 5 : 0;
         for (let i = 0; i < 4; i++) {
-            const x = crystalX + i * 35;
-            const y = crystalY + 20 + Math.sin(Date.now() * 0.015 + i) * (energyActive ? 3 : 0);
-            ctx.font = `${28 + Math.abs(vibration)}px system-ui`;
+            const x = crystalX + i * 42;
+            const y = crystalY + 20 + Math.sin(Date.now() * 0.015 + i) * (energyActive ? 4 : 0);
+            ctx.font = `${30 + Math.abs(vibration)}px system-ui`;
             ctx.fillStyle = energyActive ? "#f1c40f" : "#d2b4de";
             ctx.fillText("⭐️", x, y);
         }
-        ctx.font = "12px system-ui";
+        ctx.font = "bold 14px system-ui";
         ctx.fillStyle = "#c39bd3";
-        ctx.fillText("Cristaux piézoélectriques", crystalX - 20, crystalY - 10);
+        ctx.fillText("CRISTAUX PIÉZOÉLECTRIQUES", crystalX - 20, crystalY - 10);
         
-        // Ondes ultrasonores
+        // ONDES ULTRASONORES (demi-cercles colorés)
         if (energyActive) {
-            if (Date.now() % 12 < 4) {
-                waves.push({ radius: 10, alpha: 0.8, x: crystalX + 55, y: crystalY + 30 });
+            if (Date.now() % 10 < 3) {
+                waves.push({ radius: 10, alpha: 0.9, x: crystalX + 60, y: crystalY + 30 });
             }
             for (let i = 0; i < waves.length; i++) {
                 const wv = waves[i];
-                wv.radius += 3;
+                wv.radius += 4;
                 wv.alpha -= 0.02;
                 ctx.beginPath();
+                // Demi-cercles (émission vers la droite)
                 ctx.ellipse(wv.x + wv.radius/2, wv.y, wv.radius, wv.radius/1.5, 0, 0, Math.PI * 2);
                 const grad = ctx.createLinearGradient(wv.x, wv.y, wv.x + wv.radius, wv.y);
-                grad.addColorStop(0, `rgba(46, 204, 113, ${wv.alpha * 0.6})`);
-                grad.addColorStop(1, `rgba(52, 152, 219, ${wv.alpha * 0.4})`);
+                grad.addColorStop(0, `rgba(46, 204, 113, ${wv.alpha * 0.7})`);
+                grad.addColorStop(1, `rgba(52, 152, 219, ${wv.alpha * 0.5})`);
                 ctx.fillStyle = grad;
                 ctx.fill();
             }
             waves = waves.filter(w => w.alpha > 0);
-            if (waves.length < 12) waves.push({ radius: 5, alpha: 0.7, x: crystalX + 40 + Math.random() * 40, y: crystalY + 10 + Math.random() * 50 });
-            ctx.font = "italic 12px system-ui";
+            if (waves.length < 12) {
+                waves.push({ radius: 8, alpha: 0.8, x: crystalX + 50 + Math.random() * 40, y: crystalY + 20 + Math.random() * 50 });
+            }
+            ctx.font = "italic 13px system-ui";
             ctx.fillStyle = "#2ecc71";
-            ctx.fillText("🔊 ONDES ULTRASONORES →", crystalX + 80, crystalY - 15);
+            ctx.fillText("🔊 ONDES ULTRASONORES ÉMISES →", crystalX + 100, crystalY - 15);
         }
         
         piezoAnimation = requestAnimationFrame(drawPiezo);
@@ -547,7 +551,7 @@ Depuis les années 1990, les progrès sont constants : échographie 3D, 4D temps
     function startEnergy() {
         energyActive = true;
         waves = [];
-        setTimeout(() => { energyActive = false; waves = []; }, 4000);
+        setTimeout(() => { energyActive = false; waves = []; }, 4500);
     }
 
     // ==================== EXPÉRIENCE 2 : COMPORTEMENT DES ONDES ====================
@@ -563,87 +567,105 @@ Depuis les années 1990, les progrès sont constants : échographie 3D, 4D temps
         ctx.fillStyle = "#0f0f1a";
         ctx.fillRect(0, 0, w, h);
         
-        // Sonde (transducteur)
-        ctx.fillStyle = "#c39bd3";
-        ctx.fillRect(w/2 - 40, 20, 80, 30);
-        ctx.fillStyle = "white";
-        ctx.font = "12px system-ui";
-        ctx.fillText("SONDE", w/2 - 20, 42);
+        // SONDE (représentée comme 🖱️⬜️⬛️)
+        const sondeX = w/2 - 60;
+        const sondeY = 30;
+        ctx.font = "32px system-ui";
+        ctx.fillStyle = "#f39c12";
+        ctx.fillText("🖱️⬜️⬛️", sondeX, sondeY + 30);
+        ctx.font = "bold 14px system-ui";
+        ctx.fillStyle = "#f39c12";
+        ctx.fillText("SONDE / TRANSDUCTEUR", sondeX - 10, sondeY + 55);
         
-        // Onde incidente (vers le bas)
-        const time = Date.now() * 0.01;
-        for (let i = 0; i < 5; i++) {
-            const offset = (time + i * 20) % 100;
-            ctx.beginPath();
-            ctx.moveTo(w/2 - 15 + i*5, 50 + offset);
-            ctx.lineTo(w/2 + 15 - i*5, 50 + offset);
-            ctx.strokeStyle = `rgba(46, 204, 113, 0.8)`;
-            ctx.lineWidth = 2;
-            ctx.stroke();
-        }
-        
+        // Interface tissulaire (ligne horizontale)
         const interfaceY = h - 100;
         ctx.fillStyle = "#e67e22";
-        ctx.fillRect(0, interfaceY-5, w, 10);
+        ctx.fillRect(0, interfaceY - 5, w, 10);
         ctx.fillStyle = "white";
-        ctx.font = "10px system-ui";
-        ctx.fillText("Interface tissulaire", w/2 - 50, interfaceY-8);
+        ctx.font = "12px system-ui";
+        ctx.fillText("INTERFACE TISSULAIRE", w/2 - 70, interfaceY - 10);
         
-        // Comportement selon l'effet
+        // ONDES INCIDENTES (demi-cercles verts qui descendent de la sonde)
+        const time = Date.now() * 0.008;
+        for (let i = 0; i < 3; i++) {
+            const offset = (time + i * 30) % (interfaceY - 80);
+            ctx.beginPath();
+            ctx.ellipse(w/2, 80 + offset, 25, 15, 0, 0, Math.PI * 2);
+            const gradIncident = ctx.createLinearGradient(w/2 - 25, 80 + offset, w/2 + 25, 80 + offset);
+            gradIncident.addColorStop(0, `rgba(46, 204, 113, 0.7)`);
+            gradIncident.addColorStop(1, `rgba(46, 204, 113, 0.3)`);
+            ctx.fillStyle = gradIncident;
+            ctx.fill();
+        }
+        
+        // Comportement selon l'effet sélectionné
         const explanations = {
-            reflexion: "🔄 RÉFLEXION : L'onde revient vers la sonde. C'est le principe fondamental de l'échographie ! Les ondes sont réfléchies à l'interface entre deux tissus d'impédances différentes. Plus la différence d'impédance est grande, plus la réflexion est forte. L'os réfléchit presque totalement (ombre acoustique), tandis que le liquide réfléchit peu (zone noire).",
-            refraction: "〰️ RÉFRACTION : L'onde change de direction en traversant l'interface. Cela se produit lorsque la vitesse de propagation diffère entre les deux milieux. La réfraction peut créer des artefacts (déformation des structures, images fantômes). La loi de Snell-Descartes décrit ce phénomène : n₁·sinθ₁ = n₂·sinθ₂.",
-            absorption: "🔥 ABSORPTION : Une partie de l'énergie ultrasonore est convertie en chaleur dans les tissus. L'absorption dépend de la fréquence (plus elle est élevée, plus l'absorption est forte) et du type de tissu (os > muscles > liquides). Elle limite la pénétration et peut, à haute intensité, avoir des effets thérapeutiques.",
-            diffusion: "✨ DIFFUSION : L'onde est dispersée dans toutes les directions par de petites structures (globules rouges, microbulles). La diffusion de Rayleigh donne des informations sur les tissus : le parenchyme normal a un aspect granuleux homogène grâce à la diffusion. Certaines pathologies modifient ce motif."
+            reflexion: "🔄 RÉFLEXION : L'onde revient vers la sonde. Les ondes réfléchies (demi-cercles bleus) remontent vers le transducteur. C'est le principe fondamental de l'échographie ! Plus la différence d'impédance est grande, plus la réflexion est forte. L'os réfléchit presque totalement (ombre acoustique).",
+            refraction: "〰️ RÉFRACTION : L'onde change de direction en traversant l'interface. Cela se produit lorsque la vitesse de propagation diffère entre les deux milieux. La réfraction peut créer des artefacts (déformation des structures). La loi de Snell-Descartes décrit ce phénomène.",
+            absorption: "🔥 ABSORPTION : L'énergie ultrasonore est convertie en chaleur dans les tissus. Les ondes ne reviennent pas (disparition progressive). L'absorption dépend de la fréquence (plus elle est élevée, plus l'absorption est forte) et du type de tissu (os > muscles).",
+            diffusion: "✨ DIFFUSION : L'onde est dispersée dans toutes les directions par de petites structures (globules rouges, microbulles). Les ondes diffusées (multiples petits demi-cercles) partent dans toutes les directions. La diffusion de Rayleigh donne un aspect granuleux homogène au parenchyme normal."
         };
         document.getElementById("waveExplanation").innerHTML = explanations[waveEffect];
         
-        // Animation de l'effet
         if (waveEffect === "reflexion") {
-            for (let i = 0; i < 5; i++) {
-                const offset = (time + i * 15) % 80;
+            // Ondes réfléchies (bleues) qui remontent vers la sonde
+            for (let i = 0; i < 3; i++) {
+                const offset = (time + i * 30) % (interfaceY - 80);
                 ctx.beginPath();
-                ctx.moveTo(w/2 - 20 + i*8, interfaceY - offset);
-                ctx.lineTo(w/2 + 20 - i*8, interfaceY - offset);
-                ctx.strokeStyle = `rgba(52, 152, 219, 0.8)`;
-                ctx.stroke();
+                ctx.ellipse(w/2, interfaceY - 20 - offset, 22, 13, 0, 0, Math.PI * 2);
+                const gradReflect = ctx.createLinearGradient(w/2 - 22, interfaceY - 20 - offset, w/2 + 22, interfaceY - 20 - offset);
+                gradReflect.addColorStop(0, `rgba(52, 152, 219, 0.7)`);
+                gradReflect.addColorStop(1, `rgba(52, 152, 219, 0.3)`);
+                ctx.fillStyle = gradReflect;
+                ctx.fill();
             }
+            // Flèche indiquant le retour
+            ctx.beginPath();
+            ctx.moveTo(w/2, interfaceY - 30);
+            ctx.lineTo(w/2, 90);
+            ctx.strokeStyle = "rgba(52, 152, 219, 0.6)";
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.stroke();
+            ctx.setLineDash([]);
             ctx.fillStyle = "#3498db";
-            ctx.fillText("📡 Onde réfléchie →", w/2 + 30, h - 150);
+            ctx.fillText("⬅️ ONDES RÉFLÉCHIES (retour à la sonde)", w/2 + 30, interfaceY - 50);
         }
         else if (waveEffect === "refraction") {
+            // Onde déviée (courbe)
             ctx.beginPath();
-            ctx.moveTo(w/2, 70);
-            ctx.quadraticCurveTo(w/2 + 40, interfaceY - 30, w/2 + 80, interfaceY + 20);
+            ctx.moveTo(w/2, 100);
+            ctx.quadraticCurveTo(w/2 + 60, interfaceY - 40, w/2 + 100, interfaceY + 20);
             ctx.strokeStyle = "#e67e22";
-            ctx.lineWidth = 2;
+            ctx.lineWidth = 3;
             ctx.stroke();
             ctx.fillStyle = "#e67e22";
-            ctx.fillText("Onde réfractée (déviation)", w/2 + 60, interfaceY - 20);
+            ctx.fillText("Onde réfractée (déviation)", w/2 + 70, interfaceY - 30);
         }
         else if (waveEffect === "absorption") {
-            ctx.fillStyle = "rgba(231, 76, 60, 0.3)";
-            ctx.fillRect(w/2 - 40, interfaceY - 30, 80, 60);
-            for (let i = 0; i < 8; i++) {
-                ctx.fillStyle = `rgba(231, 76, 60, ${0.3 - i*0.03})`;
+            // Effet de disparition / chaleur
+            for (let i = 0; i < 15; i++) {
+                ctx.fillStyle = `rgba(231, 76, 60, ${0.4 - i*0.02})`;
                 ctx.beginPath();
-                ctx.arc(w/2 + (i-4)*8, interfaceY - 10 + Math.sin(time + i)*5, 5, 0, Math.PI*2);
+                ctx.arc(w/2 + (i-7)*10, interfaceY - 40 + Math.sin(time + i)*8, 6, 0, Math.PI*2);
                 ctx.fill();
             }
             ctx.fillStyle = "#e74c3c";
-            ctx.fillText("🔥 Énergie convertie en chaleur", w/2 - 80, interfaceY - 50);
+            ctx.fillText("🔥 ABSORPTION : les ondes disparaissent (conversion en chaleur)", w/2 - 150, interfaceY - 70);
         }
         else if (waveEffect === "diffusion") {
-            for (let i = 0; i < 12; i++) {
-                const angle = time + i;
-                const rad = (angle % 360) * Math.PI / 180;
+            // Diffusion multidirectionnelle
+            for (let i = 0; i < 20; i++) {
+                const angle = time * 0.5 + i;
+                const rad = angle % (Math.PI * 2);
+                const radius = 15 + Math.sin(angle) * 5;
                 ctx.beginPath();
-                ctx.arc(w/2 + Math.cos(rad)*30, interfaceY - 20 + Math.sin(rad)*20, 3, 0, Math.PI*2);
+                ctx.ellipse(w/2 + Math.cos(rad) * 40 + (i-10)*8, interfaceY - 30 + Math.sin(rad) * 30, 5, 3, 0, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(155, 89, 182, 0.6)`;
                 ctx.fill();
             }
             ctx.fillStyle = "#9b59b6";
-            ctx.fillText("✨ Diffusion multidirectionnelle", w/2 - 80, interfaceY - 60);
+            ctx.fillText("✨ DIFFUSION : ondes dispersées dans toutes les directions", w/2 - 130, interfaceY - 60);
         }
         
         waveAnimation = requestAnimationFrame(drawWaves);
